@@ -10,10 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.13",
+    "@tanstack/react-router": "^1.131.49",
+    "@tanstack/react-router-devtools": "^1.131.49",
+    "classnames": "^2.5.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.13"
+    "react-hook-form": "^7.63.0",
+    "react-icons": "^5.5.0",
+    "tailwindcss": "^4.1.13",
+    "yup": "^1.7.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",

@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@layer components {
+	/*! BUTTON !*/
+	.btn {
+		@apply flex items-center justify-center text-sm font-bold w-max h-max duration-100 active:scale-95 outline-none;
+	}
+
+	.btn.disabled {
+		@apply active:scale-100 opacity-50;
+	}
+
+	.btn.black {
+		@apply text-white bg-neutral-800 hover:bg-neutral-900;
+	}
+	.btn.black-simple {
+		@apply text-neutral-700 hover:bg-neutral-700/10;
+	}
+	.btn.white {
+		@apply text-neutral-700 border border-solid border-neutral-400 bg-white hover:bg-neutral-100;
+	}
+	.btn.red {
+		@apply text-white bg-red-700 hover:bg-red-800;
+	}
+	.btn.red-outline {
+		@apply text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800;
+	}
+	.btn.red-simple {
+		@apply text-red-600 hover:bg-red-600/10;
+	}
+	.btn.green {
+		@apply text-white bg-green-700 hover:bg-green-800;
+	}
+	.btn.green-outline {
+		@apply text-green-700 bg-white border border-green-700 hover:border-green-800 hover:text-green-800;
+	}
+	.btn.green-simple {
+		@apply text-green-600 hover:bg-green-600/10;
+	}
+	/* .btn.simple {
+		@apply text-neutral-800 hover:text-neutral-900;
+	} */
+
+	.btn.small {
+		@apply px-1 py-0.5 rounded text-xs;
+	}
+	.btn.medium {
+		@apply px-4 py-1.5 rounded;
+	}
+	.btn.large {
+		@apply px-6 py-3 rounded-[10px];
+	}
+	.btn.icon {
+		@apply size-8 rounded;
+	}
+}
