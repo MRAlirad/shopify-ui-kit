@@ -64,4 +64,44 @@
 	.btn.icon {
 		@apply size-8 rounded;
 	}
+
+	/*! ALERT !*/
+	.alert {
+		@apply grid grid-cols-[max-content_1fr] items-center gap-2.5 p-2 rounded border border-solid
+	}
+	.alert.blue {
+		@apply text-blue-800 bg-blue-50 border-blue-300
+	}
+	.alert.green {
+		@apply text-red-800 bg-red-50 border-red-300
+	}
+	.alert.neutral {
+		@apply text-yellow-800 bg-yellow-50 border-yellow-300
+	}
+	.alert.red {
+		@apply text-green-800 bg-green-50 border-green-300
+	}
+	.alert.yellow {
+		@apply text-neutral-800 bg-neutral-50 border-neutral-300
+	}
+}
+
+@layer base {
+	@font-face {
+		font-family: 'Vazir';
+		src: url('/assets/Vazir.ttf');
+	}
+
+	* {
+		font-family: 'Vazir';
+	}
+
+	html {
+		font-family: 'Vazir';
+	}
+
+		body {
+		height: auto !important;
+		font-family: 'Vazir';
+	}
 }
