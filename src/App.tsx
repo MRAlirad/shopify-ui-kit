@@ -1,6 +1,7 @@
-
 function App() {
-	return <h1 className="text-blue-800 text-8xl">Vite + React</h1>;
+	return <div className="grid gap-3 p-5">
+
+	</div>;
 }
 
 export default App;

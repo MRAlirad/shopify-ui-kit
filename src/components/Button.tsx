@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
 import classNames from "classnames";
+import { LoaderIcon } from "./icon";
 
 export interface Props {
-	color?: 'black'| 'white'| 'simple'| 'red'| 'green'| 'blue'| 'green-outline'| 'red-outline'| 'blue-outline';
-	size?: 'small' | 'medium' | 'large' | 'icon';
+	color?: "black" | "white" | "simple" | "red" | "green" | "blue" | "black-outline"| "green-outline" | "red-outline" | "blue-outline" | "black-simple"| "green-simple" | "red-simple" | "blue-simple";
+	size?: "small" | "medium" | "large" | "icon";
 	text?: string;
-	to?: string;
 	icon?: ReactNode;
-	type?: 'submit' | 'button';
-	fluid?: boolean;
+	type?: "submit" | "button";
+	fullWidth?: boolean;
 	disabled?: boolean;
 	loading?: boolean;
 	className?: string;
@@ -17,13 +17,13 @@ export interface Props {
 
 const Button = ({
 	color = "black",
+	size = "medium",
 	text = "",
 	icon,
-	size = "medium",
-	fluid = false,
+	type = "button",
+	fullWidth = false,
 	disabled = false,
 	loading = false,
-	type = "button",
 	className = "",
 	onClick = () => {},
 }: Props) => {
@@ -34,13 +34,19 @@ const Button = ({
 				[color]: true,
 				[size]: true,
 				disabled: disabled || loading,
-				"w-full": fluid,
+				"w-full": fullWidth,
 				[className]: className,
 			})}
 			disabled={disabled || loading}
 			type={type}
 			onClick={onClick}
-		></button>
+		>
+			<div className="flex items-center justify-center gap-2">
+				{loading && <LoaderIcon size='20' className="animate-spin" />}
+				{icon && !loading && icon}
+				{text && <span>{text}</span>}
+			</div>
+		</button>
 	);
 };
 
