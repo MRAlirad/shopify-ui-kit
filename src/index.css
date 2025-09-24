@@ -139,6 +139,16 @@
 		height: auto !important;
 		font-family: "Vazir";
 	}
+
+	input.hide-arrow[type="number"]::-webkit-inner-spin-button,
+	input.hide-arrow[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input.hide-arrow[type="number"] {
+		-moz-appearance: textfield;
+	}
 }
 
 @theme {
