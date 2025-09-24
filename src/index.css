@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @layer components {
+	/*! GLOBAL !*/
+	.card {
+		@apply bg-white rounded-lg shadow-card overflow-hidden;
+	}
+
 	/*! BUTTON !*/
 	.btn {
 		@apply flex items-center justify-center text-sm font-bold w-max h-max duration-100 active:scale-95 cursor-pointer outline-none;
@@ -67,25 +72,25 @@
 
 	/*! ALERT !*/
 	.alert {
-		@apply grid grid-cols-[max-content_1fr] items-center gap-2.5 p-2 rounded border border-solid
+		@apply grid grid-cols-[max-content_1fr] items-center gap-2.5 p-2 rounded border border-solid;
 	}
 	.alert.blue {
-		@apply text-blue-800 bg-blue-50 border-blue-300
+		@apply text-blue-800 bg-blue-50 border-blue-300;
 	}
 	.alert.green {
-		@apply text-red-800 bg-red-50 border-red-300
+		@apply text-red-800 bg-red-50 border-red-300;
 	}
 	.alert.neutral {
-		@apply text-yellow-800 bg-yellow-50 border-yellow-300
+		@apply text-yellow-800 bg-yellow-50 border-yellow-300;
 	}
 	.alert.red {
-		@apply text-green-800 bg-green-50 border-green-300
+		@apply text-green-800 bg-green-50 border-green-300;
 	}
 	.alert.yellow {
-		@apply text-neutral-800 bg-neutral-50 border-neutral-300
+		@apply text-neutral-800 bg-neutral-50 border-neutral-300;
 	}
 
-		/*! BADGE !*/
+	/*! BADGE !*/
 	.badge {
 		@apply w-max;
 	}
@@ -118,20 +123,24 @@
 
 @layer base {
 	@font-face {
-		font-family: 'Vazir';
-		src: url('/assets/Vazir.ttf');
+		font-family: "Vazir";
+		src: url("/assets/Vazir.ttf");
 	}
 
 	* {
-		font-family: 'Vazir';
+		font-family: "Vazir";
 	}
 
 	html {
-		font-family: 'Vazir';
+		font-family: "Vazir";
 	}
 
-		body {
+	body {
 		height: auto !important;
-		font-family: 'Vazir';
+		font-family: "Vazir";
 	}
+}
+
+@theme {
+	--shadow-card: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
 }

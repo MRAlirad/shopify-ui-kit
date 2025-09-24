@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import classNames from "classnames";
 import { LoaderIcon } from "./icon";
 
-export interface Props {
+export interface ButtonProps {
 	color?: "black" | "white" | "simple" | "red" | "green" | "blue" | "black-outline"| "green-outline" | "red-outline" | "blue-outline" | "black-simple"| "green-simple" | "red-simple" | "blue-simple";
 	size?: "small" | "medium" | "large" | "icon";
 	text?: string;
@@ -26,7 +26,7 @@ const Button = ({
 	loading = false,
 	className = "",
 	onClick = () => {},
-}: Props) => {
+}: ButtonProps) => {
 	return (
 		<button
 			className={classNames({
