@@ -55,7 +55,7 @@ const Input = ({
 						if (e.key === "Enter") onEnter();
 					}}
 					className={classNames({
-						"hide-arrow": type === "count",
+						"hide-arrow": type === "count" ? false : true,
 					})}
 				/>
 
