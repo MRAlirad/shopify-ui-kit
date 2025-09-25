@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react";
+import { useState } from "react";
 import { useController, useFormContext } from "react-hook-form";
 import classNames from "classnames";
 import { ErrorMessage } from "./Error";
@@ -48,7 +48,7 @@ const Input = ({
 					autoComplete="off"
 					autoCorrect="off"
 					onChange={(e) => {
-						onChange(e.target.value, e);
+						onChange(e.target.value);
 						if (field) return field.onChange(e);
 					}}
 					onKeyDownCapture={(e) => {
@@ -89,7 +89,7 @@ interface InputProps {
 	disabled?: boolean;
 	placeholder?: string;
 	description?: string;
-	onChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void;
+	onChange?: (value: string) => void;
 	onEnter?: () => void;
 }
 
