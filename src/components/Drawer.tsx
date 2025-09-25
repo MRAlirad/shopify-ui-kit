@@ -3,9 +3,9 @@ import { createPortal } from "react-dom";
 import classNames from "classnames";
 import { useLockBodyScroll, useToggle } from "react-use";
 import Button, { type ButtonProps } from "./Button";
-import { CloseIcon, ArrowRightIcon } from "./icon";
+import { CloseIcon } from "./icon";
 
-const Modal = ({ title, children, actions = [], className = "", backBtn = false, onBack = () => {}, onClose = () => {} }: ModalProps) => {
+const Drawer = ({ title = "", children, className = '', actions = [], onClose = () => {} }: DrawerProps) => {
 	const [locked, toggleLocked] = useToggle(false);
 	useLockBodyScroll(locked);
 
@@ -16,24 +16,23 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 
 	return createPortal(
 		<div
-			className="modal fixed inset-0 flex items-end md:items-center justify-center bg-black/60 z-[1000] backdrop-blur-sm"
+			className="modal fixed inset-0 flex justify-start bg-black/60 z-[1000] backdrop-blur-sm"
 			onClick={(e) => {
 				if (e.target === e.currentTarget) onClose();
 			}}
 		>
 			<div
 				className={classNames({
-					"grid overflow-hidden animate-fadeInUp": true,
-					"w-full h-max max-h-[95vh] bg-white md:rounded-xl md:max-w-3xl": true,
+					"grid overflow-hidden animate-fadeInRight": true,
+					"h-screen w-full sm:w-96 bg-white": true,
 					"grid-rows-[max-content_1fr_max-content]": !!actions.length,
 					"grid-rows-[max-content_1fr]": actions.length === 0,
 					[className]: className,
 				})}
 			>
-				<div className="flex items-center gap-2 py-3 px-6 border-b border-neutral-200 bg-neutral-100">
-					{backBtn && <Button color="simple" size="small" icon={<ArrowRightIcon size={18} />} onClick={onBack} />}
+				<div className="flex items-center justify-between gap-2 py-3 px-6 border-b border-neutral-200 bg-neutral-100">
 					<h3 className="text-lg">{title}</h3>
-					<Button color="simple" size="small" className="ms-auto" icon={<CloseIcon size={20} />} onClick={onClose} />
+					<Button color="simple" size="small" icon={<CloseIcon size={20} />} onClick={onClose} />
 				</div>
 
 				<div className="overflow-x-hidden overflow-y-auto p-4">{children}</div>
@@ -51,14 +50,12 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 	);
 };
 
-interface ModalProps {
+interface DrawerProps {
 	title: string;
 	children: ReactNode;
 	actions?: ButtonProps[];
 	className?: string;
-	backBtn?: boolean;
-	onBack?: () => void;
 	onClose: () => void;
 }
 
-export default Modal;
+export default Drawer;
