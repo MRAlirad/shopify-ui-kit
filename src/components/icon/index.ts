@@ -1,3 +1,4 @@
+export { IoIosArrowDown             as ArrowCaretDownIcon } from 'react-icons/io';
 export { HiOutlineArrowRight        as ArrowRightIcon } from 'react-icons/hi';
 export { IoClose                    as CloseIcon } from 'react-icons/io5';
 export { HiOutlineEye               as EyeIcon } from 'react-icons/hi';
