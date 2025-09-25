@@ -78,7 +78,7 @@ const Select = ({
 						color="simple"
 						icon={<CloseIcon size={18} />}
 						size="small"
-						className="absolute end-4 bottom-2 bg-white !p-0 !opacity-100"
+						className="absolute end-4 bottom-2.5 bg-white !p-0 !opacity-100"
 						disabled={disabled || readOnly}
 						onClick={() => {
 							setValue(name, "");
