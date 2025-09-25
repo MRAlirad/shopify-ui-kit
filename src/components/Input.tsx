@@ -17,19 +17,7 @@ const Input = ({
 	description = "",
 	onChange = () => {},
 	onEnter = () => {},
-}: // hideArrow = true,
-// defaultValue = '',
-// help = '',
-// leftIcon,
-// max,
-// min = 0,
-// rightIcon,
-// rules,
-// showLabel = true,
-// onBlur = () => {},
-// onClick = () => {},
-// onFocus = () => {},
-InputProps) => {
+}: InputProps) => {
 	const [passwordDisplay, setPasswordDisplay] = useState(false);
 
 	const { control, watch } = useFormContext();
