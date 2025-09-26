@@ -2,6 +2,10 @@
 
 @layer components {
 	/*! GLOBAL !*/
+	body {
+		@apply text-neutral-900;
+	}
+
 	.card {
 		@apply bg-white rounded-lg shadow-card overflow-hidden;
 	}
