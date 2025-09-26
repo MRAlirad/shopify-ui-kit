@@ -2,19 +2,6 @@ import type { ReactNode } from "react";
 import classNames from "classnames";
 import { LoaderIcon } from "./icon";
 
-export interface ButtonProps {
-	color?: "black" | "white" | "simple" | "red" | "green" | "blue" | "black-outline"| "green-outline" | "red-outline" | "blue-outline" | "black-simple"| "green-simple" | "red-simple" | "blue-simple";
-	size?: "small" | "medium" | "large" | "icon";
-	text?: string;
-	icon?: ReactNode;
-	type?: "submit" | "button";
-	fullWidth?: boolean;
-	disabled?: boolean;
-	loading?: boolean;
-	className?: string;
-	onClick?: () => void;
-}
-
 const Button = ({
 	color = "black",
 	size = "medium",
@@ -49,5 +36,18 @@ const Button = ({
 		</button>
 	);
 };
+
+export interface ButtonProps {
+	color?: "black" | "white" | "simple" | "red" | "green" | "blue" | "black-outline"| "green-outline" | "red-outline" | "blue-outline" | "black-simple"| "green-simple" | "red-simple" | "blue-simple";
+	size?: "small" | "medium" | "large" | "icon";
+	text?: string;
+	icon?: ReactNode;
+	type?: "submit" | "button";
+	fullWidth?: boolean;
+	disabled?: boolean;
+	loading?: boolean;
+	className?: string;
+	onClick?: () => void;
+}
 
 export default Button;
