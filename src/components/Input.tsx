@@ -80,7 +80,7 @@ const Input = ({
 	);
 };
 
-interface InputProps {
+export interface InputProps {
 	name: string;
 	label?: string;
 	className?: string;
