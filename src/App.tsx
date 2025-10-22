@@ -134,11 +134,7 @@ function App() {
 					{ name: "name", label: "نام" },
 					{ name: "email", label: "ایمیل" },
 					{ name: "phone", label: "تلفن" },
-					{
-						name: "address",
-						label: "آدرس",
-						visibility: false,
-					},
+					{ name: "address", label: "آدرس" },
 					{ name: "city", label: "شهر" },
 					{
 						name: "status",
@@ -159,14 +155,12 @@ function App() {
 				dataSet={dataSet}
 				actions={[
 					{
-						visibility: true,
 						text: "ویرایش",
 						icon: <EditIcon size={16} />,
 						size: "icon",
 						onClick: (row) => console.log(row),
 					},
 					{
-						visibility: true,
 						text: "حذف",
 						color: "red-simple",
 						icon: <TrashIcon size={16} />,
@@ -174,6 +168,8 @@ function App() {
 						onClick: (row) => console.log(row),
 					},
 				]}
+				filterOptions={statusOptions}
+				searchPanel={true}
 				pagination={{ currentPage: page, pageCount: 10, onChangePage: setPage }}
 			/>
 		</Page>

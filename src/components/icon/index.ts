@@ -12,3 +12,4 @@ export { FiPlusCircle               as PlusCircleIcon } from 'react-icons/fi';
 export { BsThreeDots                as ThreeDotsHorizontalIcon } from 'react-icons/bs';
 export { LuTrash2                   as TrashIcon } from 'react-icons/lu';
 export { PiWarningCircleBold        as WarningCircleIcon } from 'react-icons/pi';
+export { RxReset                    as UndoIcon } from 'react-icons/rx';

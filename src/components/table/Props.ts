@@ -8,7 +8,7 @@ export interface TableProps<T> {
 	pagination?: PaginationProps;
     loading?: boolean;
 	// sortOptions: SortOptionProps[];
-	// filterOptions: FilterOptionProps[];
+	filterOptions?: FilterOptionProps[];
 	searchPanel?: boolean;
 	actions?: ActionProps<T>[];
 }
@@ -32,4 +32,14 @@ export interface ColumnProps<T> {
 export interface ActionProps<T> extends Omit<ButtonProps, "onClick"> {
 	visibility?: boolean;
 	onClick?: (row: T) => void;
+}
+
+export interface FilterSortProps {
+	filterOptions?: FilterOptionProps[];
+	searchPanel?: boolean;
+}
+
+export interface FilterOptionProps {
+	value: string | number;
+	label: string
 }

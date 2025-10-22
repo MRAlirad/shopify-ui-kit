@@ -4,11 +4,14 @@ import Pagination from "../Pagination";
 import { TableBodySkeleton } from "../Skeletons";
 import type { TableProps } from "./Props";
 import EmptySearchBox from "./EmptySearchBox";
+import FilterSort from "./FilterSort";
 
-function Table<T>({ columns = [], dataSet = [], pagination, loading = false, actions = [] }: TableProps<T>) {
+function Table<T>({ columns = [], dataSet = [], pagination, loading = false, actions = [], filterOptions = [], searchPanel }: TableProps<T>) {
 	return (
 		<div className="grid gap-6">
 			<div className="table-container card">
+				{(filterOptions.length > 0 || searchPanel) && <FilterSort {...{ filterOptions, searchPanel }} />}
+
 				<div className="table-wrapper overflow-x-auto">
 					<table className="w-full">
 						<thead>
@@ -34,9 +37,10 @@ function Table<T>({ columns = [], dataSet = [], pagination, loading = false, act
 					</table>
 				</div>
 			</div>
+
 			{pagination && pagination?.pageCount > 1 && <Pagination {...pagination} />}
 		</div>
 	);
-};
+}
 
 export default Table;
