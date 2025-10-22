@@ -2,34 +2,34 @@ import type { ReactNode } from "react";
 import type { PaginationProps } from "../Pagination";
 import type { ButtonProps } from "../Button";
 
-export interface TableProps {
-	columns: ColumnProps[];
-	dataSet: RowProps[];
+export interface TableProps<T> {
+	columns: ColumnProps<T>[];
+	dataSet: T[];
 	pagination?: PaginationProps;
     loading?: boolean;
 	// sortOptions: SortOptionProps[];
 	// filterOptions: FilterOptionProps[];
 	searchPanel?: boolean;
-	actions?: ActionProps[];
+	actions?: ActionProps<T>[];
 }
 
-export interface ColumnProps {
+export interface RowProps<T> {
+    columns: ColumnProps<T>[];
+	id?: string | number;
+	index: number;
+	actions?: ActionProps<T>[];
+    rowData: T;
+}
+
+export interface ColumnProps<T> {
 	name: string;
 	label: string;
 	visibility?: boolean;
 	className?: string;
-    cellTemplate?: (row: { [key: string]: string | number }) => ReactNode;
+    cellTemplate?: (row: T) => ReactNode;
 }
 
-export interface RowProps {
-    columns: ColumnProps[];
-	id?: string | number;
-	index: number;
-	actions?: ActionProps[];
-	[key: string]: string | number | boolean | ReactNode | ColumnProps[] | ActionProps[];
-}
-
-export interface ActionProps extends Omit<ButtonProps, "onClick"> {
+export interface ActionProps<T> extends Omit<ButtonProps, "onClick"> {
 	visibility?: boolean;
-	onClick?: (row: RowProps) => void;
+	onClick?: (row: T) => void;
 }

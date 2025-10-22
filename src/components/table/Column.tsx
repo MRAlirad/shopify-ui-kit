@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import type { ColumnProps } from "./Props";
 
-const Column = ({ name, label, visibility = true, className = "" }: ColumnProps) => {
+function Column<T>({ name, label, visibility = true, className = "" }: ColumnProps<T>) {
 	if (!visibility) return;
 
 	return (

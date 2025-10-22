@@ -5,7 +5,7 @@ import type { RowProps } from "./Props";
 import { generateRandomString } from "../../helpers/String";
 import { ThreeDotsHorizontalIcon } from "../icon";
 
-const Row = ({ columns, actions = [], index, ...props }: RowProps) => {
+function Row<T>({ columns, actions = [], index, rowData }: RowProps<T>) {
 	const uId = generateRandomString();
 
 	return (
@@ -20,7 +20,14 @@ const Row = ({ columns, actions = [], index, ...props }: RowProps) => {
 							"px-6 py-3": true,
 						})}
 					>
-						<div className="min-w-max">{column.cellTemplate ? column.cellTemplate(props as { [key: string]: string | number }) : <div>{props[column.name]}</div>}</div>
+						<div className="min-w-max">
+							{column.cellTemplate 
+								? column.cellTemplate(rowData) 
+								: <div>{rowData && typeof rowData === 'object' && rowData !== null && column.name in rowData
+									? (rowData as Record<string, string | number | undefined>)[column.name]
+									: ''}</div>
+							}
+						</div>
 					</td>
 				))}
 			{actions.filter((action) => action.visibility !== false).length > 0 && (
@@ -44,7 +51,7 @@ const Row = ({ columns, actions = [], index, ...props }: RowProps) => {
 									disabled={disabled}
 									icon={icon}
 									className={`!py-1.5 justify-start ${className}`}
-									onClick={()=> onClick?.(props)}
+									onClick={()=> onClick?.(rowData)}
 								/>
 							))}
 						</Popup>

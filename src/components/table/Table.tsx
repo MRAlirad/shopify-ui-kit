@@ -4,7 +4,7 @@ import Pagination from "../Pagination";
 import { TableBodySkeleton } from "../Skeletons";
 import type { TableProps } from "./Props";
 
-const Table = ({ columns = [], dataSet = [], pagination, loading = false, actions = [] }: TableProps) => {
+function Table<T>({ columns = [], dataSet = [], pagination, loading = false, actions = [] }: TableProps<T>) {
 	return (
 		<div className="grid gap-6">
 			<div className="table-container card">
@@ -24,7 +24,7 @@ const Table = ({ columns = [], dataSet = [], pagination, loading = false, action
 						) : (
 							<tbody>
 								{dataSet.map((row, index) => (
-									<Row key={row?.id ?? index} {...row} index={index} columns={columns} actions={actions} />
+									<Row<T> key={index} rowData={row} index={index} columns={columns} actions={actions} />
 								))}
 							</tbody>
 						)}
