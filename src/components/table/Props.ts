@@ -6,7 +6,7 @@ export interface TableProps {
 	columns: ColumnProps[];
 	dataSet: RowProps[];
 	pagination?: PaginationProps;
-    isLoading?: boolean;
+    loading?: boolean;
 	// sortOptions: SortOptionProps[];
 	// filterOptions: FilterOptionProps[];
 	searchPanel?: boolean;

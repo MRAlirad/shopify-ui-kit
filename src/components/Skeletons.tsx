@@ -130,8 +130,8 @@ export const TableSkeleton = ({ count = 7 }) => {
 export const TableBodySkeleton = ({ count = 7 }) => {
 	return (
 		<tbody>
-			{numListArray(count).map(r => (
-				<tr key={r} className="border-b last:border-0 border-neutral-100">
+			{numListArray(count > 5 ? 5 : count).map(r => (
+				<tr key={r} className="border-b last:border-0 border-neutral-200">
 					{numListArray(count).map(r => (
 						<td key={r} className="p-3">
 							<div className="skeleton h-3"></div>

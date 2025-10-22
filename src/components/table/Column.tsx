@@ -10,6 +10,7 @@ const Column = ({ name, label, visibility = true, className = "" }: ColumnProps)
 				"bg-neutral-100 text-start px-6 py-3": true,
 				[className]: className,
 			})}
+            onClick={() => console.log(name)}
 		>
 			<div className="min-w-max">
 				{label}

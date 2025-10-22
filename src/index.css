@@ -10,6 +10,10 @@
 		@apply bg-white rounded-lg shadow-card overflow-hidden;
 	}
 
+	.skeleton {
+		@apply relative overflow-hidden bg-neutral-200 rounded after:absolute after:top-0 after:right-0 after:h-full after:w-full after:bg-gradient-to-r after:from-neutral-200 after:via-white after:to-neutral-200 after:animate-progress;
+	}
+
 	/*! BUTTON !*/
 	.btn {
 		@apply flex items-center justify-center text-sm font-bold w-max h-max duration-100 active:scale-95 cursor-pointer outline-none;

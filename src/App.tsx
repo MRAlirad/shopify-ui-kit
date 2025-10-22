@@ -8,50 +8,16 @@ import Badge from "./components/Badge";
 function App() {
 	const [page, setPage] = useState(1);
 	const dataSet = [
-		{
-			id: 456789012345,
-			name: "علی احمدی",
-			email: "ali@ahmadi.ir",
-			phone: "09123456789",
-			address: "تهران، خیابان انقلاب، پلاک ۴۵۶",
-			city: "تهران",
-			country: "ایران",
-			zip: "12345",
-			status: 1,
-		},
-		{
-			id: 567890123456,
-			name: "مریم رضایی",
-			email: "maryam@rezaei.com",
-			phone: "02198765432",
-			address: "اصفهان، میدان نقش جهان، کوچه ۷۸",
-			city: "اصفهان",
-			country: "ایران",
-			zip: "54321",
-			status: 2,
-		},
-		{
-			id: 678901234567,
-			name: "رضا محمدی",
-			email: "reza@mohammadi.net",
-			phone: "09187654321",
-			address: "شیراز، بلوار چمران، پلاک ۹۸۷",
-			city: "شیراز",
-			country: "ایران",
-			zip: "67890",
-			status: 2,
-		},
-		{
-			id: 789012345678,
-			name: "فاطمه علوی",
-			email: "fatemeh@alavi.org",
-			phone: "03112345678",
-			address: "مشهد، خیابان امام رضا، پلاک ۳۲۱",
-			city: "مشهد",
-			country: "ایران",
-			zip: "09876",
-			status: 0,
-		},
+			{ id: 123456789012, name: "محمد حسینی", email: "mohammad@hoseini.ir", phone: "09121234567", address: "کرج، بلوار طالقانی، پلاک ۱۲۳", city: "کرج", country: "ایران", zip: "34567", status: 0 },
+			{ id: 234567890123, name: "سارا کریمی", email: "sara@karimi.com", phone: "02187654321", address: "تبریز، خیابان آزادی، کوچه ۴۵", city: "تبریز", country: "ایران", zip: "45678", status: 0 },
+			{ id: 345678901234, name: "امیر عباسی", email: "amir@abbasi.net", phone: "09134567890", address: "اهواز، کیانپارس، پلاک ۶۷۸", city: "اهواز", country: "ایران", zip: "56789", status: 1 },
+			{ id: 456789012345, name: "لیلا موسوی", email: "leila@musavi.org", phone: "06123456789", address: "بندرعباس، بلوار جمهوری، پلاک ۹۰۱", city: "بندرعباس", country: "ایران", zip: "67890", status: 2 },
+			{ id: 567890123456, name: "حسین نوری", email: "hossein@nouri.ir", phone: "09145678901", address: "رشت، میدان شهرداری، کوچه ۲۳", city: "رشت", country: "ایران", zip: "78901", status: 1 },
+			{ id: 678901234567, name: "زهرا جلالی", email: "zahra@jalali.com", phone: "01398765432", address: "ساری، خیابان فرهنگ، پلاک ۴۵۶", city: "ساری", country: "ایران", zip: "89012", status: 0 },
+			{ id: 789012345678, name: "پوریا صمدی", email: "pouria@samadi.net", phone: "09156789012", address: "ارومیه، بلوار ولیعصر، پلاک ۷۸۹", city: "ارومیه", country: "ایران", zip: "90123", status: 1 },
+			{ id: 890123456789, name: "مینا رحیمی", email: "mina@rahimi.org", phone: "04412345678", address: "زنجان، خیابان سعدی، کوچه ۹۰", city: "زنجان", country: "ایران", zip: "01234", status: 2 },
+			{ id: 901234567890, name: "کیوان طاهری", email: "keyvan@taheri.ir", phone: "09167890123", address: "قم، بلوار پیامبر اعظم، پلاک ۱۲۳۴", city: "قم", country: "ایران", zip: "12345", status: 1 },
+			{ id: 112345678901, name: "نازنین کاظمی", email: "naznin@kazemi.com", phone: "02598765432", address: "یزد، میدان امیرچخماق، پلاک ۵۶۷", city: "یزد", country: "ایران", zip: "23456", status: 2 }
 	];
 
 	const statusOptions = [
@@ -67,25 +33,19 @@ function App() {
 					{ name: "name", label: "نام" },
 					{ name: "email", label: "ایمیل" },
 					{ name: "phone", label: "تلفن" },
-					{ name: "address", label: "آدرس" },
+					{
+						name: "address",
+						label: "آدرس",
+						visibility: false,
+					},
 					{ name: "city", label: "شهر" },
 					{
 						name: "status",
 						label: "وضعیت",
-						cellTemplate: (row: { [key: string]: string | number }) => (
+						cellTemplate: (row) => (
 							<Badge
-								color={
-									(
-										statusOptions.find(
-											(option) => option.value === row.
-										)?.color as "red" | "green" | "yellow" | "blue" | "neutral"
-									) || "neutral"
-								}
-								text={
-									statusOptions.find(
-										(option) => option.value === row.status
-									)?.label || ""
-								}
+								color={(statusOptions.find((option) => option.value === row.status)?.color as "red" | "green" | "yellow" | "blue" | "neutral") || "neutral"}
+								text={statusOptions.find((option) => option.value === row.status)?.label || ""}
 								size="small"
 							/>
 						),
@@ -97,15 +57,16 @@ function App() {
 				actions={[
 					{
 						visibility: true,
-						color: "green",
-						icon: <EditIcon />,
+						text: "ویرایش",
+						icon: <EditIcon size={16} />,
 						size: "icon",
-						onClick: (row) => console.log(row.status),
+						onClick: (row) => console.log(row),
 					},
 					{
 						visibility: true,
-						color: "red",
-						icon: <TrashIcon />,
+						text: "حذف",
+						color: "red-simple",
+						icon: <TrashIcon size={16} />,
 						size: "icon",
 						onClick: (row) => console.log(row),
 					},
