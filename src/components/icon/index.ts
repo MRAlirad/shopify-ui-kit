@@ -3,10 +3,12 @@ export { IoIosArrowForward          as ArrowCaretForwardIcon } from 'react-icons
 export { IoIosArrowDown             as ArrowCaretDownIcon } from 'react-icons/io';
 export { HiOutlineArrowRight        as ArrowRightIcon } from 'react-icons/hi';
 export { IoClose                    as CloseIcon } from 'react-icons/io5';
+export { LuPencil                   as EditIcon } from 'react-icons/lu';
 export { HiOutlineEye               as EyeIcon } from 'react-icons/hi';
 export { HiOutlineEyeOff            as EyeSlashIcon } from "react-icons/hi";
 export { FaCircleInfo               as InfoIcon } from 'react-icons/fa6';
 export { BiLoaderAlt                as LoaderIcon } from "react-icons/bi";
 export { FiPlusCircle               as PlusCircleIcon } from 'react-icons/fi';
 export { BsThreeDots                as ThreeDotsHorizontalIcon } from 'react-icons/bs';
+export { LuTrash2                   as TrashIcon } from 'react-icons/lu';
 export { PiWarningCircleBold        as WarningCircleIcon } from 'react-icons/pi';
