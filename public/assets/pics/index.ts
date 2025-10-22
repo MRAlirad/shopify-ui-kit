@@ -1,0 +1,1 @@
+export { default as EmptyBoxImg } from "./EmptyBox.png";

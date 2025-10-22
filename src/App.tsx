@@ -109,17 +109,6 @@ function App() {
 			status: 2,
 		},
 		{
-			id: 901234567890,
-			name: "کیوان طاهری",
-			email: "keyvan@taheri.ir",
-			phone: "09167890123",
-			address: "قم، بلوار پیامبر اعظم، پلاک ۱۲۳۴",
-			city: "قم",
-			country: "ایران",
-			zip: "12345",
-			status: 1,
-		},
-		{
 			id: 112345678901,
 			name: "نازنین کاظمی",
 			email: "naznin@kazemi.com",

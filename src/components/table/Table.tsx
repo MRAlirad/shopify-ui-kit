@@ -3,6 +3,7 @@ import Row from "./Row";
 import Pagination from "../Pagination";
 import { TableBodySkeleton } from "../Skeletons";
 import type { TableProps } from "./Props";
+import EmptySearchBox from "./EmptySearchBox";
 
 function Table<T>({ columns = [], dataSet = [], pagination, loading = false, actions = [] }: TableProps<T>) {
 	return (
@@ -21,6 +22,8 @@ function Table<T>({ columns = [], dataSet = [], pagination, loading = false, act
 						</thead>
 						{loading ? (
 							<TableBodySkeleton count={columns.filter((column) => column.visibility !== false).length + 1} />
+						) : dataSet.length === 0 ? (
+							<EmptySearchBox />
 						) : (
 							<tbody>
 								{dataSet.map((row, index) => (
