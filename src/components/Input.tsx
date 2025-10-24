@@ -9,6 +9,7 @@ import { numberToCurrency } from "../helpers/Number";
 const Input = ({
 	name = "",
 	label = "",
+	defaultValue = '',
 	className = "",
 	type = "text",
 	readOnly = false,
@@ -21,7 +22,7 @@ const Input = ({
 	const [passwordDisplay, setPasswordDisplay] = useState(false);
 
 	const { control, watch } = useFormContext();
-	const { field, fieldState } = useController({ control, name, disabled });
+	const { field, fieldState } = useController({ control, name, disabled, defaultValue });
 
 	return (
 		<div
@@ -83,6 +84,7 @@ const Input = ({
 export interface InputProps {
 	name: string;
 	label?: string;
+	defaultValue?: string;
 	className?: string;
 	type?: string;
 	readOnly?: boolean;

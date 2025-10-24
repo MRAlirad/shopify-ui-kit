@@ -1,12 +1,15 @@
+import { useSearchParams } from "react-router";
+import { TableBodySkeleton } from "../Skeletons";
+import FilterSort from "./FilterSort";
 import Column from "./Column";
 import Row from "./Row";
 import Pagination from "../Pagination";
-import { TableBodySkeleton } from "../Skeletons";
-import type { TableProps } from "./Props";
 import EmptySearchBox from "./EmptySearchBox";
-import FilterSort from "./FilterSort";
+import type { TableProps } from "./Props";
 
 function Table<T>({ columns = [], dataSet = [], pagination, loading = false, actions = [], filterOptions = [], searchPanel }: TableProps<T>) {
+	const [searchParams, setSearchParams] = useSearchParams();
+
 	return (
 		<div className="grid gap-6">
 			<div className="table-container card">
@@ -38,7 +41,20 @@ function Table<T>({ columns = [], dataSet = [], pagination, loading = false, act
 				</div>
 			</div>
 
-			{pagination && pagination?.pageCount > 1 && <Pagination {...pagination} />}
+			{pagination && pagination?.pageCount > 1 && (
+				<Pagination
+					currentPage={pagination.currentPage}
+					pageCount={pagination.pageCount}
+					onChangePage={(page) => {
+						const params: Record<string, string> = {};
+
+						for (const [key, value] of searchParams.entries()) {
+							params[key] = value;
+						}
+						setSearchParams({ ...params, page: page.toString() });
+					}}
+				/>
+			)}
 		</div>
 	);
 }

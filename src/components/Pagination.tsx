@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import classNames from 'classnames';
 import { ArrowCaretBackwardIcon, ArrowCaretForwardIcon, ThreeDotsHorizontalIcon } from './icon';
 
-const Pagination = ({ currentPage, pageCount, onChangePage }: PaginationProps) => {
+const Pagination = ({ currentPage, pageCount, onChangePage = ()=> {} }: PaginationProps) => {
 	return (
 		<div className="flex items-center justify-center gap-1.5 h-10 text-base select-none">
 			<Button text={<ArrowCaretForwardIcon size={20} />} className="rounded-s-lg" disabled={currentPage === 1} onClick={() => onChangePage(currentPage - 1)} />
@@ -39,7 +39,7 @@ const Button = ({ text, isActive = false, disabled = false, className = '', onCl
 export interface PaginationProps {
 	pageCount: number,
 	currentPage: number,
-	onChangePage: (page: number) => void,
+	onChangePage?: (page: number) => void,
 };
 
 interface ButtonProps {

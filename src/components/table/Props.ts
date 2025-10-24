@@ -6,7 +6,7 @@ export interface TableProps<T> {
 	columns: ColumnProps<T>[];
 	dataSet: T[];
 	pagination?: PaginationProps;
-    loading?: boolean;
+	loading?: boolean;
 	// sortOptions: SortOptionProps[];
 	filterOptions?: FilterOptionProps[];
 	searchPanel?: boolean;
@@ -14,11 +14,11 @@ export interface TableProps<T> {
 }
 
 export interface RowProps<T> {
-    columns: ColumnProps<T>[];
+	columns: ColumnProps<T>[];
 	id?: string | number;
 	index: number;
 	actions?: ActionProps<T>[];
-    rowData: T;
+	rowData: T;
 }
 
 export interface ColumnProps<T> {
@@ -26,7 +26,8 @@ export interface ColumnProps<T> {
 	label: string;
 	visibility?: boolean;
 	className?: string;
-    cellTemplate?: (row: T) => ReactNode;
+	sort?: boolean;
+	cellTemplate?: (row: T) => ReactNode;
 }
 
 export interface ActionProps<T> extends Omit<ButtonProps, "onClick"> {
@@ -41,5 +42,5 @@ export interface FilterSortProps {
 
 export interface FilterOptionProps {
 	value: string | number;
-	label: string
+	label: string;
 }

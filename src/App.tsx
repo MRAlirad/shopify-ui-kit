@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router";
 import Page from "./components/Page";
 import Table from "./components/table/Table";
 import { EditIcon, TrashIcon } from "./components/icon";
@@ -17,7 +17,7 @@ interface User {
 }
 
 function App() {
-	const [page, setPage] = useState(1);
+	const [searchParams] = useSearchParams();
 
 	const dataSet: User[] = [
 		{
@@ -131,7 +131,7 @@ function App() {
 		<Page type="shrink">
 			<Table<User>
 				columns={[
-					{ name: "name", label: "نام" },
+					{ name: "name", label: "نام", sort: true },
 					{ name: "email", label: "ایمیل" },
 					{ name: "phone", label: "تلفن" },
 					{ name: "address", label: "آدرس" },
@@ -170,7 +170,7 @@ function App() {
 				]}
 				filterOptions={statusOptions}
 				searchPanel={true}
-				pagination={{ currentPage: page, pageCount: 10, onChangePage: setPage }}
+				pagination={{ currentPage: +(searchParams.get('page') ?? '1'), pageCount: 10 }}
 			/>
 		</Page>
 	);
