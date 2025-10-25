@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { TableBodySkeleton } from "../Skeletons";
-import FilterSort from "./FilterSort";
+import FilterSearch from "./FilterSearch";
 import Column from "./Column";
 import Row from "./Row";
 import Pagination from "../Pagination";
@@ -27,7 +27,7 @@ function Table<T>({ columns = [], dataSource = [], pagination, loading = false, 
 		<FormProvider {...formMethods}>
 			<div className="grid gap-6">
 				<div className="table-container card">
-					<FilterSort {...{ filterOptions, searchPanel, columns, selectable }} />
+					<FilterSearch {...{ filterOptions, searchPanel, columns, selectable }} />
 
 					<div className="table-wrapper overflow-x-auto">
 						<table className="w-full">

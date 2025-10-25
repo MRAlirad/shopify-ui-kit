@@ -48,7 +48,7 @@ export interface ActionProps<T> extends Omit<ButtonProps, "onClick"> {
 	onClick?: (row: T) => void;
 }
 
-export interface FilterSortProps<T> {
+export interface FilterSearchProps<T> {
 	filterOptions?: FilterOptionProps[];
 	columns: ColumnProps<T>[];
 	searchPanel?: boolean;

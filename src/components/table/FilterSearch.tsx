@@ -3,11 +3,11 @@ import { useSearchParams } from "react-router";
 import Button from "../Button";
 import { UndoIcon } from "../icon";
 import Input from "../Input";
-import type { FilterSortProps } from "./Props";
+import type { FilterSearchProps } from "./Props";
 import { useFormContext } from "react-hook-form";
 import SelectedRowsModal from "./SelectedRowsModal";
 
-function FilterSort<T>({ columns, filterOptions = [], searchPanel = false, selectable = false }: FilterSortProps<T>) {
+function FilterSearch<T>({ columns, filterOptions = [], searchPanel = false, selectable = false }: FilterSearchProps<T>) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [setselectedRowsModalDisplay, setSetselectedRowsModalDisplay] = useState(false);
 
@@ -65,4 +65,4 @@ function FilterSort<T>({ columns, filterOptions = [], searchPanel = false, selec
 	);
 }
 
-export default FilterSort;
+export default FilterSearch;
