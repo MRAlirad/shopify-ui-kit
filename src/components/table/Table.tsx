@@ -27,7 +27,7 @@ function Table<T>({ columns = [], dataSource = [], pagination, loading = false, 
 		<FormProvider {...formMethods}>
 			<div className="grid gap-6">
 				<div className="table-container card">
-					{(filterOptions.length > 0 || searchPanel) && <FilterSort {...{ filterOptions, searchPanel, columns, selectable }} />}
+					<FilterSort {...{ filterOptions, searchPanel, columns, selectable }} />
 
 					<div className="table-wrapper overflow-x-auto">
 						<table className="w-full">
@@ -47,7 +47,7 @@ function Table<T>({ columns = [], dataSource = [], pagination, loading = false, 
 							) : (
 								<tbody>
 									{dataSource.map((row, index) => (
-										<Row<T> key={index} rowData={row} index={index} columns={columns} actions={actions} selectable={selectable} />
+										<Row<T> key={(row as { id: string | number }).id} rowData={row} index={index} columns={columns} actions={actions} selectable={selectable} />
 									))}
 								</tbody>
 							)}
@@ -55,20 +55,18 @@ function Table<T>({ columns = [], dataSource = [], pagination, loading = false, 
 					</div>
 				</div>
 
-				{pagination && pagination?.pageCount > 1 && (
-					<Pagination
-						currentPage={pagination.currentPage}
-						pageCount={pagination.pageCount}
-						onChangePage={(page) => {
-							const params: Record<string, string> = {};
+				<Pagination
+					currentPage={pagination?.currentPage ?? 1}
+					pageCount={pagination?.pageCount ?? 1}
+					onChangePage={(page) => {
+						const params: Record<string, string> = {};
 
-							for (const [key, value] of searchParams.entries()) {
-								params[key] = value;
-							}
-							setSearchParams({ ...params, page: page.toString() });
-						}}
-					/>
-				)}
+						for (const [key, value] of searchParams.entries()) {
+							params[key] = value;
+						}
+						setSearchParams({ ...params, page: page.toString() });
+					}}
+				/>
 			</div>
 		</FormProvider>
 	);

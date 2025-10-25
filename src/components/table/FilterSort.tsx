@@ -7,11 +7,37 @@ import type { FilterSortProps } from "./Props";
 import { useFormContext } from "react-hook-form";
 import SelectedRowsModal from "./SelectedRowsModal";
 
-function FilterSort<T>({ columns, filterOptions, searchPanel, selectable }: FilterSortProps<T>) {
+function FilterSort<T>({ columns, filterOptions = [], searchPanel = false, selectable = false }: FilterSortProps<T>) {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [setselectedRowsModalDisplay, setSetselectedRowsModalDisplay] = useState(false)
+	const [setselectedRowsModalDisplay, setSetselectedRowsModalDisplay] = useState(false);
 
-	const { reset } = useFormContext();
+	const { setValue } = useFormContext();
+
+	const handleFilterClick = (value: string) => {
+		const params: Record<string, string> = {};
+		searchParams.delete("page");
+
+		for (const [key, value] of searchParams.entries()) params[key] = value;
+
+		if (params.filter && params.filter === value.toString()) {
+			searchParams.delete("filter");
+			setSearchParams(searchParams);
+		} else {
+			setSearchParams({ ...params, filter: value.toString() });
+		}
+	};
+
+	const handleUndoClick = () => {
+		setValue("search", "");
+		setSearchParams({});
+	};
+
+	const handleSearchChange = (value: string) => {
+		if (value) setSearchParams({ search: value });
+		else setSearchParams({});
+	};
+
+	if (filterOptions.length === 0 && !searchPanel && !selectable) return null;
 
 	return (
 		<>
@@ -24,41 +50,17 @@ function FilterSort<T>({ columns, filterOptions, searchPanel, selectable }: Filt
 							size="small"
 							className={searchParams.get("filter") === value.toString() ? "bg-neutral-200" : ""}
 							text={label}
-							onClick={() => {
-								const params: Record<string, string> = {};
-
-								for (const [key, value] of searchParams.entries()) params[key] = value;
-
-								setSearchParams({ ...params, filter: value.toString() });
-							}}
+							onClick={() => handleFilterClick(value.toString())}
 						/>
 					))}
 				</div>
 				<div className="flex items-center gap-1.5">
-					<Button
-						color="black-simple"
-						size="small"
-						icon={<UndoIcon size={13} />}
-						onClick={() => {
-							reset();
-							setSearchParams({});
-						}}
-					/>
+					<Button color="black-simple" size="small" icon={<UndoIcon size={13} />} onClick={handleUndoClick} />
 					{selectable && <Button color="black-simple" size="small" text="انتخاب شده ها" onClick={() => setSetselectedRowsModalDisplay(true)} />}
 				</div>
-				{searchPanel && (
-					<Input
-						name="search"
-						placeholder="جست و جو کنید"
-						className="col-span-2"
-						onChange={(value) => {
-							if (value) setSearchParams({ search: value });
-							else setSearchParams({});
-						}}
-					/>
-				)}
+				{searchPanel && <Input name="search" placeholder="جست و جو کنید" className="col-span-2" onChange={handleSearchChange} />}
 			</div>
-			{setselectedRowsModalDisplay &&<SelectedRowsModal columns={columns} onClose={() => setSetselectedRowsModalDisplay(false)} />}
+			{setselectedRowsModalDisplay && <SelectedRowsModal columns={columns} onClose={() => setSetselectedRowsModalDisplay(false)} />}
 		</>
 	);
 }

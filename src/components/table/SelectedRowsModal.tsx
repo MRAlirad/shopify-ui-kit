@@ -25,12 +25,14 @@ function SelectedRowsModal<T>({ columns, onClose }: SelectedRowsModalProps<T>) {
 					color: "red",
 					icon: <TrashIcon size={18} />,
 					onClick: deleteSelectedRows,
+					// loading: true,
+					disabled: watch("selectedRows").length === 0,
 				},
 			]}
 		>
 			<Table<T>
 				key={watch("selectedRows").length}
-				columns={columns}
+				columns={columns.map((column) => ({ ...column, visibility: true, sort: false }))}
 				dataSource={watch("selectedRows")}
 				actions={[
 					{

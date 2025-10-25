@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { ArrowCaretBackwardIcon, ArrowCaretForwardIcon, ThreeDotsHorizontalIcon } from './icon';
 
 const Pagination = ({ currentPage, pageCount, onChangePage = ()=> {} }: PaginationProps) => {
+	if(pageCount <= 1) return null;
+
 	return (
 		<div className="flex items-center justify-center gap-1.5 h-10 text-base select-none">
 			<Button text={<ArrowCaretForwardIcon size={20} />} className="rounded-s-lg" disabled={currentPage === 1} onClick={() => onChangePage(currentPage - 1)} />
