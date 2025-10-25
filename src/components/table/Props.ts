@@ -4,7 +4,7 @@ import type { ButtonProps } from "../Button";
 
 export interface TableProps<T> {
 	columns: ColumnProps<T>[];
-	dataSet: T[];
+	dataSource: T[];
 	pagination?: PaginationProps;
 	loading?: boolean;
 	// sortOptions: SortOptionProps[];

@@ -7,7 +7,7 @@ import Pagination from "../Pagination";
 import EmptySearchBox from "./EmptySearchBox";
 import type { TableProps } from "./Props";
 
-function Table<T>({ columns = [], dataSet = [], pagination, loading = false, actions = [], filterOptions = [], searchPanel }: TableProps<T>) {
+function Table<T>({ columns = [], dataSource = [], pagination, loading = false, actions = [], filterOptions = [], searchPanel }: TableProps<T>) {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	return (
@@ -28,11 +28,11 @@ function Table<T>({ columns = [], dataSet = [], pagination, loading = false, act
 						</thead>
 						{loading ? (
 							<TableBodySkeleton count={columns.filter((column) => column.visibility !== false).length + 1} />
-						) : dataSet.length === 0 ? (
+						) : dataSource.length === 0 ? (
 							<EmptySearchBox />
 						) : (
 							<tbody>
-								{dataSet.map((row, index) => (
+								{dataSource.map((row, index) => (
 									<Row<T> key={index} rowData={row} index={index} columns={columns} actions={actions} />
 								))}
 							</tbody>

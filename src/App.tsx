@@ -19,7 +19,7 @@ interface User {
 function App() {
 	const [searchParams] = useSearchParams();
 
-	const dataSet: User[] = [
+	const dataSource: User[] = [
 		{
 			id: 123456789012,
 			name: "محمد حسینی",
@@ -152,7 +152,7 @@ function App() {
 					{ name: "country", label: "کشور" },
 					{ name: "zip", label: "کد پستی" },
 				]}
-				dataSet={dataSet}
+				dataSource={dataSource}
 				actions={[
 					{
 						text: "ویرایش",
