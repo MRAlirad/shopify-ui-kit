@@ -11,6 +11,7 @@ export interface TableProps<T> {
 	filterOptions?: FilterOptionProps[];
 	searchPanel?: boolean;
 	selectable?: boolean;
+	moreInfo?: boolean;
 	actions?: ActionProps<T>[];
 }
 
@@ -21,6 +22,7 @@ export interface RowProps<T> {
 	selectable?: boolean;
 	actions?: ActionProps<T>[];
 	rowData: T;
+	moreInfo?: boolean;
 }
 
 export interface ColumnProps<T> {
@@ -35,6 +37,7 @@ export interface ColumnProps<T> {
 export interface RowCellProps<T> {
 	selectable?: boolean;
 	index: number;
+	moreInfo?: boolean;
 	rowData: T;
 }
 

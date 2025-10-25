@@ -8,17 +8,28 @@ import Pagination from "../Pagination";
 import EmptySearchBox from "./EmptySearchBox";
 import type { TableProps } from "./Props";
 
-function Table<T>({ columns = [], dataSource = [], pagination, loading = false, actions = [], filterOptions = [], searchPanel = false, selectable = false }: TableProps<T>) {
+function Table<T>({
+	columns = [],
+	dataSource = [],
+	pagination,
+	loading = false,
+	actions = [],
+	filterOptions = [],
+	searchPanel = false,
+	selectable = false,
+	moreInfo = false,
+}: TableProps<T>) {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const formMethods = useForm({
 		defaultValues: (() => {
-			const output: Record<string, boolean | string | T[]> = {};
+			const output: Record<string, boolean | string | T[] | null> = {};
 			for (const row of dataSource) {
 				output[`select-${(row as { id: string | number }).id}`] = false;
 			}
 			output["search"] = searchParams.get("search") ?? "";
 			output["selectedRows"] = [];
+			output["moreInfo"] = null;
 			return output;
 		})(),
 	});
@@ -47,7 +58,7 @@ function Table<T>({ columns = [], dataSource = [], pagination, loading = false, 
 							) : (
 								<tbody>
 									{dataSource.map((row, index) => (
-										<Row<T> key={(row as { id: string | number }).id} rowData={row} index={index} columns={columns} actions={actions} selectable={selectable} />
+										<Row<T> key={(row as { id: string | number }).id} rowData={row} index={index} columns={columns} actions={actions} selectable={selectable} moreInfo={moreInfo} />
 									))}
 								</tbody>
 							)}

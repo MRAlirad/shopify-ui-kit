@@ -1,6 +1,7 @@
 export { IoIosArrowBack             as ArrowCaretBackwardIcon } from 'react-icons/io';
 export { IoIosArrowForward          as ArrowCaretForwardIcon } from 'react-icons/io';
 export { IoIosArrowDown             as ArrowCaretDownIcon } from 'react-icons/io';
+export { IoIosArrowBack             as ArrowCaretLeftIcon } from 'react-icons/io';
 export { HiOutlineArrowRight        as ArrowRightIcon } from 'react-icons/hi';
 export { FaLongArrowAltUp           as ArrowUpLongIcon } from "react-icons/fa";
 export { IoClose                    as CloseIcon } from 'react-icons/io5';

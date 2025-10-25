@@ -24,7 +24,7 @@ const UserTableList = () => {
 			name: "داریوش بهرامی",
 			email: "dariush@bahrami.ir",
 			phone: "09121234567",
-			address: "کرج، بلوار طالقانی، پلاک ۱۲۳",
+			address: "کرج، بلوار طالقانی، پلاک ۱۲۳ ",
 			city: "کرج",
 			country: "ایران",
 			zip: "34567",
@@ -1163,6 +1163,7 @@ const UserTableList = () => {
 			filterOptions={statusOptions}
 			searchPanel={true}
 			selectable={true}
+			moreInfo={true}
 			pagination={{ currentPage: +(searchParams.get("page") ?? "1"), pageCount: Math.ceil(dataSource.length / pageSize) }}
 		/>
 	);

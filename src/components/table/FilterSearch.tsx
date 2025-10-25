@@ -11,7 +11,7 @@ function FilterSearch<T>({ columns, filterOptions = [], searchPanel = false, sel
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [setselectedRowsModalDisplay, setSetselectedRowsModalDisplay] = useState(false);
 
-	const { setValue } = useFormContext();
+	const { setValue, watch } = useFormContext();
 
 	const handleFilterClick = (value: string) => {
 		const params: Record<string, string> = {};
@@ -55,8 +55,8 @@ function FilterSearch<T>({ columns, filterOptions = [], searchPanel = false, sel
 					))}
 				</div>
 				<div className="flex items-center gap-1.5">
-					<Button color="black-simple" size="small" icon={<UndoIcon size={13} />} onClick={handleUndoClick} />
-					{selectable && <Button color="black-simple" size="small" text="انتخاب شده ها" onClick={() => setSetselectedRowsModalDisplay(true)} />}
+					<Button color="black-simple" size="small" icon={<UndoIcon size={13} />} onClick={handleUndoClick} disabled={searchParams.size === 0} />
+					{selectable && <Button color="black-simple" size="small" text="انتخاب شده ها" onClick={() => setSetselectedRowsModalDisplay(true)} disabled={watch("selectedRows").length === 0} />}
 				</div>
 				{searchPanel && <Input name="search" placeholder="جست و جو کنید" className="col-span-2" onChange={handleSearchChange} />}
 			</div>
