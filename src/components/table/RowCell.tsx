@@ -18,25 +18,23 @@ function RowCell<T>({ index, rowData }: RowCellProps<T>) {
 		}
 	};
 
+	const handleSelectRow = () => {
+		if (getValues("selectedRows").find((row: T) => (row as { id: string | number }).id === (rowData as { id: string | number }).id)) return;
+		setValue("selectedRows", [...getValues("selectedRows"), rowData]);
+	};
+
+	const handleUnSelectRow = () => {
+		setValue(
+			"selectedRows",
+			getValues("selectedRows").filter((row: T) => (row as { id: string | number }).id !== (rowData as { id: string | number }).id)
+		);
+	};
+
 	return (
 		<td className="p-3 bg-white sticky start-0 group-hover:bg-neutral-50">
 			<div className="flex items-center">
-				{selectable && (
-					<Checkbox
-						name={`select-${(rowData as { id: string | number }).id}`}
-						className="w-4 h-4"
-						onCheck={() => {
-							if (getValues("selectedRows").find((row: T) => (row as { id: string | number }).id === (rowData as { id: string | number }).id)) return;
-							setValue("selectedRows", [...getValues("selectedRows"), rowData]);
-						}}
-						onUncheck={() => {
-							setValue(
-								"selectedRows",
-								getValues("selectedRows").filter((row: T) => (row as { id: string | number }).id !== (rowData as { id: string | number }).id)
-							);
-						}}
-					/>
-				)}
+				{selectable && <Checkbox name={`select-${(rowData as { id: string | number }).id}`} onCheck={handleSelectRow} onUncheck={handleUnSelectRow} />}
+
 				{moreInfo && (
 					<Button
 						color="simple"
