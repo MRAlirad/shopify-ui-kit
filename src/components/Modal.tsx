@@ -5,7 +5,7 @@ import { useLockBodyScroll, useToggle } from "react-use";
 import Button, { type ButtonProps } from "./Button";
 import { CloseIcon, ArrowRightIcon } from "./icon";
 
-const Modal = ({ title, children, actions = [], className = "", backBtn = false, onBack = () => {}, onClose = () => {} }: ModalProps) => {
+const Modal = ({ title, children, actions = [], className = "", backBtn = false, width = "2xl", onBack = () => {}, onClose = () => {} }: ModalProps) => {
 	const [locked, toggleLocked] = useToggle(false);
 	useLockBodyScroll(locked);
 
@@ -14,9 +14,22 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 		return () => toggleLocked(false);
 	}, [toggleLocked]);
 
+	const widthClass = {
+		"sm": "md:max-w-sm",
+		"md": "md:max-w-md",
+		"lg": "md:max-w-lg",
+		"xl": "md:max-w-xl",
+		"2xl": "md:max-w-2xl",
+		"3xl": "md:max-w-3xl",
+		"4xl": "md:max-w-4xl",
+		"5xl": "md:max-w-5xl",
+		"6xl": "md:max-w-6xl",
+		"7xl": "md:max-w-7xl",
+	};
+
 	return createPortal(
 		<div
-			className="modal fixed inset-0 flex items-end md:items-center justify-center bg-black/60 z-[1000] backdrop-blur-sm"
+			className="modal fixed inset-0 flex items-end md:items-center justify-center bg-black/60 z-[1000] backdrop-blur-sm md:px-4"
 			onClick={(e) => {
 				if (e.target === e.currentTarget) onClose();
 			}}
@@ -24,9 +37,10 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 			<div
 				className={classNames({
 					"grid overflow-hidden animate-fadeInUp": true,
-					"w-full h-max max-h-[95vh] bg-white md:rounded-xl md:max-w-3xl": true,
+					"w-full h-max max-h-[95vh] bg-white md:rounded-xl": true,
 					"grid-rows-[max-content_1fr_max-content]": !!actions.length,
 					"grid-rows-[max-content_1fr]": actions.length === 0,
+					[widthClass[width]]: width,
 					[className]: className,
 				})}
 			>
@@ -57,6 +71,7 @@ interface ModalProps {
 	actions?: ButtonProps[];
 	className?: string;
 	backBtn?: boolean;
+	width?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
 	onBack?: () => void;
 	onClose: () => void;
 }

@@ -19,6 +19,7 @@ function SelectedRowsModal<T>({ columns, onClose }: SelectedRowsModalProps<T>) {
 		<Modal
 			title="انتخاب شده ها"
 			onClose={onClose}
+			width="4xl"
 			actions={[
 				{
 					text: "حذف همه از لیست",
