@@ -17,7 +17,7 @@ const Popup = ({ anchorSelect, children, className = "", defaultIsOpen = false, 
 			}}
 			disableStyleInjection={true}
 			className={classNames({
-				"!bg-white !text-black !text-xs !shadow-xl !rounded-xl !border !border-neutral-200 z-20": true,
+				"!bg-white !text-black !text-xs !shadow-xl !rounded-xl !border !border-neutral-200 z-[2000]": true,
 				"!w-full": fullWidh,
 				[className]: className,
 			})}

@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router";
+import { FormProvider, useForm } from "react-hook-form";
 import { TableBodySkeleton } from "../Skeletons";
 import FilterSort from "./FilterSort";
 import Column from "./Column";
@@ -7,55 +8,69 @@ import Pagination from "../Pagination";
 import EmptySearchBox from "./EmptySearchBox";
 import type { TableProps } from "./Props";
 
-function Table<T>({ columns = [], dataSource = [], pagination, loading = false, actions = [], filterOptions = [], searchPanel }: TableProps<T>) {
+function Table<T>({ columns = [], dataSource = [], pagination, loading = false, actions = [], filterOptions = [], searchPanel = false, selectable = false }: TableProps<T>) {
 	const [searchParams, setSearchParams] = useSearchParams();
 
+	const formMethods = useForm({
+		defaultValues: (() => {
+			const output: Record<string, boolean | string | T[]> = {};
+			for (const row of dataSource) {
+				output[`select-${(row as { id: string | number }).id}`] = false;
+			}
+			output["search"] = searchParams.get("search") ?? "";
+			output["selectedRows"] = [];
+			return output;
+		})(),
+	});
+
 	return (
-		<div className="grid gap-6">
-			<div className="table-container card">
-				{(filterOptions.length > 0 || searchPanel) && <FilterSort {...{ filterOptions, searchPanel }} />}
+		<FormProvider {...formMethods}>
+			<div className="grid gap-6">
+				<div className="table-container card">
+					{(filterOptions.length > 0 || searchPanel) && <FilterSort {...{ filterOptions, searchPanel, columns, selectable }} />}
 
-				<div className="table-wrapper overflow-x-auto">
-					<table className="w-full">
-						<thead>
-							<tr className="text-neutral-600 text-xs border-b border-neutral-200">
-								<Column name="row" label="ردیف" className="w-[1%] !p-3 sticky start-0" />
-								{columns.map((column) => (
-									<Column key={column.name} {...column} />
-								))}
-								{actions.length > 0 && <Column name="actions" label="" className="w-[1%] !p-3 sticky end-0" />}
-							</tr>
-						</thead>
-						{loading ? (
-							<TableBodySkeleton count={columns.filter((column) => column.visibility !== false).length + 1} />
-						) : dataSource.length === 0 ? (
-							<EmptySearchBox />
-						) : (
-							<tbody>
-								{dataSource.map((row, index) => (
-									<Row<T> key={index} rowData={row} index={index} columns={columns} actions={actions} />
-								))}
-							</tbody>
-						)}
-					</table>
+					<div className="table-wrapper overflow-x-auto">
+						<table className="w-full">
+							<thead>
+								<tr className="text-neutral-600 text-xs border-b border-neutral-200">
+									<Column name="row" label="ردیف" className="w-[1%] !p-3 sticky start-0" />
+									{columns.map((column) => (
+										<Column key={column.name} {...column} />
+									))}
+									{actions.length > 0 && <Column name="actions" label="" className="w-[1%] !p-3 sticky end-0" />}
+								</tr>
+							</thead>
+							{loading ? (
+								<TableBodySkeleton count={columns.filter((column) => column.visibility !== false).length + 1} />
+							) : dataSource.length === 0 ? (
+								<EmptySearchBox />
+							) : (
+								<tbody>
+									{dataSource.map((row, index) => (
+										<Row<T> key={index} rowData={row} index={index} columns={columns} actions={actions} selectable={selectable} />
+									))}
+								</tbody>
+							)}
+						</table>
+					</div>
 				</div>
+
+				{pagination && pagination?.pageCount > 1 && (
+					<Pagination
+						currentPage={pagination.currentPage}
+						pageCount={pagination.pageCount}
+						onChangePage={(page) => {
+							const params: Record<string, string> = {};
+
+							for (const [key, value] of searchParams.entries()) {
+								params[key] = value;
+							}
+							setSearchParams({ ...params, page: page.toString() });
+						}}
+					/>
+				)}
 			</div>
-
-			{pagination && pagination?.pageCount > 1 && (
-				<Pagination
-					currentPage={pagination.currentPage}
-					pageCount={pagination.pageCount}
-					onChangePage={(page) => {
-						const params: Record<string, string> = {};
-
-						for (const [key, value] of searchParams.entries()) {
-							params[key] = value;
-						}
-						setSearchParams({ ...params, page: page.toString() });
-					}}
-				/>
-			)}
-		</div>
+		</FormProvider>
 	);
 }
 

@@ -1,16 +1,17 @@
 import classNames from "classnames";
+import RowCell from "./RowCell";
 import Button from "../Button";
 import Popup from "../Popup";
+import { ThreeDotsHorizontalIcon } from "../icon";
 import type { RowProps } from "./Props";
 import { generateRandomString } from "../../helpers/String";
-import { ThreeDotsHorizontalIcon } from "../icon";
 
-function Row<T>({ columns, actions = [], index, rowData }: RowProps<T>) {
+function Row<T>({ columns, actions = [], index, rowData, selectable = false }: RowProps<T>) {
 	const uId = generateRandomString();
 
 	return (
 		<tr className="group relative text-xs font-bold hover:bg-neutral-50 border-b last:border-0 border-neutral-200 text-start">
-			<td className="p-3 bg-white sticky start-0 group-hover:bg-neutral-50">{index + 1}</td>
+			<RowCell selectable={selectable} index={index} rowData={rowData} />
 			{columns
 				.filter((column) => column.visibility !== false)
 				.map((column) => (
@@ -21,12 +22,15 @@ function Row<T>({ columns, actions = [], index, rowData }: RowProps<T>) {
 						})}
 					>
 						<div className="min-w-max">
-							{column.cellTemplate 
-								? column.cellTemplate(rowData) 
-								: <div>{rowData && typeof rowData === 'object' && rowData !== null && column.name in rowData
-									? (rowData as Record<string, string | number | undefined>)[column.name]
-									: ''}</div>
-							}
+							{column.cellTemplate ? (
+								column.cellTemplate(rowData)
+							) : (
+								<div>
+									{rowData && typeof rowData === "object" && rowData !== null && column.name in rowData
+										? (rowData as Record<string, string | number | undefined>)[column.name]
+										: ""}
+								</div>
+							)}
 						</div>
 					</td>
 				))}
@@ -40,7 +44,7 @@ function Row<T>({ columns, actions = [], index, rowData }: RowProps<T>) {
 							icon={<ThreeDotsHorizontalIcon size={18} className="text-neutral-500" />}
 						/>
 						<Popup anchorSelect={`.action-${uId}`} place="right" className="grid p-2 min-w-40 w-max">
-							{actions.map(({ text, color = 'black-simple', icon, className, loading = false, onClick, disabled = false }, index) => (
+							{actions.map(({ text, color = "black-simple", icon, className, loading = false, onClick, disabled = false }, index) => (
 								<Button
 									key={index}
 									text={text}
@@ -51,7 +55,7 @@ function Row<T>({ columns, actions = [], index, rowData }: RowProps<T>) {
 									disabled={disabled}
 									icon={icon}
 									className={`!py-1.5 justify-start ${className}`}
-									onClick={()=> onClick?.(rowData)}
+									onClick={() => onClick?.(rowData)}
 								/>
 							))}
 						</Popup>
@@ -60,6 +64,6 @@ function Row<T>({ columns, actions = [], index, rowData }: RowProps<T>) {
 			)}
 		</tr>
 	);
-};
+}
 
 export default Row;

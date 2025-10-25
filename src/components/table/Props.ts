@@ -10,6 +10,7 @@ export interface TableProps<T> {
 	// sortOptions: SortOptionProps[];
 	filterOptions?: FilterOptionProps[];
 	searchPanel?: boolean;
+	selectable?: boolean;
 	actions?: ActionProps<T>[];
 }
 
@@ -17,6 +18,7 @@ export interface RowProps<T> {
 	columns: ColumnProps<T>[];
 	id?: string | number;
 	index: number;
+	selectable?: boolean;
 	actions?: ActionProps<T>[];
 	rowData: T;
 }
@@ -30,14 +32,27 @@ export interface ColumnProps<T> {
 	cellTemplate?: (row: T) => ReactNode;
 }
 
+export interface RowCellProps<T> {
+	selectable?: boolean;
+	index: number;
+	rowData: T;
+}
+
+export interface SelectedRowsModalProps<T> {
+	columns: ColumnProps<T>[];
+	onClose: () => void;
+}
+
 export interface ActionProps<T> extends Omit<ButtonProps, "onClick"> {
 	visibility?: boolean;
 	onClick?: (row: T) => void;
 }
 
-export interface FilterSortProps {
+export interface FilterSortProps<T> {
 	filterOptions?: FilterOptionProps[];
+	columns: ColumnProps<T>[];
 	searchPanel?: boolean;
+	selectable?: boolean;
 }
 
 export interface FilterOptionProps {

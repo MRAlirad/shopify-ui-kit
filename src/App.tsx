@@ -170,6 +170,7 @@ function App() {
 				]}
 				filterOptions={statusOptions}
 				searchPanel={true}
+				selectable={true}
 				pagination={{ currentPage: +(searchParams.get('page') ?? '1'), pageCount: 10 }}
 			/>
 		</Page>
