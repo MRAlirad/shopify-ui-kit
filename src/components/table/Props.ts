@@ -7,7 +7,6 @@ export interface TableProps<T> {
 	dataSource: T[];
 	pagination?: PaginationProps;
 	loading?: boolean;
-	// sortOptions: SortOptionProps[];
 	filterOptions?: FilterOptionProps[];
 	searchPanel?: boolean;
 	selectable?: boolean;
@@ -16,13 +15,8 @@ export interface TableProps<T> {
 }
 
 export interface RowProps<T> {
-	columns: ColumnProps<T>[];
-	id?: string | number;
 	index: number;
-	selectable?: boolean;
-	actions?: ActionProps<T>[];
 	rowData: T;
-	moreInfo?: boolean;
 }
 
 export interface ColumnProps<T> {
@@ -35,14 +29,11 @@ export interface ColumnProps<T> {
 }
 
 export interface RowCellProps<T> {
-	selectable?: boolean;
 	index: number;
-	moreInfo?: boolean;
 	rowData: T;
 }
 
-export interface SelectedRowsModalProps<T> {
-	columns: ColumnProps<T>[];
+export interface SelectedRowsModalProps {
 	onClose: () => void;
 }
 
@@ -50,14 +41,6 @@ export interface ActionProps<T> extends Omit<ButtonProps, "onClick"> {
 	visibility?: boolean;
 	onClick?: (row: T) => void;
 }
-
-export interface FilterSearchProps<T> {
-	filterOptions?: FilterOptionProps[];
-	columns: ColumnProps<T>[];
-	searchPanel?: boolean;
-	selectable?: boolean;
-}
-
 export interface FilterOptionProps {
 	value: string | number;
 	label: string;

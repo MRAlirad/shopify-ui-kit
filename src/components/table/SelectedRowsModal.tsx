@@ -1,19 +1,22 @@
 import Modal from "../Modal";
 import Table from "./Table";
 import { useFormContext } from "react-hook-form";
-import type { SelectedRowsModalProps } from "./Props";
+import type { ColumnProps, SelectedRowsModalProps } from "./Props";
 import { TrashIcon } from "../icon";
+import { useContext } from "react";
+import TableContext from "../../contexts/TableContext";
 
-function SelectedRowsModal<T>({ columns, onClose }: SelectedRowsModalProps<T>) {
+function SelectedRowsModal<T>({ onClose }: SelectedRowsModalProps) {
+	const { columns } = useContext(TableContext);
 	const { setValue, getValues, watch } = useFormContext();
 
-    const deleteSelectedRows = () => {
-        getValues('selectedRows').forEach((value: T) => {
-            setValue(`select-${(value as { id: string | number }).id}`, false);
-        });
-        setValue("selectedRows", []);
-        onClose();
-    }
+	const deleteSelectedRows = () => {
+		getValues("selectedRows").forEach((value: T) => {
+			setValue(`select-${(value as { id: string | number }).id}`, false);
+		});
+		setValue("selectedRows", []);
+		onClose();
+	};
 
 	return (
 		<Modal
@@ -33,7 +36,7 @@ function SelectedRowsModal<T>({ columns, onClose }: SelectedRowsModalProps<T>) {
 		>
 			<Table<T>
 				key={watch("selectedRows").length}
-				columns={columns.map((column) => ({ ...column, visibility: true, sort: false }))}
+				columns={columns.map((column: ColumnProps<T>) => ({ ...column, visibility: true, sort: false }))}
 				dataSource={watch("selectedRows")}
 				actions={[
 					{

@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useSearchParams } from "react-router";
 import Button from "../Button";
 import { UndoIcon } from "../icon";
 import Input from "../Input";
-import type { FilterSearchProps } from "./Props";
 import { useFormContext } from "react-hook-form";
 import SelectedRowsModal from "./SelectedRowsModal";
+import TableContext from "../../contexts/TableContext";
+import type { FilterOptionProps } from "./Props";
 
-function FilterSearch<T>({ columns, filterOptions = [], searchPanel = false, selectable = false }: FilterSearchProps<T>) {
+function FilterSearch() {
+	const { searchPanel, selectable, filterOptions } = useContext(TableContext);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [setselectedRowsModalDisplay, setSetselectedRowsModalDisplay] = useState(false);
 
@@ -43,7 +45,7 @@ function FilterSearch<T>({ columns, filterOptions = [], searchPanel = false, sel
 		<>
 			<div className="grid grid-cols-[1fr_max-content] gap-2 px-3 py-2">
 				<div className="flex items-center gap-1.5">
-					{filterOptions?.map(({ label, value }) => (
+					{filterOptions?.map(({ label, value }: FilterOptionProps) => (
 						<Button
 							key={value}
 							color="black-simple"
@@ -56,11 +58,19 @@ function FilterSearch<T>({ columns, filterOptions = [], searchPanel = false, sel
 				</div>
 				<div className="flex items-center gap-1.5">
 					<Button color="black-simple" size="small" icon={<UndoIcon size={13} />} onClick={handleUndoClick} disabled={searchParams.size === 0} />
-					{selectable && <Button color="black-simple" size="small" text="انتخاب شده ها" onClick={() => setSetselectedRowsModalDisplay(true)} disabled={watch("selectedRows").length === 0} />}
+					{selectable && (
+						<Button
+							color="black-simple"
+							size="small"
+							text="انتخاب شده ها"
+							onClick={() => setSetselectedRowsModalDisplay(true)}
+							disabled={watch("selectedRows").length === 0}
+						/>
+					)}
 				</div>
 				{searchPanel && <Input name="search" placeholder="جست و جو کنید" className="col-span-2" onChange={handleSearchChange} />}
 			</div>
-			{setselectedRowsModalDisplay && <SelectedRowsModal columns={columns} onClose={() => setSetselectedRowsModalDisplay(false)} />}
+			{setselectedRowsModalDisplay && <SelectedRowsModal onClose={() => setSetselectedRowsModalDisplay(false)} />}
 		</>
 	);
 }

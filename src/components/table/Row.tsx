@@ -1,14 +1,16 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import classNames from "classnames";
 import { useFormContext } from "react-hook-form";
 import RowCell from "./RowCell";
 import Button from "../Button";
 import Popup from "../Popup";
 import { ThreeDotsHorizontalIcon } from "../icon";
-import type { RowProps } from "./Props";
+import type { ActionProps, ColumnProps, RowProps } from "./Props";
 import { generateRandomString } from "../../helpers/String";
+import TableContext from "../../contexts/TableContext";
 
-function Row<T>({ columns, actions = [], index, rowData, selectable = false, moreInfo = false }: RowProps<T>) {
+function Row<T>({ index, rowData }: RowProps<T>) {
+	const {actions, columns} = useContext(TableContext);
 	const uId = generateRandomString();
 	const { watch } = useFormContext();
 
@@ -20,10 +22,10 @@ function Row<T>({ columns, actions = [], index, rowData, selectable = false, mor
 					"border-b last:border-0 border-neutral-200": watch("moreInfo") !== (rowData as { id: string | number }).id,
 				})}
 			>
-				<RowCell selectable={selectable} index={index} rowData={rowData} moreInfo={moreInfo} />
+				<RowCell index={index} rowData={rowData} />
 				{columns
-					.filter((column) => column.visibility !== false)
-					.map((column) => (
+					.filter((column: ColumnProps<T>) => column.visibility !== false)
+					.map((column: ColumnProps<T>) => (
 						<td
 							key={column.name}
 							className={classNames({
@@ -43,7 +45,7 @@ function Row<T>({ columns, actions = [], index, rowData, selectable = false, mor
 							</div>
 						</td>
 					))}
-				{actions.filter((action) => action.visibility !== false).length > 0 && (
+				{actions.filter((action: ActionProps<T>) => action.visibility !== false).length > 0 && (
 					<td className="p-3 bg-white sticky end-0 group-hover:bg-neutral-50">
 						<div className="flex items-center justify-center">
 							<Button
@@ -53,7 +55,7 @@ function Row<T>({ columns, actions = [], index, rowData, selectable = false, mor
 								icon={<ThreeDotsHorizontalIcon size={18} className="text-neutral-500" />}
 							/>
 							<Popup anchorSelect={`.action-${uId}`} place="right" className="grid p-2 min-w-40 w-max">
-								{actions.map(({ text, color = "black-simple", icon, className, loading = false, onClick, disabled = false }, index) => (
+								{actions.map(({ text, color = "black-simple", icon, className, loading = false, onClick, disabled = false }: ActionProps<T>, index) => (
 									<Button
 										key={index}
 										text={text}
@@ -74,9 +76,9 @@ function Row<T>({ columns, actions = [], index, rowData, selectable = false, mor
 			</tr>
 			{watch("moreInfo") === (rowData as { id: string | number }).id && (
 				<tr className="border-b last:border-0 border-neutral-200">
-					<td className="px-6" colSpan={columns.filter((column) => column.visibility !== false).length + 1}>
+					<td className="px-6" colSpan={columns.filter((column: ColumnProps<T>) => column.visibility !== false).length + 1}>
 						<div className="grid grid-cols-[max-content_1fr] items-center gap-1 text-xs pt-0.5 pb-2">
-							{columns.map((column) => (
+							{columns.map((column: ColumnProps<T>) => (
 								<Fragment key={column.name}>
 									<span className="text-neutral-700  font-bold">{column.label}:</span>
 									<span>

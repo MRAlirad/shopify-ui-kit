@@ -3,12 +3,15 @@ import Checkbox from "../Checkbox";
 import type { RowCellProps } from "./Props";
 import { ArrowCaretLeftIcon } from "../icon";
 import Button from "../Button";
+import { useContext } from "react";
+import TableContext from "../../contexts/TableContext";
 
-function RowCell<T>({ selectable, index, rowData, moreInfo = false }: RowCellProps<T>) {
+function RowCell<T>({ index, rowData }: RowCellProps<T>) {
+	const { moreInfo, selectable } = useContext(TableContext);
 	const { setValue, getValues, watch } = useFormContext();
 
 	const handleMoreInfoClick = () => {
-		if(watch("moreInfo") === (rowData as { id: string | number }).id) {
+		if (watch("moreInfo") === (rowData as { id: string | number }).id) {
 			setValue("moreInfo", null);
 		} else {
 			setValue("moreInfo", (rowData as { id: string | number }).id);
@@ -18,17 +21,19 @@ function RowCell<T>({ selectable, index, rowData, moreInfo = false }: RowCellPro
 	return (
 		<td className="p-3 bg-white sticky start-0 group-hover:bg-neutral-50">
 			<div className="flex items-center">
-			{selectable && (
+				{selectable && (
 					<Checkbox
 						name={`select-${(rowData as { id: string | number }).id}`}
 						className="w-4 h-4"
 						onCheck={() => {
-							if(getValues("selectedRows").find((row: T) => (row as { id: string | number }).id === (rowData as { id: string | number }).id))
-								return;
+							if (getValues("selectedRows").find((row: T) => (row as { id: string | number }).id === (rowData as { id: string | number }).id)) return;
 							setValue("selectedRows", [...getValues("selectedRows"), rowData]);
 						}}
 						onUncheck={() => {
-							setValue("selectedRows", getValues("selectedRows").filter((row: T) => (row as { id: string | number }).id !== (rowData as { id: string | number }).id));
+							setValue(
+								"selectedRows",
+								getValues("selectedRows").filter((row: T) => (row as { id: string | number }).id !== (rowData as { id: string | number }).id)
+							);
 						}}
 					/>
 				)}

@@ -16,7 +16,7 @@ interface User {
 }
 
 const UserTableList = () => {
-    const [searchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 
 	const dataSource: User[] = [
 		{
