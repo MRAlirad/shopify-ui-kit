@@ -132,9 +132,9 @@ function App() {
 			<Table<User>
 				columns={[
 					{ name: "name", label: "نام", sort: true },
-					{ name: "email", label: "ایمیل" },
+					{ name: "email", label: "ایمیل", sort: true },
 					{ name: "phone", label: "تلفن" },
-					{ name: "address", label: "آدرس" },
+					{ name: "address", label: "آدرس", sort: true },
 					{ name: "city", label: "شهر" },
 					{
 						name: "status",
