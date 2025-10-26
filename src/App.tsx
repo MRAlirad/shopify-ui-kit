@@ -1,5 +1,6 @@
 import PieChart from "./components/chart/PieChart";
 import Page from "./components/Page";
+import ScrollToTop from "./components/ScrollToTop";
 // import UserTableList from "./UserTableList";
 // import User2TableList from "./User2TableList";
 
@@ -27,6 +28,7 @@ function App() {
 					options={{ title: "شتوپسکی دیتا" }}
 				/>
 			</Page>
+			<ScrollToTop />
 		</div>
 	);
 }
