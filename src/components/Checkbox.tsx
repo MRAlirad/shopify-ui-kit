@@ -15,8 +15,7 @@ const Checkbox = ({ name = "", label = "", className = "", disabled = false, des
 			<label
 				className={classNames({
 					"flex items-center gap-2 cursor-pointer": true,
-					"opacity-50": disabled,
-					"!cursor-auto": disabled,
+					"opacity-50 !cursor-auto": disabled,
 				})}
 			>
 				<input

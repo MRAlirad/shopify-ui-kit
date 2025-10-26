@@ -8,6 +8,7 @@ import Checkbox from "./components/Checkbox";
 // import PageActionBox from "./components/PageActionBox";
 import DatePicker from "./components/DatePicker";
 import Input from "./components/Input";
+import Switch from "./components/Switch";
 // import UserTableList from "./UserTableList";
 // import User2TableList from "./User2TableList";
 
@@ -17,6 +18,7 @@ function App() {
 			options: "option3",
 			checkbox: true,
 			date: "1404-08-12",
+			switch: false,
 		},
 	});
 	return (
@@ -37,7 +39,8 @@ function App() {
 					<Checkbox name="checkbox" label="Checkbox" onChange={(value) => console.log(value)} />
 					<DatePicker name="date" label="تاریخ" />
 					<Input name="time" label="زمان" type="time" />
-					<Button text="Submit" onClick={form.handleSubmit((data) => alert(data))} />
+					<Switch name="switch" label="Switch" onChange={(value) => console.log(value)} onCheck={() => console.log("checked")} onUncheck={() => console.log("unchecked")} />
+					<Button text="Submit" onClick={form.handleSubmit((data) => console.log(data))} disabled={form.watch("switch")} />
 				</FormProvider>
 			</Page>
 		</div>
