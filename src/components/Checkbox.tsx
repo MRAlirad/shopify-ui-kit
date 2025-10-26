@@ -33,7 +33,7 @@ const Checkbox = ({ name = "", label = "", className = "", disabled = false, des
 						field.onChange(e);
 					}}
 				/>
-				{label && <span className="text-neutral-900 text-xs select-none">{label}</span>}
+				{label && <span className="text-sm text-neutral-900 select-none">{label}</span>}
 			</label>
 
 			{description && <span className="text-neutral-400 text-[10px] ms-6">{description}</span>}

@@ -9,7 +9,7 @@ import Checkbox from "./components/Checkbox";
 import DatePicker from "./components/DatePicker";
 import Input from "./components/Input";
 import Switch from "./components/Switch";
-// import UserTableList from "./UserTableList";
+import UserTableList from "./UserTableList";
 // import User2TableList from "./User2TableList";
 
 function App() {
@@ -17,13 +17,14 @@ function App() {
 		defaultValues: {
 			options: "option3",
 			checkbox: true,
-			date: "1404-08-12",
+			date: "1404-08-12 10:34:43",
 			switch: false,
 		},
 	});
 	return (
 		<div className="min-h-screen">
 			<Page type="shrink">
+				<UserTableList />
 				<FormProvider {...form}>
 					<RadioBtn
 						name="options"
@@ -37,7 +38,7 @@ function App() {
 						direction="vertical"
 					/>
 					<Checkbox name="checkbox" label="Checkbox" onChange={(value) => console.log(value)} />
-					<DatePicker name="date" label="تاریخ" />
+					<DatePicker name="date" label="تاریخ" timePicker />
 					<Input name="time" label="زمان" type="time" />
 					<Switch name="switch" label="Switch" onChange={(value) => console.log(value)} onCheck={() => console.log("checked")} onUncheck={() => console.log("unchecked")} />
 					<Button text="Submit" onClick={form.handleSubmit((data) => console.log(data))} disabled={form.watch("switch")} />

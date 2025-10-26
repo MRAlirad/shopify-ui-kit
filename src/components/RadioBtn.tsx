@@ -32,7 +32,7 @@ const RadioBtn = ({ name = "", options = [], defaultValue = "", direction = "hor
 							if (field) return field.onChange(value);
 						}}
 					/>
-					<span className="text-neutral-900 text-xs select-none">{label}</span>
+					<span className="text-sm text-neutral-900 select-none">{label}</span>
 				</label>
 			))}
 		</div>
