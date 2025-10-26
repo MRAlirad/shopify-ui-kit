@@ -3,6 +3,7 @@ export { IoIosArrowForward          as ArrowCaretForwardIcon } from 'react-icons
 export { IoIosArrowDown             as ArrowCaretDownIcon } from 'react-icons/io';
 export { IoIosArrowBack             as ArrowCaretLeftIcon } from 'react-icons/io';
 export { HiOutlineArrowRight        as ArrowRightIcon } from 'react-icons/hi';
+export { HiOutlineArrowLeft         as ArrowLeftIcon } from 'react-icons/hi';
 export { FaLongArrowAltUp           as ArrowUpLongIcon } from "react-icons/fa";
 export { IoClose                    as CloseIcon } from 'react-icons/io5';
 export { LuPencil                   as EditIcon } from 'react-icons/lu';

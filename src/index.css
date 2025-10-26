@@ -230,3 +230,31 @@
 		}
 	}
 }
+
+.rmdp-container {
+	width: 100% !important;
+}
+
+/* .rmdp-week {
+	gap: 5px;
+	margin: 10px 0;
+} */
+
+/* 
+.rmdp-week-day {
+	width: max-content !important;
+	color: #5c5f62 !important;
+	font-size: 12px !important;
+}
+
+.ck-editor__editable_inline {
+	min-height: 250px;
+}
+
+.tox {
+	direction: rtl !important;
+}
+
+.rmdp-header {
+	padding: 0 !important;
+} */

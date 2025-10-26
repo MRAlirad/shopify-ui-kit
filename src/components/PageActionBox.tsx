@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import type { ButtonProps } from "./Button";
-import Button from "./Button";
+import Button, { type ButtonProps } from "./Button";
 
 const PageActionBox = ({ className = "", actions = [] }: PageActionBoxProps) => {
 	return (

@@ -5,7 +5,9 @@ import Page from "./components/Page";
 import RadioBtn from "./components/RadioBtn";
 import Button from "./components/Button";
 import Checkbox from "./components/Checkbox";
-import PageActionBox from "./components/PageActionBox";
+// import PageActionBox from "./components/PageActionBox";
+import DatePicker from "./components/DatePicker";
+import Input from "./components/Input";
 // import UserTableList from "./UserTableList";
 // import User2TableList from "./User2TableList";
 
@@ -14,6 +16,7 @@ function App() {
 		defaultValues: {
 			options: "option3",
 			checkbox: true,
+			date: "1404-08-12",
 		},
 	});
 	return (
@@ -31,18 +34,11 @@ function App() {
 						]}
 						direction="vertical"
 					/>
-					<Checkbox
-						name="checkbox"
-						label="Checkbox"
-						onChange={(value) => console.log(value)}
-					/>
-					<Button text="Submit" onClick={() => console.log(form.getValues())} />
+					<Checkbox name="checkbox" label="Checkbox" onChange={(value) => console.log(value)} />
+					<DatePicker name="date" label="تاریخ" />
+					<Input name="time" label="زمان" type="time" />
+					<Button text="Submit" onClick={form.handleSubmit((data) => alert(data))} />
 				</FormProvider>
-				<PageActionBox actions={[
-					{ text: "Submit", onClick: () => console.log(form.getValues()) },
-					{ text: "Cancel", color: "green", onClick: () => console.log(form.getValues()) },
-					{ text: "Back", color: "red-outline", to: "/dashboard" },
-				]} />
 			</Page>
 		</div>
 	);
