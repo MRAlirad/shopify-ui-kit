@@ -10,6 +10,7 @@ import DatePicker from "./components/DatePicker";
 import Input from "./components/Input";
 import Switch from "./components/Switch";
 import UserTableList from "./UserTableList";
+import Badge from "./components/Badge";
 // import User2TableList from "./User2TableList";
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
 					<DatePicker name="date" label="تاریخ" timePicker />
 					<Input name="time" label="زمان" type="time" />
 					<Switch name="switch" label="Switch" onChange={(value) => console.log(value)} onCheck={() => console.log("checked")} onUncheck={() => console.log("unchecked")} />
-					<Button text="Submit" onClick={form.handleSubmit((data) => console.log(data))} disabled={form.watch("switch")} />
+					<Badge text="Purple" size="small" color="purple" />
+					<Button text="Submit" color="purple-simple" onClick={form.handleSubmit((data) => console.log(data))} disabled={form.watch("switch")} />
 				</FormProvider>
 			</Page>
 		</div>

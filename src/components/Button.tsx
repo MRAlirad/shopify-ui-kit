@@ -43,7 +43,7 @@ const Button = ({
 };
 
 export interface ButtonProps {
-	color?: "black" | "white" | "simple" | "red" | "green" | "blue" | "black-outline"| "green-outline" | "red-outline" | "blue-outline" | "black-simple"| "green-simple" | "red-simple" | "blue-simple";
+	color?: "black" | "white" | "simple" | "red" | "green" | "purple" | "blue" | "black-outline"| "green-outline" | "purple-outline" | "red-outline" | "blue-outline" | "black-simple"| "green-simple" | "purple-simple" | "red-simple" | "blue-simple";
 	size?: "small" | "medium" | "large" | "icon";
 	text?: string;
 	icon?: ReactNode;
