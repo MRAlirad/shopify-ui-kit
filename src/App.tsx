@@ -3,6 +3,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import Page from "./components/Page";
 // import ScrollToTop from "./components/ScrollToTop";
 import RadioBtn from "./components/RadioBtn";
+import Button from "./components/Button";
+import Checkbox from "./components/Checkbox";
+import PageActionBox from "./components/PageActionBox";
 // import UserTableList from "./UserTableList";
 // import User2TableList from "./User2TableList";
 
@@ -10,6 +13,7 @@ function App() {
 	const form = useForm({
 		defaultValues: {
 			options: "option3",
+			checkbox: true,
 		},
 	});
 	return (
@@ -27,7 +31,18 @@ function App() {
 						]}
 						direction="vertical"
 					/>
+					<Checkbox
+						name="checkbox"
+						label="Checkbox"
+						onChange={(value) => console.log(value)}
+					/>
+					<Button text="Submit" onClick={() => console.log(form.getValues())} />
 				</FormProvider>
+				<PageActionBox actions={[
+					{ text: "Submit", onClick: () => console.log(form.getValues()) },
+					{ text: "Cancel", color: "green", onClick: () => console.log(form.getValues()) },
+					{ text: "Back", color: "red-outline", to: "/dashboard" },
+				]} />
 			</Page>
 		</div>
 	);

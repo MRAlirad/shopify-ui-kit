@@ -16,7 +16,7 @@
 
 	/*! BUTTON !*/
 	.btn {
-		@apply flex items-center justify-center text-sm font-bold w-max h-max duration-100 active:scale-95 cursor-pointer outline-none;
+		@apply flex items-center justify-center text-sm font-bold w-max h-max duration-100 active:scale-95 cursor-pointer outline-none select-none;
 	}
 
 	.btn.disabled {

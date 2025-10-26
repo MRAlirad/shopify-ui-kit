@@ -1,11 +1,13 @@
 import type { ReactNode } from "react";
 import classNames from "classnames";
 import { LoaderIcon } from "./icon";
+import { Link } from "react-router";
 
 const Button = ({
 	color = "black",
 	size = "medium",
 	text = "",
+	to = '',
 	icon,
 	type = "button",
 	fullWidth = false,
@@ -14,8 +16,10 @@ const Button = ({
 	className = "",
 	onClick = () => {},
 }: ButtonProps) => {
+	const Component = to ? Link : 'button';
+
 	return (
-		<button
+		<Component
 			className={classNames({
 				btn: true,
 				[color]: true,
@@ -26,6 +30,7 @@ const Button = ({
 			})}
 			disabled={disabled || loading}
 			type={type}
+			to={to}
 			onClick={onClick}
 		>
 			<div className="flex items-center justify-center gap-2">
@@ -33,7 +38,7 @@ const Button = ({
 				{icon && !loading && icon}
 				{text && <span>{text}</span>}
 			</div>
-		</button>
+		</Component>
 	);
 };
 
@@ -43,6 +48,7 @@ export interface ButtonProps {
 	text?: string;
 	icon?: ReactNode;
 	type?: "submit" | "button";
+	to?: string;
 	fullWidth?: boolean;
 	disabled?: boolean;
 	loading?: boolean;
