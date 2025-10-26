@@ -17,6 +17,7 @@ const LineChart = ({ labels, datasets, options }: LineChartProps) => {
 	};
 
 	const processedOptions = {
+        responsive: true,
 		plugins: {
 			title: {
 				display: !!options?.title,

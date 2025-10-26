@@ -1,4 +1,4 @@
-import BarChart from "./components/chart/BarChart";
+import PieChart from "./components/chart/PieChart";
 import Page from "./components/Page";
 // import UserTableList from "./UserTableList";
 // import User2TableList from "./User2TableList";
@@ -7,13 +7,22 @@ function App() {
 	return (
 		<div className="min-h-screen">
 			<Page type="shrink">
-				<BarChart
+				<PieChart
 					labels={["January", "February", "March", "April", "May", "June", "July"]}
 					datasets={[
-						{ label: "دیتا شماره یک", data: [65, 98, 80, 81, 56, 55, 40], backgroundColor: "rgb(54, 162, 2)" },
-						{ label: "دیتا شماره دو", data: [4, 4, 5, 4, 3, 34, 5] },
-						{ label: "دیتا شماره سه", data: [4, 3, 5, 4, 44, 34, 5] },
-						{ label: "دیتا شماره چهار", data: [4, 59, 5, 4, 34, 2, 5] },
+						{
+							label: "دیتا شماره یک",
+							data: [65, 98, 80, 81, 56, 55, 40],
+							backgroundColor: [
+								"rgb(54, 162, 2)",
+								"rgb(255, 99, 132)",
+								"rgb(255, 206, 86)",
+								"rgb(75, 192, 192)",
+								"rgb(153, 102, 255)",
+								"rgb(255, 159, 64)",
+								"rgb(255, 99, 132)",
+							],
+						},
 					]}
 					options={{ title: "شتوپسکی دیتا" }}
 				/>

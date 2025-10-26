@@ -5,7 +5,7 @@ Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 Chart.defaults.font.family = "vazir FD";
 
 const BarChart = ({ labels, datasets, options }: BarChartProps) => {
-    const processedDatasets = datasets.map((ds) => ({
+	const processedDatasets = datasets.map((ds) => ({
 		...ds,
 		backgroundColor: ds.backgroundColor ?? "rgba(54, 162, 235)",
 		borderRadius: 4,
@@ -17,6 +17,7 @@ const BarChart = ({ labels, datasets, options }: BarChartProps) => {
 	};
 
 	const processedOptions = {
+		responsive: true,
 		plugins: {
 			title: {
 				display: !!options?.title,
