@@ -1,34 +1,34 @@
-import PieChart from "./components/chart/PieChart";
+import { FormProvider, useForm } from "react-hook-form";
+// import PieChart from "./components/chart/PieChart";
 import Page from "./components/Page";
-import ScrollToTop from "./components/ScrollToTop";
+// import ScrollToTop from "./components/ScrollToTop";
+import RadioBtn from "./components/RadioBtn";
 // import UserTableList from "./UserTableList";
 // import User2TableList from "./User2TableList";
 
 function App() {
+	const form = useForm({
+		defaultValues: {
+			options: "option3",
+		},
+	});
 	return (
 		<div className="min-h-screen">
 			<Page type="shrink">
-				<PieChart
-					labels={["January", "February", "March", "April", "May", "June", "July"]}
-					datasets={[
-						{
-							label: "دیتا شماره یک",
-							data: [65, 98, 80, 81, 56, 55, 40],
-							backgroundColor: [
-								"rgb(54, 162, 2)",
-								"rgb(255, 99, 132)",
-								"rgb(255, 206, 86)",
-								"rgb(75, 192, 192)",
-								"rgb(153, 102, 255)",
-								"rgb(255, 159, 64)",
-								"rgb(255, 99, 132)",
-							],
-						},
-					]}
-					options={{ title: "شتوپسکی دیتا" }}
-				/>
+				<FormProvider {...form}>
+					<RadioBtn
+						name="options"
+						options={[
+							{ label: "Option 1", value: "option1" },
+							{ label: "Option 2", value: "option2" },
+							{ label: "Option 3", value: "option3" },
+							{ label: "Option 4", value: "option4" },
+							{ label: "Option 5", value: "option5" },
+						]}
+						direction="vertical"
+					/>
+				</FormProvider>
 			</Page>
-			<ScrollToTop />
 		</div>
 	);
 }

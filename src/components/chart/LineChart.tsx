@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const LineChart = ({ labels, datasets, options }: LineChartProps) => {
+const LineChart = ({ labels, datasets = [], options }: LineChartProps) => {
 	const processedDatasets = datasets.map((ds) => ({
 		...ds,
 		borderColor: ds.borderColor ?? "rgb(54, 162, 235)",

@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 Chart.defaults.font.family = "vazir FD";
 
-const BarChart = ({ labels, datasets, options }: BarChartProps) => {
+const BarChart = ({ labels, datasets = [], options }: BarChartProps) => {
 	const processedDatasets = datasets.map((ds) => ({
 		...ds,
 		backgroundColor: ds.backgroundColor ?? "rgba(54, 162, 235)",
