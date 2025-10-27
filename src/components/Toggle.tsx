@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useController, useFormContext } from "react-hook-form";
 
-const Switch = ({ name = "", label = "", className = "", disabled = false, onChange = () => {}, onCheck = () => {}, onUncheck = () => {} }: SwitchProps) => {
+const Toggle = ({ name = "", label = "", className = "", disabled = false, onChange = () => {}, onCheck = () => {}, onUncheck = () => {} }: ToggleProps) => {
 	const { control } = useFormContext();
 	const { field } = useController({ control, name, disabled });
 
@@ -33,7 +33,7 @@ const Switch = ({ name = "", label = "", className = "", disabled = false, onCha
 	);
 };
 
-interface SwitchProps {
+interface ToggleProps {
 	name: string;
 	label?: string;
 	className?: string;
@@ -43,4 +43,4 @@ interface SwitchProps {
 	onUncheck?: () => void;
 }
 
-export default Switch;
+export default Toggle;

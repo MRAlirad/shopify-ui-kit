@@ -9,16 +9,28 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 	const [locked, toggleLocked] = useToggle(false);
 	useLockBodyScroll(locked);
 
+	//! Lock body scroll when modal is open
 	useEffect(() => {
 		toggleLocked(true);
 		return () => toggleLocked(false);
 	}, [toggleLocked]);
 
+	//! Handle escape key to close modal
+	useEffect(() => {
+		const handleEscape = (event: KeyboardEvent) => {
+			if (event.key === "Escape") onClose();
+		};
+
+		document.addEventListener("keydown", handleEscape);
+
+		return () => document.removeEventListener("keydown", handleEscape);
+	}, [onClose]);
+
 	const widthClass = {
-		"sm": "md:max-w-sm",
-		"md": "md:max-w-md",
-		"lg": "md:max-w-lg",
-		"xl": "md:max-w-xl",
+		sm: "md:max-w-sm",
+		md: "md:max-w-md",
+		lg: "md:max-w-lg",
+		xl: "md:max-w-xl",
 		"2xl": "md:max-w-2xl",
 		"3xl": "md:max-w-3xl",
 		"4xl": "md:max-w-4xl",

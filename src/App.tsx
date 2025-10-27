@@ -8,7 +8,7 @@ import Checkbox from "./components/Checkbox";
 // import PageActionBox from "./components/PageActionBox";
 import DatePicker from "./components/DatePicker";
 import Input from "./components/Input";
-import Switch from "./components/Switch";
+import Toggle from "./components/Toggle";
 import UserTableList from "./UserTableList";
 import Badge from "./components/Badge";
 // import User2TableList from "./User2TableList";
@@ -16,10 +16,10 @@ import Badge from "./components/Badge";
 function App() {
 	const form = useForm({
 		defaultValues: {
-			options: "option3",
+			options: "",
 			checkbox: true,
-			date: "1404-08-12 10:34:43",
-			switch: false,
+			date: "1400-02-12 08:34:23",
+			Toggle: true,
 		},
 	});
 	return (
@@ -41,9 +41,9 @@ function App() {
 					<Checkbox name="checkbox" label="Checkbox" onChange={(value) => console.log(value)} />
 					<DatePicker name="date" label="تاریخ" timePicker />
 					<Input name="time" label="زمان" type="time" />
-					<Switch name="switch" label="Switch" onChange={(value) => console.log(value)} onCheck={() => console.log("checked")} onUncheck={() => console.log("unchecked")} />
+					<Toggle name="Toggle" label="Toggle" onChange={(value) => console.log(value)} onCheck={() => console.log("checked")} onUncheck={() => console.log("unchecked")} />
 					<Badge text="Purple" size="small" color="purple" />
-					<Button text="Submit" color="purple-simple" onClick={form.handleSubmit((data) => console.log(data))} disabled={form.watch("switch")} />
+					<Button text="Submit" color="purple-simple" onClick={form.handleSubmit((data) => console.log(data))} disabled={form.watch("Toggle")} />
 				</FormProvider>
 			</Page>
 		</div>
