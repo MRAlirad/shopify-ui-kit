@@ -41,6 +41,7 @@ const DatePicker = ({ label = "", name = "", disabled = false, className = "", t
 					format={format}
 					highlightToday={false}
 					onOpenPickNewDate={false}
+					portal={true}
 					plugins={(() => {
 						const plugins = [];
 						if (timePicker) plugins.push(<TimePicker key="time-picker" position="bottom" />);
