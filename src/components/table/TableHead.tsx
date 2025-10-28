@@ -7,7 +7,7 @@ import ColumnFilter from "./ColumnFilter";
 const TableHead = <T,>() => {
 	const { columns, actions } = useContext(TableContext);
 
-	const hasColumnFilter = columns.some((column: ColumnProps<T>) => column.filter);
+	const hasColumnFilter = columns.some((column: ColumnProps<T>) => column.search);
 
 	return (
 		<thead>

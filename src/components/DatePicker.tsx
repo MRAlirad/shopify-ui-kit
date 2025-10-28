@@ -11,7 +11,7 @@ import { CloseIcon } from "./icon";
 import { persianDate } from "../helpers/Date";
 import { persianToEnglishDigits } from "../helpers/Number";
 
-const DatePicker = ({ label = "", name = "", disabled = false, className = "", timePicker = false, onChange = () => {} }: DatePickerProps) => {
+const DatePicker = ({ label = "", name = "", disabled = false, className = "", timePicker = false, size = "medium", onChange = () => {} }: DatePickerProps) => {
 	const format = timePicker ? "YYYY-MM-DD HH:mm:ss" : "YYYY-MM-DD";
 	const datepickerRef = useRef<DatePickerRef>(null);
 
@@ -25,6 +25,7 @@ const DatePicker = ({ label = "", name = "", disabled = false, className = "", t
 			className={classNames({
 				"form-input": true,
 				disabled: disabled,
+				[`${size}`]: size,
 				error: fieldState?.error,
 				[className]: className,
 			})}
@@ -68,7 +69,7 @@ const DatePicker = ({ label = "", name = "", disabled = false, className = "", t
 				{watch(name) && (
 					<Button
 						color="simple"
-						icon={<CloseIcon size={18} />}
+						icon={<CloseIcon size={size === "small" ? 14 : 18} />}
 						size="small"
 						className="absolute end-0 bottom-1.5"
 						onClick={() => {
@@ -91,6 +92,7 @@ interface DatePickerProps {
 	disabled?: boolean;
 	className?: string;
 	timePicker?: boolean;
+	size?: "small" | "medium";
 	onChange?: (value: Value) => void;
 }
 

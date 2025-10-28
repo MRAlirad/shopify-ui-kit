@@ -27,8 +27,8 @@ export interface ColumnProps<T> {
 	visibility?: boolean;
 	className?: string;
 	sort?: boolean;
-	filter?: 'text' | 'select' | 'date' | 'number';
-	filterOptions?: FilterOptionProps[];
+	search?: 'text' | 'select' | 'date' | 'number';
+	searchOptions?: FilterOptionProps[];
 	cellTemplate?: (row: T) => ReactNode;
 }
 

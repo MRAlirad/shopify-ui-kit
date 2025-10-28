@@ -4,14 +4,14 @@ import Select from "../Select";
 import type { ColumnProps } from "./Props";
 
 const ColumnFilter = <T,>({ column }: { column: ColumnProps<T> }) => {
-	if (!column.filter) return <th></th>;
+	if (!column.search) return <th></th>;
 
 	return (
-		<th className="px-3 py-1 text-xs font-normal">
-			{column.filter === "text" && <Input name={`filter-${column.name}`} type="search" />}
-			{column.filter === "select" && <Select name={`filter-${column.name}`} options={column.filterOptions ?? []} clearable />}
-			{column.filter === "date" && <DatePicker name={`filter-${column.name}`} />}
-			{column.filter === "number" && <Input name={`filter-${column.name}`} type="number" />}
+		<th className="px-3 py-1 font-normal">
+			{column.search === "text" && <Input size="small" name={`search-${column.name}`} type="search" />}
+			{column.search === "select" && <Select size="small" name={`search-${column.name}`} options={column.searchOptions ?? []} clearable />}
+			{column.search === "date" && <DatePicker size="small" name={`search-${column.name}`} />}
+			{column.search === "number" && <Input size="small" name={`search-${column.name}`} type="number" />}
 		</th>
 	);
 };

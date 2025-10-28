@@ -152,7 +152,19 @@
 	.form-input input,
 	.form-input textarea,
 	.form-input select {
-		@apply text-neutral-900 w-full py-1.5 px-2.5 text-sm bg-white border border-neutral-500 rounded-md outline-2 outline-transparent focus:outline-blue-500 focus:border-blue-500;
+		@apply text-neutral-900 w-full h-full bg-white border border-neutral-500 rounded-md outline-2 outline-transparent focus:outline-blue-500 focus:border-blue-500;
+	}
+
+	.form-input.small input,
+	.form-input.small textarea,
+	.form-input.small select {
+		@apply text-xs py-1 px-2;
+	}
+
+	.form-input.medium input,
+	.form-input.medium textarea,
+	.form-input.medium select {
+		@apply text-sm py-1.5 px-2.5;
 	}
 
 	/** error **/

@@ -16,6 +16,7 @@ const Input = ({
 	disabled = false,
 	placeholder = "",
 	description = "",
+	size = "medium",
 	onChange = () => {},
 	onEnter = () => {},
 }: InputProps) => {
@@ -28,6 +29,7 @@ const Input = ({
 		<div
 			className={classNames({
 				"form-input": true,
+				[`${size}`]: size,
 				error: fieldState?.error,
 				disabled: disabled,
 				[className]: className,
@@ -82,6 +84,7 @@ const Input = ({
 };
 
 export interface InputProps {
+	size?: "small" | "medium";
 	name: string;
 	label?: string;
 	defaultValue?: string;

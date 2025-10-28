@@ -14,6 +14,7 @@ const Select = ({
 	clearable = false,
 	loading = false,
 	error = "",
+	size = "medium",
 	options = [],
 	onChange = () => {},
 }: SelectProps) => {
@@ -25,6 +26,7 @@ const Select = ({
 			className={classNames({
 				"form-input": true,
 				error: fieldState?.error,
+				[`${size}`]: size,
 				disabled: disabled,
 				[className]: className,
 			})}
@@ -76,9 +78,13 @@ const Select = ({
 				{watch(name) !== "" && clearable && !loading && !readOnly && (
 					<Button
 						color="simple"
-						icon={<CloseIcon size={18} />}
+						icon={<CloseIcon size={size === "small" ? 14 : 18} />}
 						size="small"
-						className="absolute end-4 bottom-2.5 bg-white !p-0 !opacity-100"
+						className={classNames({
+							'absolute end-4 bottom-2 bg-white !p-0': true,
+							'bottom-2': size === "small",
+							'bottom-2.5': size === "medium",
+						})}
 						disabled={disabled || readOnly}
 						onClick={() => {
 							setValue(name, "");
@@ -99,6 +105,7 @@ interface SelectProps {
 	name: string;
 	label?: string;
 	className?: string;
+	size?: "small" | "medium";
 	disabled?: boolean;
 	readOnly?: boolean;
 	clearable?: boolean;

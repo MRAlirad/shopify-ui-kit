@@ -29,7 +29,6 @@ function RowCell<T>({ index, rowData }: RowCellProps<T>) {
 			getValues("selectedRows").filter((row: T) => (row as { id: string | number }).id !== (rowData as { id: string | number }).id)
 		);
 	};
-
 	return (
 		<td className="p-3 bg-white sticky start-0 group-hover:bg-neutral-50">
 			<div className="flex items-center">
@@ -45,7 +44,7 @@ function RowCell<T>({ index, rowData }: RowCellProps<T>) {
 					/>
 				)}
 
-				<span className={!moreInfo && selectable ? "block ms-2" : ""}>{index + 1}</span>
+				<span className={!moreInfo && selectable ? "block ms-2" : ""}>{watch("currentPage") * watch("pageSize") - watch("pageSize") + index + 1}</span>
 			</div>
 		</td>
 	);
