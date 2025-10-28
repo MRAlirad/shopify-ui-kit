@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router";
 import Table from "./components/table/Table";
 import { EditIcon, TrashIcon } from "./components/icon";
 import Badge from "./components/Badge";
@@ -16,8 +15,6 @@ interface User {
 }
 
 const UserTableList = () => {
-	const [searchParams] = useSearchParams();
-
 	const dataSource: User[] = [
 		{
 			id: 123456789012,
@@ -130,7 +127,7 @@ const UserTableList = () => {
 			status: 1,
 		},
 		{
-			id: 112345678901,
+			id: 432145678901,
 			name: "نیما عباسیان",
 			email: "nima@abbasian.net",
 			phone: "02598765432",
@@ -229,7 +226,7 @@ const UserTableList = () => {
 			status: 1,
 		},
 		{
-			id: 413456789012,
+			id: 4134567589012,
 			name: "گلناز محمدیان",
 			email: "golnaz@mohammadian.com",
 			phone: "07612345678",
@@ -339,7 +336,7 @@ const UserTableList = () => {
 			status: 2,
 		},
 		{
-			id: 414567890123,
+			id: 4145665777890123,
 			name: "مهسا نوری",
 			email: "mahsa@nouri.com",
 			phone: "04523456789",
@@ -449,7 +446,7 @@ const UserTableList = () => {
 			status: 0,
 		},
 		{
-			id: 415678901234,
+			id: 41567896801234,
 			name: "سورنا نوروزی",
 			email: "sorena@norouzi.org",
 			phone: "01512345678",
@@ -559,7 +556,7 @@ const UserTableList = () => {
 			status: 1,
 		},
 		{
-			id: 416789012345,
+			id: 416768789012345,
 			name: "آرمین محمدی",
 			email: "armin@mohammadi.com",
 			phone: "01398765432",
@@ -669,7 +666,7 @@ const UserTableList = () => {
 			status: 2,
 		},
 		{
-			id: 417890123456,
+			id: 417890687123456,
 			name: "پدرام نوری",
 			email: "pedram@nouri.org",
 			phone: "01323456789",
@@ -779,7 +776,7 @@ const UserTableList = () => {
 			status: 0,
 		},
 		{
-			id: 418901234567,
+			id: 418901234545367,
 			name: "بهزاد نوروزی",
 			email: "behzad@norouzi.com",
 			phone: "02312345678",
@@ -889,7 +886,7 @@ const UserTableList = () => {
 			status: 1,
 		},
 		{
-			id: 419012345678,
+			id: 4190343412345678,
 			name: "آریو محمدی",
 			email: "aryo@mohammadi.org",
 			phone: "02398765432",
@@ -999,7 +996,7 @@ const UserTableList = () => {
 			status: 2,
 		},
 		{
-			id: 420123456789,
+			id: 4201238768456789,
 			name: "فردوس نوری",
 			email: "fardous@nouri.com",
 			phone: "02323456789",
@@ -1110,10 +1107,6 @@ const UserTableList = () => {
 		},
 	];
 
-	const pageSize = 10;
-	const currentPage = +(searchParams.get("page") ?? "1");
-
-	const outputedData = dataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 	const statusOptions = [
 		{ value: 0, label: "غیرفعال", color: "red" },
 		{ value: 1, label: "فعال", color: "green" },
@@ -1123,7 +1116,7 @@ const UserTableList = () => {
 	return (
 		<Table<User>
 			columns={[
-				{ name: "name", label: "نام", sort: true },
+				{ name: "name", label: "نام", sort: true, filter: "text" },
 				{ name: "email", label: "ایمیل", sort: true },
 				{ name: "phone", label: "تلفن" },
 				{ name: "address", label: "آدرس", sort: true },
@@ -1144,7 +1137,7 @@ const UserTableList = () => {
 				{ name: "country", label: "کشور" },
 				{ name: "zip", label: "کد پستی" },
 			]}
-			dataSource={outputedData}
+			dataSource={dataSource}
 			actions={[
 				{
 					text: "ویرایش",
@@ -1164,7 +1157,7 @@ const UserTableList = () => {
 			searchPanel={true}
 			selectable={true}
 			moreInfo={true}
-			pagination={{ currentPage: +(searchParams.get("page") ?? "1"), pageCount: Math.ceil(dataSource.length / pageSize) }}
+			allowedPageSizes={[5, 10, 20, 50, 100]}
 		/>
 	);
 };
