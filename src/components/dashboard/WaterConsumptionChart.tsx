@@ -65,6 +65,7 @@ const WaterConsumptionChart = () => {
 				<div className="flex items-center gap-2">
 					<Select
 						name="comparision"
+						size="small"
 						options={[
 							{ value: "0", label: "مقایسه - خیر" },
 							{ value: "1", label: "مقایسه - بله" },
@@ -72,6 +73,7 @@ const WaterConsumptionChart = () => {
 					/>
 					<Select
 						name="chart"
+						size="small"
 						options={[
 							{ value: "line", label: "خطی" },
 							{ value: "bar", label: "میله ای" },

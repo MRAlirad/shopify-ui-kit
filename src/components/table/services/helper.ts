@@ -1,3 +1,5 @@
+import type { ColumnProps } from "../Props";
+
 export function sortDataSource<T>({ dataSource, sort, sortDirection }: SortDataSourceProps<T>): T[] {
 	if (!sort) return dataSource;
 
@@ -22,6 +24,34 @@ export function sortDataSource<T>({ dataSource, sort, sortDirection }: SortDataS
 	});
 
 	return sortedUsers;
+}
+
+export function filterDataSource<T>({ dataSource, search }: FilterDataSourceProps<T>): T[] {
+	if (!search) return dataSource;
+
+	return dataSource.filter((item: T) => {
+		return Object.values(item as Record<string, unknown>).some((value) => String(value).toLowerCase().includes(search.toLowerCase()));
+	});
+}
+
+export function searchDataSourceColumns<T>({ dataSource, columns, filters }: SearchDataSourceColumnsProps<T>): T[] {
+    const columnsValues = columns.map((column: ColumnProps<T>) => column.name.toLowerCase());
+
+    console.log(columnsValues)
+
+    // return dataSource.filter((item: T) => {
+    //     return columnsValues.some((columnValue) => String(item[columnValue as keyof T]).toLowerCase().includes(search.toLowerCase()));
+    // });
+}
+
+interface SearchDataSourceColumnsProps<T> {
+	columns: ColumnProps<T>[];
+	dataSource: T[];
+}
+
+interface FilterDataSourceProps<T> {
+	dataSource: T[];
+	search: string;
 }
 
 interface SortDataSourceProps<T> {

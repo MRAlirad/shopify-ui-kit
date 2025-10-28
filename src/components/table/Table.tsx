@@ -8,7 +8,7 @@ import EmptySearchBox from "./EmptySearchBox";
 import type { TableProps } from "./Props";
 import TableContext from "../../contexts/TableContext";
 import PageSize from "./PageSize";
-import { sortDataSource } from "./services/helper";
+import { filterDataSource, searchDataSourceColumns, sortDataSource } from "./services/helper";
 
 function Table<T>({
 	columns = [],
@@ -30,7 +30,7 @@ function Table<T>({
 				output[`select-${(row as { id: string | number }).id}`] = false;
 			}
 			for (const column of columns) {
-				output[`filter-${column.name}`] = "";
+				output[`search-${column.name}`] = "";
 			}
 			output["search"] = "";
 			output["selectedRows"] = [];
@@ -47,8 +47,13 @@ function Table<T>({
 	const pageSize = form.watch("pageSize") as number;
 	const sort = form.watch("sort") as string;
 	const sortDirection = form.watch("sortDirection") as 'asc' | 'desc';
+	const search = form.watch("search") as string;
 
-	const outputedData = sortDataSource({ dataSource, sort, sortDirection }).slice((currentPage - 1) * pageSize, currentPage * pageSize);
+	const sortFilteredDataSource = filterDataSource({ dataSource: sortDataSource({ dataSource, sort, sortDirection }), search });
+
+	const outputedData = sortFilteredDataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+	console.log(searchDataSourceColumns({ dataSource, columns }));
 
 	return (
 		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions }}>
@@ -62,10 +67,10 @@ function Table<T>({
 								<TableHead<T> />
 								{loading ? (
 									<TableBodySkeleton count={columns.filter((column) => column.visibility !== false).length + 1} />
-								) : dataSource.length === 0 ? (
+								) : sortFilteredDataSource.length === 0 ? (
 									<EmptySearchBox />
 								) : (
-									<tbody>
+									<tbody className="max-h-[500px] overflow-y-auto">
 										{outputedData.map((row, index) => (
 											<Row<T> key={(row as { id: string | number }).id} rowData={row} index={index} />
 										))}
@@ -76,10 +81,10 @@ function Table<T>({
 					</div>
 
 					<div className="flex flex-wrap items-center justify-between gap-2">
-						{Math.ceil(dataSource.length / pageSize) > 1 ? (
+						{Math.ceil(sortFilteredDataSource.length / pageSize) > 1 ? (
 							<Pagination
 								currentPage={+currentPage}
-								pageCount={Math.ceil(dataSource.length / pageSize)}
+								pageCount={Math.ceil(sortFilteredDataSource.length / pageSize)}
 								onChangePage={(page) => form.setValue("currentPage", page)}
 							/>
 						) : (
