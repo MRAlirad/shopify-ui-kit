@@ -1,32 +1,24 @@
 import classNames from "classnames";
+import { useFormContext } from "react-hook-form";
 import type { ColumnProps } from "./Props";
-import { useSearchParams } from "react-router";
 import { ArrowUpLongIcon } from "../icon";
 
 function Column<T>({ name, label, visibility = true, sort = false, className = "" }: ColumnProps<T>) {
-	const [searchParams, setSearchParams] = useSearchParams();
-
-	if (!visibility) return;
+	const { watch, setValue, getValues } = useFormContext();
 
 	const handleSortClick = () => {
 		if (!sort) return;
-		const params: Record<string, string> = {};
 
-		for (const [key, value] of searchParams.entries()) params[key] = value;
-
-		if (params.sort === name && params.sortDirection === "desc") {
-			searchParams.delete("sort");
-			searchParams.delete("sortDirection");
-			setSearchParams(searchParams);
+		if (getValues('sort') === name && getValues('sortDirection') === "desc") {
+			setValue("sort", "");
+			setValue("sortDirection", "");
 		} else {
-			const sortParams: Record<string, string> = {
-				sort: name,
-				sortDirection: searchParams.get("sort") !== name ? "asc" : searchParams.get("sortDirection") === "asc" ? "desc" : "asc",
-			};
-
-			setSearchParams({ ...params, ...sortParams });
+			setValue("sort", name);
+			setValue("sortDirection", watch("sort") !== name ? "asc" : watch("sortDirection") === "asc" ? "desc" : "asc");
 		}
 	};
+
+	if (!visibility) return;
 
 	return (
 		<th
@@ -39,7 +31,7 @@ function Column<T>({ name, label, visibility = true, sort = false, className = "
 		>
 			<div className="min-w-max flex items-center gap-0">
 				<span>{label}</span>
-				{sort && searchParams.get("sort") === name && <ArrowUpLongIcon size={16} className={searchParams.get("sortDirection") === "asc" ? "rotate-180" : ""} />}
+				{sort && watch("sort") === name && <ArrowUpLongIcon size={16} className={watch("sortDirection") === "asc" ? "rotate-180" : ""} />}
 			</div>
 		</th>
 	);

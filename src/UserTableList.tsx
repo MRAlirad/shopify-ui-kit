@@ -1109,14 +1109,15 @@ const UserTableList = () => {
 
 	const statusOptions = [
 		{ value: 0, label: "غیرفعال", color: "red" },
-		{ value: 1, label: "فعال", color: "green" },
-		{ value: 2, label: "درحال انتظار", color: "yellow" },
+		{ value: 1, label: "درحال انتظار", color: "yellow" },
+		{ value: 2, label: "فعال", color: "green" },
 	];
 
 	return (
 		<Table<User>
 			columns={[
-				{ name: "name", label: "نام", sort: true, filter: "text" },
+				{ name: "id", label: "شناسه", sort: true },
+				{ name: "name", label: "نام", sort: true, },
 				{ name: "email", label: "ایمیل", sort: true },
 				{ name: "phone", label: "تلفن" },
 				{ name: "address", label: "آدرس", sort: true },

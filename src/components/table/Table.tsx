@@ -8,6 +8,7 @@ import EmptySearchBox from "./EmptySearchBox";
 import type { TableProps } from "./Props";
 import TableContext from "../../contexts/TableContext";
 import PageSize from "./PageSize";
+import { sortDataSource } from "./services/helper";
 
 function Table<T>({
 	columns = [],
@@ -37,14 +38,18 @@ function Table<T>({
 			output["moreInfo"] = null;
 			output["pageSize"] = allowedPageSizes[0];
 			output["currentPage"] = 1;
+			output["sort"] = "";
+			output["sortDirection"] = "";
 			return output;
 		})(),
 	});
 
 	const currentPage = form.watch("currentPage") as number;
 	const pageSize = form.watch("pageSize") as number;
+	const sort = form.watch("sort") as string;
+	const sortDirection = form.watch("sortDirection") as 'asc' | 'desc';
 
-	const outputedData = dataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+	const outputedData = sortDataSource({ dataSource, sort, sortDirection }).slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
 	return (
 		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions, filterOptions }}>
