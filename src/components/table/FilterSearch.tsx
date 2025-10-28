@@ -6,28 +6,13 @@ import Input from "../Input";
 import { useFormContext } from "react-hook-form";
 import SelectedRowsModal from "./SelectedRowsModal";
 import TableContext from "../../contexts/TableContext";
-import type { FilterOptionProps } from "./Props";
 
 function FilterSearch() {
-	const { searchPanel, selectable, filterOptions } = useContext(TableContext);
+	const { searchPanel, selectable } = useContext(TableContext);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [setselectedRowsModalDisplay, setSetselectedRowsModalDisplay] = useState(false);
 
 	const { setValue, watch } = useFormContext();
-
-	const handleFilterClick = (value: string) => {
-		const params: Record<string, string> = {};
-		searchParams.delete("page");
-
-		for (const [key, value] of searchParams.entries()) params[key] = value;
-
-		if (params.filter && params.filter === value.toString()) {
-			searchParams.delete("filter");
-			setSearchParams(searchParams);
-		} else {
-			setSearchParams({ ...params, filter: value.toString() });
-		}
-	};
 
 	const handleUndoClick = () => {
 		setValue("search", "");
@@ -39,37 +24,20 @@ function FilterSearch() {
 		else setSearchParams({});
 	};
 
-	if (filterOptions.length === 0 && !searchPanel && !selectable) return null;
+	if (!searchPanel && !selectable) return null;
 
 	return (
 		<>
-			<div className="grid grid-cols-[1fr_max-content] gap-2 px-3 py-2">
-				<div className="flex items-center gap-1.5">
-					{filterOptions?.map(({ label, value }: FilterOptionProps) => (
-						<Button
-							key={value}
-							color="black-simple"
-							size="small"
-							className={searchParams.get("filter") === value.toString() ? "bg-neutral-200" : ""}
-							text={label}
-							onClick={() => handleFilterClick(value.toString())}
-						/>
-					))}
-				</div>
-				<div className="flex items-center gap-1.5">
-					<Button color="black-simple" size="small" icon={<UndoIcon size={13} />} onClick={handleUndoClick} disabled={searchParams.size === 0} />
+			<div className="grid grid-cols-[1fr_max-content] gap-6 px-3 py-2">
+				<div>{searchPanel && <Input name="search" placeholder="جست و جو کنید" onChange={handleSearchChange} />}</div>
+				<div className="flex items-center">
+					<Button color="black-simple" size="icon" icon={<UndoIcon size={18} />} onClick={handleUndoClick} disabled={searchParams.size === 0} />
 					{selectable && (
-						<Button
-							color="black-simple"
-							size="small"
-							text="انتخاب شده ها"
-							onClick={() => setSetselectedRowsModalDisplay(true)}
-							disabled={watch("selectedRows").length === 0}
-						/>
+						<Button color="black-simple" text="انتخاب شده ها" onClick={() => setSetselectedRowsModalDisplay(true)} disabled={watch("selectedRows").length === 0} />
 					)}
 				</div>
-				{searchPanel && <Input name="search" placeholder="جست و جو کنید" className="col-span-2" onChange={handleSearchChange} />}
 			</div>
+
 			{setselectedRowsModalDisplay && <SelectedRowsModal onClose={() => setSetselectedRowsModalDisplay(false)} />}
 		</>
 	);

@@ -8,7 +8,6 @@ export interface TableProps<T> {
 	dataSource: T[];
 	pagination?: PaginationProps;
 	loading?: boolean;
-	filterOptions?: FilterOptionProps[];
 	searchPanel?: boolean;
 	selectable?: boolean;
 	moreInfo?: boolean;

@@ -3,7 +3,6 @@ import React from "react";
 interface TableContextType {
 	columns: [];
 	actions: [];
-	filterOptions: [];
 	searchPanel: boolean;
 	selectable: boolean;
 	moreInfo: boolean;

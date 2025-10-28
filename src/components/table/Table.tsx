@@ -16,7 +16,6 @@ function Table<T>({
 	// pagination,
 	loading = false,
 	actions = [],
-	filterOptions = [],
 	searchPanel = false,
 	selectable = false,
 	moreInfo = false,
@@ -52,7 +51,7 @@ function Table<T>({
 	const outputedData = sortDataSource({ dataSource, sort, sortDirection }).slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
 	return (
-		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions, filterOptions }}>
+		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions }}>
 			<FormProvider {...form}>
 				<div className={`grid gap-6 ${className}`}>
 					<div className="table-container card">

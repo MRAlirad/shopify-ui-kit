@@ -1154,7 +1154,6 @@ const UserTableList = () => {
 					onClick: (row) => console.log(row),
 				},
 			]}
-			filterOptions={statusOptions}
 			searchPanel={true}
 			selectable={true}
 			moreInfo={true}

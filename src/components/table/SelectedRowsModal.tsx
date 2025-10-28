@@ -36,7 +36,7 @@ function SelectedRowsModal<T>({ onClose }: SelectedRowsModalProps) {
 		>
 			<Table<T>
 				key={watch("selectedRows").length}
-				columns={columns.map((column: ColumnProps<T>) => ({ ...column, visibility: true, sort: false }))}
+				columns={columns.map((column: ColumnProps<T>) => ({ ...column, visibility: true, }))}
 				dataSource={watch("selectedRows")}
 				actions={[
 					{

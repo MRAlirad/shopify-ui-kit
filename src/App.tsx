@@ -17,7 +17,7 @@ function App() {
 				<BillingHistoryTable />
 				<Alerts />
 			</Page>
-			<Page>
+			<Page type="shrink">
 				<UserTableList />
 			</Page>
 			{/* <Page>
