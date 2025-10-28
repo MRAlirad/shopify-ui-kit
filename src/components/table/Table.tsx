@@ -1,65 +1,68 @@
-import { useSearchParams } from "react-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { TableBodySkeleton } from "../Skeletons";
 import FilterSearch from "./FilterSearch";
-import Column from "./Column";
+import TableHead from "./TableHead";
 import Row from "./Row";
 import Pagination from "../Pagination";
 import EmptySearchBox from "./EmptySearchBox";
 import type { TableProps } from "./Props";
 import TableContext from "../../contexts/TableContext";
+import PageSize from "./PageSize";
 
 function Table<T>({
 	columns = [],
 	dataSource = [],
-	pagination,
+	// pagination,
 	loading = false,
 	actions = [],
 	filterOptions = [],
 	searchPanel = false,
 	selectable = false,
 	moreInfo = false,
+	type = "local",
+	className = "",
+	allowedPageSizes = [10, 20, 50, 100],
 }: TableProps<T>) {
-	const [searchParams, setSearchParams] = useSearchParams();
-
-	const formMethods = useForm({
+	const form = useForm({
 		defaultValues: (() => {
-			const output: Record<string, boolean | string | T[] | null> = {};
+			const output: Record<string, boolean | string | T[] | null | number> = {};
 			for (const row of dataSource) {
 				output[`select-${(row as { id: string | number }).id}`] = false;
 			}
-			output["search"] = searchParams.get("search") ?? "";
+			for (const column of columns) {
+				output[`filter-${column.name}`] = "";
+			}
+			output["search"] = "";
 			output["selectedRows"] = [];
 			output["moreInfo"] = null;
+			output["pageSize"] = allowedPageSizes[0];
+			output["currentPage"] = 1;
 			return output;
 		})(),
 	});
 
+	const currentPage = form.watch("currentPage") as number;
+	const pageSize = form.watch("pageSize") as number;
+
+	const outputedData = dataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
 	return (
-		<TableContext.Provider value={{ searchPanel, selectable, moreInfo, columns, actions, filterOptions }}>
-			<FormProvider {...formMethods}>
-				<div className="grid gap-6">
+		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions, filterOptions }}>
+			<FormProvider {...form}>
+				<div className={`grid gap-6 ${className}`}>
 					<div className="table-container card">
 						<FilterSearch />
 
 						<div className="table-wrapper overflow-x-auto">
 							<table className="w-full">
-								<thead>
-									<tr className="text-neutral-600 text-xs border-b border-neutral-200">
-										<Column name="row" label="ردیف" className="w-[1%] !p-3 sticky start-0" />
-										{columns.map((column) => (
-											<Column key={column.name} {...column} />
-										))}
-										{actions.length > 0 && <Column name="actions" label="" className="w-[1%] !p-3 sticky end-0" />}
-									</tr>
-								</thead>
+								<TableHead<T> />
 								{loading ? (
 									<TableBodySkeleton count={columns.filter((column) => column.visibility !== false).length + 1} />
 								) : dataSource.length === 0 ? (
 									<EmptySearchBox />
 								) : (
 									<tbody>
-										{dataSource.map((row, index) => (
+										{outputedData.map((row, index) => (
 											<Row<T> key={(row as { id: string | number }).id} rowData={row} index={index} />
 										))}
 									</tbody>
@@ -68,18 +71,18 @@ function Table<T>({
 						</div>
 					</div>
 
-					<Pagination
-						currentPage={pagination?.currentPage ?? 1}
-						pageCount={pagination?.pageCount ?? 1}
-						onChangePage={(page) => {
-							const params: Record<string, string> = {};
-
-							for (const [key, value] of searchParams.entries()) {
-								params[key] = value;
-							}
-							setSearchParams({ ...params, page: page.toString() });
-						}}
-					/>
+					<div className="flex flex-wrap items-center justify-between gap-2">
+						{Math.ceil(dataSource.length / pageSize) > 1 ? (
+							<Pagination
+								currentPage={+currentPage}
+								pageCount={Math.ceil(dataSource.length / pageSize)}
+								onChangePage={(page) => form.setValue("currentPage", page)}
+							/>
+						) : (
+							<span></span>
+						)}
+						<PageSize />
+					</div>
 				</div>
 			</FormProvider>
 		</TableContext.Provider>

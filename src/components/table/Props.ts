@@ -3,6 +3,7 @@ import type { PaginationProps } from "../Pagination";
 import type { ButtonProps } from "../Button";
 
 export interface TableProps<T> {
+	type?: 'local' | 'remote';
 	columns: ColumnProps<T>[];
 	dataSource: T[];
 	pagination?: PaginationProps;
@@ -12,6 +13,8 @@ export interface TableProps<T> {
 	selectable?: boolean;
 	moreInfo?: boolean;
 	actions?: ActionProps<T>[];
+	className?: string;
+	allowedPageSizes?: number[];
 }
 
 export interface RowProps<T> {
@@ -25,6 +28,8 @@ export interface ColumnProps<T> {
 	visibility?: boolean;
 	className?: string;
 	sort?: boolean;
+	filter?: 'text' | 'select' | 'date' | 'number';
+	filterOptions?: FilterOptionProps[];
 	cellTemplate?: (row: T) => ReactNode;
 }
 
