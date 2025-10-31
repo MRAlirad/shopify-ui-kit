@@ -22,6 +22,7 @@ function Table<T>({
 	moreInfo = false,
 	className = "",
 	allowedPageSizes = [10, 20, 50, 100],
+	columnHidingEnabled = false,
 }: TableProps<T>) {
 	const form = useForm({
 		defaultValues: (() => {
@@ -31,6 +32,7 @@ function Table<T>({
 			}
 			for (const column of columns) {
 				output[`search-${column.name}`] = "";
+				if (column.visibility !== false) output[`display-${column.name}`] = true;
 			}
 			output["search"] = "";
 			output["selectedRows"] = [];
@@ -56,7 +58,7 @@ function Table<T>({
 	searchDataSourceColumns({ dataSource, columns, filters: form.watch() });
 
 	return (
-		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions }}>
+		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions, columnHidingEnabled }}>
 			<FormProvider {...form}>
 				<div className={`grid gap-6 ${className}`}>
 					<div className="table-container card">

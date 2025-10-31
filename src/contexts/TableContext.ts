@@ -9,6 +9,7 @@ interface TableContextType {
 	filterType: 'text' | 'select' | 'date' | 'number';
 	type: 'local' | 'remote';
 	allowedPageSizes: number[];
+	columnHidingEnabled: boolean;
 }
 
 const TableContext = React.createContext<TableContextType>({} as TableContextType);

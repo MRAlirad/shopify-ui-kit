@@ -20,6 +20,8 @@ function Column<T>({ name, label, visibility = true, sort = false, className = "
 
 	if (!visibility) return;
 
+	if(watch(`display-${name}`) === false) return;
+
 	return (
 		<th
 			className={classNames({

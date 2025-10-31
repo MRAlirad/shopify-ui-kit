@@ -7,11 +7,11 @@ const UserTableList = () => {
 	return (
 		<Table<User>
 			columns={[
-				{ name: "id", label: "شناسه", sort: true, search: "text" },
-				{ name: "name", label: "نام", sort: true, search: "text" },
-				{ name: "email", label: "ایمیل", sort: true, search: "text" },
-				{ name: "phone", label: "تلفن" },
-				{ name: "address", label: "آدرس", sort: true },
+				{ name: "id", label: "شناسه", sort: true },
+				{ name: "name", label: "نام", sort: true },
+				{ name: "email", label: "ایمیل", sort: true },
+				{ name: "phone", label: "تلفن", },
+				{ name: "address", label: "آدرس", sort: true, },
 				{ name: "city", label: "شهر" },
 				{
 					name: "status",
@@ -47,6 +47,7 @@ const UserTableList = () => {
 			selectable={true}
 			moreInfo={true}
 			allowedPageSizes={[5, 10, 20, 50, 100]}
+			columnHidingEnabled
 		/>
 	);
 };

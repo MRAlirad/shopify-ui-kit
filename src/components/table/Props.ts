@@ -14,6 +14,7 @@ export interface TableProps<T> {
 	actions?: ActionProps<T>[];
 	className?: string;
 	allowedPageSizes?: number[];
+	columnHidingEnabled?: boolean;
 }
 
 export interface RowProps<T> {
@@ -28,6 +29,7 @@ export interface ColumnProps<T> {
 	className?: string;
 	sort?: boolean;
 	search?: 'text' | 'select' | 'date' | 'number';
+	hint?: boolean;
 	searchOptions?: FilterOptionProps[];
 	cellTemplate?: (row: T) => ReactNode;
 }
