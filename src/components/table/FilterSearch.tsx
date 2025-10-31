@@ -48,9 +48,9 @@ function FilterSearch<T>() {
 								fullWidth
 							/>
 						)}
-						<Popup anchorSelect={`.column-display-${uId}`} className="grid gap-1 p-2 min-w-40 w-max" place='right-start'>
-							{columns.map((col: ColumnProps<T>) => {
-								if (col.visibility !== false) return <Checkbox name={`display-${col.name}`} label={col.label} />;
+						<Popup anchorSelect={`.column-display-${uId}`} className="grid gap-1 p-2 min-w-40 w-max" place="right-start">
+							{columns.map((column: ColumnProps<T>) => {
+								if (column.visibility !== false) return <Checkbox name={`display-${column.name}`} label={column.label} disabled={column.allowHiding === false} />;
 							})}
 						</Popup>
 					</Popup>

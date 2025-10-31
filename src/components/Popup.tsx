@@ -13,8 +13,10 @@ const Popup = ({
 	position,
 	clickable = true,
 	openOnClick = true,
+	portal = false,
 }: PopupProps) => {
-	return <Tooltip
+	const tooltip = (
+		<Tooltip
 			{...{
 				anchorSelect,
 				defaultIsOpen,
@@ -34,10 +36,11 @@ const Popup = ({
 		>
 			{children}
 		</Tooltip>
-	// return createPortal(
-	// 	,
-	// 	document.body
-	// );
+	);
+
+	if (portal) return createPortal(tooltip, document.body);
+
+	return tooltip;
 };
 
 interface PopupProps {
@@ -49,6 +52,7 @@ interface PopupProps {
 	offset?: number;
 	clickable?: boolean;
 	openOnClick?: boolean;
+	portal?: boolean;
 	place?: "top" | "top-start" | "top-end" | "right" | "right-start" | "right-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end";
 	position?: { x: number; y: number };
 }

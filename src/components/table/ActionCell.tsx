@@ -21,7 +21,7 @@ function ActionCell<T>({ rowData }: { rowData: T }) {
 					className={`action-${uId} size-7 hover:bg-neutral-200`}
 					icon={<ThreeDotsHorizontalIcon size={18} className="text-neutral-500" />}
 				/>
-				<Popup anchorSelect={`.action-${uId}`} place="right" className="grid p-2 min-w-40 w-max">
+				<Popup anchorSelect={`.action-${uId}`} place="right" className="grid p-2 min-w-40 w-max" portal>
 					{actions.map(({ text, color = "black-simple", icon, className, loading = false, onClick, disabled = false }: ActionProps<T>, index) => (
 						<Button
 							key={index}

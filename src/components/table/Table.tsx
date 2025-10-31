@@ -32,7 +32,7 @@ function Table<T>({
 			}
 			for (const column of columns) {
 				output[`search-${column.name}`] = "";
-				if (column.visibility !== false) output[`display-${column.name}`] = true;
+				output[`display-${column.name}`] = true;
 			}
 			output["search"] = "";
 			output["selectedRows"] = [];

@@ -31,6 +31,7 @@ export interface ColumnProps<T> {
 	search?: 'text' | 'select' | 'date' | 'number';
 	hint?: boolean;
 	searchOptions?: FilterOptionProps[];
+	allowHiding?: boolean;
 	cellTemplate?: (row: T) => ReactNode;
 }
 
