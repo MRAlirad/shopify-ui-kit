@@ -8,8 +8,8 @@ const UserTableList = () => {
 		<Table<User>
 			columns={[
 				{ name: "id", label: "شناسه", sort: true, search: "text" },
-				{ name: "name", label: "نام", sort: true },
-				{ name: "email", label: "ایمیل", sort: true },
+				{ name: "name", label: "نام", sort: true, search: "text" },
+				{ name: "email", label: "ایمیل", sort: true, search: "text" },
 				{ name: "phone", label: "تلفن" },
 				{ name: "address", label: "آدرس", sort: true },
 				{ name: "city", label: "شهر" },

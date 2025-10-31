@@ -35,18 +35,34 @@ export function filterDataSource<T>({ dataSource, search }: FilterDataSourceProp
 }
 
 export function searchDataSourceColumns<T>({ dataSource, columns, filters }: SearchDataSourceColumnsProps<T>): T[] {
-    const columnsValues = columns.map((column: ColumnProps<T>) => column.name.toLowerCase());
+	const columnsValues: { [key: string]: string | undefined } = {};
+	for (const col of columns) columnsValues[col.name] = col.search;
 
-    console.log(columnsValues)
+	const filterValues = Object.fromEntries(
+		Object.entries(filters)
+			.filter(([key]) => key.startsWith("search-"))
+			.map(([key, value]) => [key.slice("search-".length), value])
+	);
 
-    // return dataSource.filter((item: T) => {
-    //     return columnsValues.some((columnValue) => String(item[columnValue as keyof T]).toLowerCase().includes(search.toLowerCase()));
-    // });
+	console.log(columnsValues);
+
+	return dataSource.filter((item: T) => {
+		for (const filter in filters) {
+			if (columnsValues[filter] === "text") {
+				if (item[filter].includes(filters[filter])) return true;
+				return false;
+			}
+		}
+	});
+
+	console.log(filterValues);
+	console.log(columnsValues);
 }
 
 interface SearchDataSourceColumnsProps<T> {
 	columns: ColumnProps<T>[];
 	dataSource: T[];
+	filters: { [key: string]: string | boolean | string | T[] | null | number };
 }
 
 interface FilterDataSourceProps<T> {

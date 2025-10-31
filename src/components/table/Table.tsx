@@ -11,6 +11,7 @@ import PageSize from "./PageSize";
 import { filterDataSource, searchDataSourceColumns, sortDataSource } from "./services/helper";
 
 function Table<T>({
+	type = "local",
 	columns = [],
 	dataSource = [],
 	// pagination,
@@ -19,7 +20,6 @@ function Table<T>({
 	searchPanel = false,
 	selectable = false,
 	moreInfo = false,
-	type = "local",
 	className = "",
 	allowedPageSizes = [10, 20, 50, 100],
 }: TableProps<T>) {
@@ -46,14 +46,14 @@ function Table<T>({
 	const currentPage = form.watch("currentPage") as number;
 	const pageSize = form.watch("pageSize") as number;
 	const sort = form.watch("sort") as string;
-	const sortDirection = form.watch("sortDirection") as 'asc' | 'desc';
+	const sortDirection = form.watch("sortDirection") as "asc" | "desc";
 	const search = form.watch("search") as string;
 
-	const sortFilteredDataSource = filterDataSource({ dataSource: sortDataSource({ dataSource, sort, sortDirection }), search });
+	const sortFilteredDataSource = filterDataSource<T>({ dataSource: sortDataSource<T>({ dataSource, sort, sortDirection }), search });
 
-	const outputedData = sortFilteredDataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+	const paginatedData = sortFilteredDataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-	console.log(searchDataSourceColumns({ dataSource, columns }));
+	searchDataSourceColumns({ dataSource, columns, filters: form.watch() });
 
 	return (
 		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions }}>
@@ -71,7 +71,7 @@ function Table<T>({
 									<EmptySearchBox />
 								) : (
 									<tbody className="max-h-[500px] overflow-y-auto">
-										{outputedData.map((row, index) => (
+										{paginatedData.map((row, index) => (
 											<Row<T> key={(row as { id: string | number }).id} rowData={row} index={index} />
 										))}
 									</tbody>
