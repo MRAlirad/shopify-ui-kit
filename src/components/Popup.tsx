@@ -29,7 +29,7 @@ const Popup = ({
 			}}
 			disableStyleInjection={true}
 			className={classNames({
-				"!bg-white !text-black !text-xs !shadow-xl !rounded-xl !border !border-neutral-200 z-[1000]": true,
+				"bg-white text-black text-xs shadow-xl rounded-xl border border-neutral-200 z-[1000]": true,
 				"!w-full": fullWidh,
 				[className]: className,
 			})}
