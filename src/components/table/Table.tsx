@@ -45,7 +45,7 @@ function Table<T>({
 		})(),
 	});
 
-	const { setValue, getValues, control } = form;
+	const { setValue, watch, control } = form;
 
 	const currentPage = useWatch({ control: control, name: "currentPage" }) as number;
 	const pageSize = useWatch({ control: control, name: "pageSize" }) as number;
@@ -53,11 +53,17 @@ function Table<T>({
 	const sortDirection = useWatch({ control: control, name: "sortDirection" }) as "asc" | "desc";
 	const search = useWatch({ control: control, name: "search" }) as string;
 
-	const sortFilteredDataSource = filterDataSource<T>({ dataSource: sortDataSource<T>({ dataSource, sort, sortDirection }), search });
+	// Apply filters in sequence: sort -> general search -> column-specific filters
+	const sortedData = sortDataSource<T>({ dataSource, sort, sortDirection });
+	const generalSearchFiltered = filterDataSource<T>({ dataSource: sortedData, search });
+	const columnFilteredData = searchDataSourceColumns<T>({
+		dataSource: generalSearchFiltered,
+		columns,
+		filters: watch(),
+	});
 
-	const paginatedData = sortFilteredDataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-	searchDataSourceColumns({ dataSource, columns, filters: getValues() });
+	const paginatedData = columnFilteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
 	return (
 		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions, columnHidingEnabled }}>
@@ -71,7 +77,7 @@ function Table<T>({
 								<TableHead<T> />
 								{loading ? (
 									<TableBodySkeleton count={columns.filter((column) => column.visibility !== false).length + 1} />
-								) : sortFilteredDataSource.length === 0 ? (
+								) : columnFilteredData.length === 0 ? (
 									<EmptySearchBox />
 								) : (
 									<tbody className="max-h-[500px] overflow-y-auto">
@@ -85,10 +91,10 @@ function Table<T>({
 					</div>
 
 					<div className="flex flex-wrap items-center justify-between gap-2">
-						{Math.ceil(sortFilteredDataSource.length / pageSize) > 1 ? (
+						{Math.ceil(columnFilteredData.length / pageSize) > 1 ? (
 							<Pagination
 								currentPage={+currentPage}
-								pageCount={Math.ceil(sortFilteredDataSource.length / pageSize)}
+								pageCount={Math.ceil(columnFilteredData.length / pageSize)}
 								onChangePage={(page) => setValue("currentPage", page)}
 							/>
 						) : (

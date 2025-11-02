@@ -35,28 +35,78 @@ export function filterDataSource<T>({ dataSource, search }: FilterDataSourceProp
 }
 
 export function searchDataSourceColumns<T>({ dataSource, columns, filters }: SearchDataSourceColumnsProps<T>): T[] {
-	const columnsValues: { [key: string]: string | undefined } = {};
-	for (const col of columns) columnsValues[col.name] = col.search;
+	// Extract filter values for columns (filters are stored as "search-{columnName}")
+	console.log('sdf')
+	const filterValues: Record<string, string | number> = {};
+	const columnSearchTypes: Record<string, "text" | "select" | "date" | "number" | undefined> = {};
 
-	const filterValues = Object.fromEntries(
-		Object.entries(filters)
-			.filter(([key]) => key.startsWith("search-"))
-			.map(([key, value]) => [key.slice("search-".length), value])
-	);
-
-	console.log(columnsValues);
-
-	return dataSource.filter((item: T) => {
-		for (const filter in filters) {
-			if (columnsValues[filter] === "text") {
-				if (item[filter].includes(filters[filter])) return true;
-				return false;
+	// Build a map of column names to their search types
+	for (const col of columns) {
+		if (col.search) {
+			columnSearchTypes[col.name] = col.search;
+			const filterKey = `search-${col.name}`;
+			const filterValue = filters[filterKey];
+			// Only include non-empty filter values
+			if (filterValue !== undefined && filterValue !== null && filterValue !== "") {
+				filterValues[col.name] = filterValue as string | number;
 			}
 		}
-	});
+	}
 
-	console.log(filterValues);
-	console.log(columnsValues);
+	// If no filters are active, return all data
+	if (Object.keys(filterValues).length === 0) {
+		return dataSource;
+	}
+
+	// Filter dataSource: all column filters must match (AND logic)
+	return dataSource.filter((item: T) => {
+		const itemRecord = item as Record<string, unknown>;
+
+		// Check each active filter
+		for (const [columnName, filterValue] of Object.entries(filterValues)) {
+			const searchType = columnSearchTypes[columnName];
+			const itemValue = itemRecord[columnName];
+
+			console.log(searchType, itemValue, filterValue);
+			if (searchType === "text") {
+				// Text search: case-insensitive substring match
+				const itemStr = itemValue == null ? "" : String(itemValue).toLowerCase();
+				const filterStr = String(filterValue).toLowerCase();
+				if (!itemStr.includes(filterStr)) {
+					return false; // This filter doesn't match, exclude item
+				}
+			} else if (searchType === "select") {
+				// Select search: exact match
+				if (itemValue !== filterValue) {
+					return false; // This filter doesn't match, exclude item
+				}
+			} else if (searchType === "number") {
+				// Number search: exact numeric match
+				const itemNum = typeof itemValue === "number" ? itemValue : Number(itemValue);
+				const filterNum = typeof filterValue === "number" ? filterValue : Number(filterValue);
+				if (isNaN(itemNum) || isNaN(filterNum) || itemNum !== filterNum) {
+					return false; // This filter doesn't match, exclude item
+				}
+			} else if (searchType === "date") {
+				// Date search: compare date values (can be extended for date range, etc.)
+				const itemDate = itemValue instanceof Date ? itemValue : new Date(itemValue as string | number);
+				const filterDate = typeof filterValue === "string" || typeof filterValue === "number" 
+					? new Date(filterValue) 
+					: new Date(String(filterValue));
+				
+				// Compare dates by year, month, day (ignoring time)
+				const itemDateStr = itemDate.toISOString().split("T")[0];
+				const filterDateStr = filterDate.toISOString().split("T")[0];
+				
+				if (isNaN(itemDate.getTime()) || isNaN(filterDate.getTime()) || itemDateStr !== filterDateStr) {
+					return false; // This filter doesn't match, exclude item
+				}
+			}
+		}
+
+		// All filters matched
+		return true;
+	});
 }
 
 interface SearchDataSourceColumnsProps<T> {
