@@ -1,10 +1,10 @@
 import { useFormContext } from "react-hook-form";
 import Checkbox from "../Checkbox";
-import type { RowCellProps } from "./Props";
+import type { RowCellProps } from "./services/Props";
 import { ArrowCaretLeftIcon } from "../icon";
 import Button from "../Button";
 import { useContext } from "react";
-import TableContext from "../../contexts/TableContext";
+import TableContext from "./services/TableContext";
 
 function RowCell<T>({ index, rowData }: RowCellProps<T>) {
 	const { moreInfo, selectable } = useContext(TableContext);

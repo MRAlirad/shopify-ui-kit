@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useFormContext } from "react-hook-form";
-import type { ColumnProps } from "./Props";
+import type { ColumnProps } from "./services/Props";
 import { ArrowUpLongIcon } from "../icon";
 
 function Column<T>({ name, label, visibility = true, sort = false, className = "" }: ColumnProps<T>) {
@@ -9,7 +9,7 @@ function Column<T>({ name, label, visibility = true, sort = false, className = "
 	const handleSortClick = () => {
 		if (!sort) return;
 
-		if (getValues('sort') === name && getValues('sortDirection') === "desc") {
+		if (getValues("sort") === name && getValues("sortDirection") === "desc") {
 			setValue("sort", "");
 			setValue("sortDirection", "");
 		} else {
@@ -20,7 +20,7 @@ function Column<T>({ name, label, visibility = true, sort = false, className = "
 
 	if (!visibility) return;
 
-	if(watch(`display-${name}`) === false) return;
+	if (watch(`display-${name}`) === false) return;
 
 	return (
 		<th

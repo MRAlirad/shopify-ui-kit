@@ -3,8 +3,8 @@ import classNames from "classnames";
 import { useFormContext } from "react-hook-form";
 import RowCell from "./RowCell";
 import ActionCell from "./ActionCell";
-import type { ColumnProps, RowProps } from "./Props";
-import TableContext from "../../contexts/TableContext";
+import type { ColumnProps, RowProps } from "./services/Props";
+import TableContext from "./services/TableContext";
 import MoreInfoRow from "./MoreInfoRow";
 import { generateRandomString } from "../../helpers/String";
 import Popup from "../Popup";
@@ -26,7 +26,7 @@ function Row<T>({ index, rowData }: RowProps<T>) {
 				{columns
 					.filter((column: ColumnProps<T>) => column.visibility !== false || watch(`display-${column.name}`) !== false)
 					.map((column: ColumnProps<T>) => {
-						if(watch(`display-${column.name}`) === false) return;
+						if (watch(`display-${column.name}`) === false) return;
 
 						return (
 							<td

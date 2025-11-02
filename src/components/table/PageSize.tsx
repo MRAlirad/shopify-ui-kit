@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useFormContext } from "react-hook-form";
-import TableContext from "../../contexts/TableContext";
+import TableContext from "./services/TableContext";
 import Button from "../Button";
 
 const PageSize = () => {

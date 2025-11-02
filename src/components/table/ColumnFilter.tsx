@@ -1,7 +1,7 @@
 import DatePicker from "../DatePicker";
 import Input from "../Input";
 import Select from "../Select";
-import type { ColumnProps } from "./Props";
+import type { ColumnProps } from "./services/Props";
 
 const ColumnFilter = <T,>({ column }: { column: ColumnProps<T> }) => {
 	if (!column.search) return <th></th>;

@@ -1,4 +1,4 @@
-import type { ColumnProps } from "../Props";
+import type { ColumnProps } from "./Props";
 
 export function sortDataSource<T>({ dataSource, sort, sortDirection }: SortDataSourceProps<T>): T[] {
 	if (!sort) return dataSource;

@@ -1,12 +1,12 @@
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { TableBodySkeleton } from "../Skeletons";
 import FilterSearch from "./FilterSearch";
 import TableHead from "./TableHead";
 import Row from "./Row";
 import Pagination from "../Pagination";
 import EmptySearchBox from "./EmptySearchBox";
-import type { TableProps } from "./Props";
-import TableContext from "../../contexts/TableContext";
+import type { TableProps } from "./services/Props";
+import TableContext from "./services/TableContext";
 import PageSize from "./PageSize";
 import { filterDataSource, searchDataSourceColumns, sortDataSource } from "./services/helper";
 
@@ -45,17 +45,19 @@ function Table<T>({
 		})(),
 	});
 
-	const currentPage = form.watch("currentPage") as number;
-	const pageSize = form.watch("pageSize") as number;
-	const sort = form.watch("sort") as string;
-	const sortDirection = form.watch("sortDirection") as "asc" | "desc";
-	const search = form.watch("search") as string;
+	const { setValue, getValues, control } = form;
+
+	const currentPage = useWatch({ control: control, name: "currentPage" }) as number;
+	const pageSize = useWatch({ control: control, name: "pageSize" }) as number;
+	const sort = useWatch({ control: control, name: "sort" }) as string;
+	const sortDirection = useWatch({ control: control, name: "sortDirection" }) as "asc" | "desc";
+	const search = useWatch({ control: control, name: "search" }) as string;
 
 	const sortFilteredDataSource = filterDataSource<T>({ dataSource: sortDataSource<T>({ dataSource, sort, sortDirection }), search });
 
 	const paginatedData = sortFilteredDataSource.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-	searchDataSourceColumns({ dataSource, columns, filters: form.watch() });
+	searchDataSourceColumns({ dataSource, columns, filters: getValues() });
 
 	return (
 		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions, columnHidingEnabled }}>
@@ -87,7 +89,7 @@ function Table<T>({
 							<Pagination
 								currentPage={+currentPage}
 								pageCount={Math.ceil(sortFilteredDataSource.length / pageSize)}
-								onChangePage={(page) => form.setValue("currentPage", page)}
+								onChangePage={(page) => setValue("currentPage", page)}
 							/>
 						) : (
 							<span></span>

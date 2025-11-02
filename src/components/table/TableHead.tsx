@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import TableContext from "../../contexts/TableContext";
+import TableContext from "./services/TableContext";
 import Column from "./Column";
-import type { ColumnProps } from "./Props";
+import type { ColumnProps } from "./services/Props";
 import ColumnFilter from "./ColumnFilter";
 
 const TableHead = <T,>() => {

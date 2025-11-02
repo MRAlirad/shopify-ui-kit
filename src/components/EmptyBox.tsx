@@ -1,4 +1,4 @@
-import { EmptyBoxImg } from "../../public/assets/pics";
+import EmptyBoxImg from '/assets/pics/EmptyBox.png'
 
 function EmptyBox({ title = "موردی یافت نشد", text = "" }: EmptyBoxProps) {
 	return (

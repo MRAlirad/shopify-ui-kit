@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
-import type { PaginationProps } from "../Pagination";
-import type { ButtonProps } from "../Button";
+import type { PaginationProps } from "../../Pagination";
+import type { ButtonProps } from "../../Button";
 
 export interface TableProps<T> {
-	type?: 'local' | 'remote';
+	type?: "local" | "remote";
 	columns: ColumnProps<T>[];
 	dataSource: T[];
 	pagination?: PaginationProps;
@@ -28,7 +28,7 @@ export interface ColumnProps<T> {
 	visibility?: boolean;
 	className?: string;
 	sort?: boolean;
-	search?: 'text' | 'select' | 'date' | 'number';
+	search?: "text" | "select" | "date" | "number";
 	hint?: boolean;
 	searchOptions?: FilterOptionProps[];
 	allowHiding?: boolean;
