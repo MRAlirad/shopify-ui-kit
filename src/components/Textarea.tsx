@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useController, useFormContext } from "react-hook-form";
 import { ErrorMessage } from "./Error";
 
-const Textarea = ({ name = "", label = "", className = "", disabled = false, readOnly = false, placeholder = "", onChange = () => {} }: TextareaProps) => {
+const Textarea = ({ name = "", label = "", className = "", disabled = false, readOnly = false, placeholder = "", size = "medium", onChange = () => {} }: TextareaProps) => {
 	const { control } = useFormContext();
 	const { field, fieldState } = useController({ control, name, disabled });
 
@@ -12,6 +12,7 @@ const Textarea = ({ name = "", label = "", className = "", disabled = false, rea
 				"form-input": true,
 				error: fieldState?.error,
 				disabled: disabled,
+				[size]: size,
 				[className]: className,
 			})}
 		>
@@ -41,6 +42,7 @@ interface TextareaProps {
 	disabled?: boolean;
 	readOnly?: boolean;
 	placeholder?: string;
+	size?: "small" | "medium";
 	onChange?: (value: string) => void;
 }
 

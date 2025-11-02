@@ -29,7 +29,7 @@ const Input = ({
 		<div
 			className={classNames({
 				"form-input": true,
-				[`${size}`]: size,
+				[size]: size,
 				error: fieldState?.error,
 				disabled: disabled,
 				[className]: className,

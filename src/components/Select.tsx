@@ -26,7 +26,7 @@ const Select = ({
 			className={classNames({
 				"form-input": true,
 				error: fieldState?.error,
-				[`${size}`]: size,
+				[size]: size,
 				disabled: disabled,
 				[className]: className,
 			})}

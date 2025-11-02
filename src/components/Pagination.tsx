@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
-import classNames from 'classnames';
-import { ArrowCaretBackwardIcon, ArrowCaretForwardIcon, ThreeDotsHorizontalIcon } from './icon';
+import type { ReactNode } from "react";
+import classNames from "classnames";
+import { ArrowCaretBackwardIcon, ArrowCaretForwardIcon, ThreeDotsHorizontalIcon } from "./icon";
 
-const Pagination = ({ currentPage, pageCount, onChangePage = ()=> {} }: PaginationProps) => {
+const Pagination = ({ currentPage, pageCount, onChangePage = () => {} }: PaginationProps) => {
 	return (
 		<div className="flex items-center justify-center gap-1.5 h-10 text-base select-none">
 			<Button text={<ArrowCaretForwardIcon size={20} />} className="rounded-s-lg" disabled={currentPage === 1} onClick={() => onChangePage(currentPage - 1)} />
@@ -18,17 +18,18 @@ const Pagination = ({ currentPage, pageCount, onChangePage = ()=> {} }: Paginati
 	);
 };
 
-const Button = ({ text, isActive = false, disabled = false, className = '', onClick = () => {} }: ButtonProps) => {
+const Button = ({ text, isActive = false, disabled = false, className = "", onClick = () => {} }: ButtonProps) => {
 	return (
 		<button
 			className={classNames({
-				'flex items-center justify-center size-8 border rounded cursor-pointer': true,
-				'text-white border-neutral-300 bg-neutral-800 hover:bg-neutral-900': isActive && !disabled,
-				'text-neutral-500 bg-white border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700': !isActive && !disabled,
+				"flex items-center justify-center size-8 border rounded cursor-pointer": true,
+				"text-white border-neutral-300 bg-neutral-800 hover:bg-neutral-900": isActive && !disabled,
+				"text-neutral-500 bg-white border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700": !isActive && !disabled,
 				[className]: className,
-				'opacity-70 text-neutral-500 border-neutral-200': disabled,
+				"opacity-70 text-neutral-500 border-neutral-200": disabled,
 			})}
 			onClick={onClick}
+			type="button"
 			disabled={disabled}
 		>
 			{text}
@@ -37,17 +38,17 @@ const Button = ({ text, isActive = false, disabled = false, className = '', onCl
 };
 
 export interface PaginationProps {
-	pageCount: number,
-	currentPage: number,
-	onChangePage?: (page: number) => void,
-};
+	pageCount: number;
+	currentPage: number;
+	onChangePage?: (page: number) => void;
+}
 
 interface ButtonProps {
-	text: number | ReactNode,
-	className?: string,
-	isActive?: boolean,
-	disabled?: boolean,
-	onClick?: ()=> void,
-};
+	text: number | ReactNode;
+	className?: string;
+	isActive?: boolean;
+	disabled?: boolean;
+	onClick?: () => void;
+}
 
 export default Pagination;
