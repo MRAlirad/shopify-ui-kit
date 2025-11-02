@@ -7,11 +7,11 @@ const UserTableList = () => {
 	return (
 		<Table<User>
 			columns={[
-				{ name: "id", label: "شناسه", sort: true, search: 'text', allowHiding: false },
-				{ name: "name", label: "نام", sort: true, search: 'text', allowHiding: false },
+				{ name: "id", label: "شناسه", sort: true, search: "text", allowHiding: false },
+				{ name: "name", label: "نام", sort: true, search: "text", allowHiding: false },
 				{ name: "email", label: "ایمیل", sort: true },
-				{ name: "phone", label: "تلفن", },
-				{ name: "address", label: "آدرس", sort: true, },
+				{ name: "phone", label: "تلفن" },
+				{ name: "address", label: "آدرس", sort: true },
 				{ name: "city", label: "شهر" },
 				{
 					name: "status",

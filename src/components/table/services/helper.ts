@@ -36,7 +36,6 @@ export function filterDataSource<T>({ dataSource, search }: FilterDataSourceProp
 
 export function searchDataSourceColumns<T>({ dataSource, columns, filters }: SearchDataSourceColumnsProps<T>): T[] {
 	// Extract filter values for columns (filters are stored as "search-{columnName}")
-	console.log('sdf')
 	const filterValues: Record<string, string | number> = {};
 	const columnSearchTypes: Record<string, "text" | "select" | "date" | "number" | undefined> = {};
 
@@ -67,7 +66,6 @@ export function searchDataSourceColumns<T>({ dataSource, columns, filters }: Sea
 			const searchType = columnSearchTypes[columnName];
 			const itemValue = itemRecord[columnName];
 
-			console.log(searchType, itemValue, filterValue);
 			if (searchType === "text") {
 				// Text search: case-insensitive substring match
 				const itemStr = itemValue == null ? "" : String(itemValue).toLowerCase();

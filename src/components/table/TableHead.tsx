@@ -20,15 +20,15 @@ const TableHead = <T,>() => {
 			</tr>
 			{hasColumnFilter && (
 				<tr className="border-b border-neutral-200">
-					<th></th>
+					<th className="w-[1%] !p-3 sticky start-0 bg-white z-10"></th>
 					{columns.map((column: ColumnProps<T>) => (
 						<ColumnFilter key={column.name} column={column} />
 					))}
-					<th></th>
+					<th className="w-[1%] !p-3 sticky end-0 bg-white"></th>
 				</tr>
 			)}
 		</thead>
-	);
+	);	
 };
 
 export default TableHead;
