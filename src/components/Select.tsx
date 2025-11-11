@@ -31,11 +31,12 @@ const Select = ({
 				[className]: className,
 			})}
 		>
-			{label && <label>{label}</label>}
+			{label && <label htmlFor={name}>{label}</label>}
 
 			<div className="relative">
 				<select
 					{...field}
+					id={name}
 					disabled={disabled || readOnly}
 					className={classNames({
 						"cursor-pointer": !disabled && !readOnly,

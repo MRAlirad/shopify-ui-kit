@@ -16,10 +16,11 @@ const Textarea = ({ name = "", label = "", className = "", disabled = false, rea
 				[className]: className,
 			})}
 		>
-			{label && <label>{label}</label>}
+			{label && <label htmlFor={name}>{label}</label>}
 
 			<textarea
 				{...field}
+				id={name}
 				placeholder={placeholder}
 				readOnly={readOnly}
 				disabled={disabled}

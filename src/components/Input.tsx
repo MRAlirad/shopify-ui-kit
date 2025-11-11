@@ -9,7 +9,7 @@ import { numberToCurrency } from "../helpers/Number";
 const Input = ({
 	name = "",
 	label = "",
-	defaultValue = '',
+	defaultValue = "",
 	className = "",
 	type = "text",
 	readOnly = false,
@@ -35,7 +35,7 @@ const Input = ({
 				[className]: className,
 			})}
 		>
-			{label && <label>{label}</label>}
+			{label && <label htmlFor={name}>{label}</label>}
 
 			<div className="relative">
 				<input
@@ -45,6 +45,7 @@ const Input = ({
 						return type;
 					})()}
 					{...field}
+					id={name}
 					readOnly={readOnly}
 					disabled={disabled}
 					placeholder={placeholder}
