@@ -45,8 +45,9 @@ function Table<T>({
 		})(),
 	});
 
-	const { setValue, watch, control } = form;
+	const { setValue, control } = form;
 
+	const filters = useWatch({ control }) as Record<string, boolean | string | T[] | null | number>;
 	const currentPage = useWatch({ control: control, name: "currentPage" }) as number;
 	const pageSize = useWatch({ control: control, name: "pageSize" }) as number;
 	const sort = useWatch({ control: control, name: "sort" }) as string;
@@ -59,9 +60,8 @@ function Table<T>({
 	const columnFilteredData = searchDataSourceColumns<T>({
 		dataSource: generalSearchFiltered,
 		columns,
-		filters: watch(),
+		filters,
 	});
-
 
 	const paginatedData = columnFilteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
