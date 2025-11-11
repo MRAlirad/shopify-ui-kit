@@ -109,7 +109,7 @@
 
 	/*! BADGE !*/
 	.badge {
-		@apply w-max;
+		@apply w-max h-max;
 	}
 	.badge.green {
 		@apply bg-green-100 text-green-800;

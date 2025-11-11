@@ -50,7 +50,8 @@ function FilterSearch<T>() {
 						)}
 						<Popup anchorSelect={`.column-display-${uId}`} className="grid gap-1 p-2 min-w-40 w-max" place="right-start">
 							{columns.map((column: ColumnProps<T>) => {
-								if (column.visibility !== false) return <Checkbox key={column.name} name={`display-${column.name}`} label={column.label} disabled={column.allowHiding === false} />;
+								if (column.visibility !== false)
+									return <Checkbox key={column.name} name={`display-${column.name}`} label={column.label} disabled={column.allowHiding === false} />;
 							})}
 						</Popup>
 					</Popup>

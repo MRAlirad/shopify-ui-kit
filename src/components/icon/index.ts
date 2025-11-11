@@ -1,3 +1,4 @@
+export { default                    as Icon } from "./Icon";
 export { IoIosArrowBack             as ArrowCaretBackwardIcon } from 'react-icons/io';
 export { IoIosArrowForward          as ArrowCaretForwardIcon } from 'react-icons/io';
 export { IoIosArrowDown             as ArrowCaretDownIcon } from 'react-icons/io';
