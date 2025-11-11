@@ -146,8 +146,15 @@
 	}
 
 	.form-input label {
-		@apply text-sm text-neutral-900;
+		@apply text-neutral-900;
 	}
+	.form-input.small label {
+		@apply text-xs;
+	}
+	.form-input.medium label {
+		@apply text-sm;
+	}
+
 
 	.form-input input,
 	.form-input textarea,
