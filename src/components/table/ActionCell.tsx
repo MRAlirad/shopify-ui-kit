@@ -4,7 +4,7 @@ import Button from "../Button";
 import { ThreeDotsHorizontalIcon } from "../icon";
 import TableContext from "./services/TableContext";
 import { generateRandomString } from "../../helpers/String";
-import type { ActionProps } from "./services/Props";
+import { type ActionProps } from "./services/Props";
 
 function ActionCell<T>({ rowData }: { rowData: T }) {
 	const { actions } = useContext(TableContext);

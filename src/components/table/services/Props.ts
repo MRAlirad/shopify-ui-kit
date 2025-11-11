@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import type { PaginationProps } from "../../Pagination";
 import type { ButtonProps } from "../../Button";
+import type { CardProps } from "../../Card";
 
-export interface TableProps<T> {
+export interface TableProps<T> extends Omit<CardProps, "children"> {
 	type?: "local" | "remote";
 	columns: ColumnProps<T>[];
 	dataSource: T[];
@@ -12,7 +13,6 @@ export interface TableProps<T> {
 	selectable?: boolean;
 	moreInfo?: boolean;
 	actions?: ActionProps<T>[];
-	className?: string;
 	allowedPageSizes?: number[];
 	columnHidingEnabled?: boolean;
 }

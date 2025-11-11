@@ -9,18 +9,23 @@ import type { TableProps } from "./services/Props";
 import TableContext from "./services/TableContext";
 import PageSize from "./PageSize";
 import { filterDataSource, searchDataSourceColumns, sortDataSource } from "./services/helper";
+import Card from "../Card";
 
 function Table<T>({
-	type = "local",
+	title,
+	text,
+	icon,
+	action,
+	actions = [],
+	
 	columns = [],
+	type = "local",
 	dataSource = [],
 	// pagination,
 	loading = false,
-	actions = [],
 	searchPanel = false,
 	selectable = false,
 	moreInfo = false,
-	className = "",
 	allowedPageSizes = [10, 20, 50, 100],
 	columnHidingEnabled = false,
 }: TableProps<T>) {
@@ -68,7 +73,7 @@ function Table<T>({
 	return (
 		<TableContext.Provider value={{ allowedPageSizes, type, searchPanel, selectable, moreInfo, columns, actions, columnHidingEnabled }}>
 			<FormProvider {...form}>
-				<div className={`grid gap-6 ${className}`}>
+				<Card {...{ title, text, icon, action }}>
 					<div className="table-container card">
 						<FilterSearch />
 
@@ -102,7 +107,7 @@ function Table<T>({
 						)}
 						<PageSize />
 					</div>
-				</div>
+				</Card>
 			</FormProvider>
 		</TableContext.Provider>
 	);

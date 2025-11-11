@@ -6,6 +6,8 @@ import Badge from "./components/Badge";
 const UserTableList = () => {
 	return (
 		<Table<User>
+			title="لیست کاربران"
+			text="لیست کاربران"
 			columns={[
 				{ name: "id", label: "شناسه", sort: true, search: "text", allowHiding: false },
 				{ name: "name", label: "نام", sort: true, search: "text", allowHiding: false },
@@ -43,11 +45,11 @@ const UserTableList = () => {
 					onClick: (row) => console.log(row),
 				},
 			]}
-			searchPanel={true}
-			selectable={true}
-			moreInfo={true}
-			allowedPageSizes={[5, 10, 20, 50, 100]}
-			columnHidingEnabled
+			// searchPanel={true}
+			// selectable={true}
+			// moreInfo={true}
+			// allowedPageSizes={[5, 10, 20, 50, 100]}
+			// columnHidingEnabled
 		/>
 	);
 };

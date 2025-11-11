@@ -12,7 +12,7 @@ const Card = ({ title, icon, text, className = "", children, action }: CardProps
 						<h3 className="text-neutral-900 text-base font-bold">{title}</h3>
 						{text && <p className="col-span-2 text-neutral-500 text-xs line-clamp-1">{text}</p>}
 					</div>
-					{action && <Button size="small" color="simple" {...action} />}
+					{action && <Button size="small" color="black-simple" {...action} />}
 				</div>
 			)}
 
@@ -21,7 +21,7 @@ const Card = ({ title, icon, text, className = "", children, action }: CardProps
 	);
 };
 
-interface CardProps {
+export interface CardProps {
 	title?: string;
 	className?: string;
 	icon?: ReactNode;
