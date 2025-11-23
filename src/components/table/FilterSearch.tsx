@@ -25,7 +25,7 @@ function FilterSearch<T>() {
 				<div>{searchPanel && <Input name="search" type="search" placeholder="جست و جو کنید" onChange={() => setValue("currentPage", 1)} />}</div>
 				<div className="flex items-center">
 					<Button className={`table-actions-${uId}`} icon={<ThreeDotsVerticalIcon />} size="icon" color="black-simple" />
-					<Popup anchorSelect={`.table-actions-${uId}`} className="grid p-2 min-w-40 w-max *:!py-1.5 *:justify-start">
+					<Popup anchorSelect={`.table-actions-${uId}`} className="grid p-2 min-w-40 w-max *:py-1.5! *:justify-start" portal={false}>
 						<Button color="black-simple" size="small" text="ریست کردن فیلتر ها" icon={<UndoIcon size={16} />} onClick={() => reset()} fullWidth />
 						{selectable && (
 							<Button
@@ -44,11 +44,10 @@ function FilterSearch<T>() {
 								size="small"
 								text="نمایش/عدم نمایش ستون ها"
 								icon={<ColumnDisplayIcon size={16} />}
-								// onClick={() => setSetselectedRowsModalDisplay(true)}
 								fullWidth
 							/>
 						)}
-						<Popup anchorSelect={`.column-display-${uId}`} className="grid gap-1 p-2 min-w-40 w-max" place="right-start">
+						<Popup anchorSelect={`.column-display-${uId}`} className="grid gap-1 p-2 min-w-40 w-max" place="right-start" portal={false}>
 							{columns.map((column: ColumnProps<T>) => {
 								if (column.visibility !== false)
 									return <Checkbox key={column.name} name={`display-${column.name}`} label={column.label} disabled={column.allowHiding === false} />;

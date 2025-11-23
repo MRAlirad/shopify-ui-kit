@@ -15,7 +15,7 @@ const Badge = ({ text, color = "blue", size = "medium", className = '' }: BadgeP
 	);
 };
 
-interface BadgeProps {
+export interface BadgeProps {
 	text: string;
 	color?: "green" | "blue" | "neutral" | "red" | "yellow" | "purple";
 	size?: "small" | "medium" | "large";

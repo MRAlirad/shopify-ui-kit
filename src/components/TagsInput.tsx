@@ -45,9 +45,9 @@ const TagsInput = ({ ...props }: InputProps) => {
 					color="simple"
 					size="small"
 					icon={<PlusCircleIcon size={15} />}
-					className="absolute top-8 end-1 text-neutral-700 !rounded-full"
+					className="absolute top-8 end-1 text-neutral-700 rounded-full!"
 					onClick={() => addTag(watch("tag"))}
-                    disabled={props.disabled}
+					disabled={props.disabled}
 				/>
 			)}
 		</div>

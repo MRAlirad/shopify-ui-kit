@@ -23,13 +23,13 @@ const Button = ({ text, isActive = false, disabled = false, className = "", onCl
 		<button
 			className={classNames({
 				"flex items-center justify-center size-8 border rounded cursor-pointer": true,
-				"text-white border-neutral-300 bg-neutral-800 hover:bg-neutral-900": isActive && !disabled,
-				"text-neutral-500 bg-white border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700": !isActive && !disabled,
+				"text-white border-blue-300 bg-primary-dark hover:bg-blue-900": isActive && !disabled,
+				"text-blue-500 bg-white border-blue-300 hover:bg-blue-100 hover:text-blue-700": !isActive && !disabled,
 				[className]: className,
-				"opacity-70 text-neutral-500 border-neutral-200": disabled,
+				"opacity-70 text-blue-500 border-blue-200": disabled,
 			})}
-			onClick={onClick}
 			type="button"
+			onClick={onClick}
 			disabled={disabled}
 		>
 			{text}

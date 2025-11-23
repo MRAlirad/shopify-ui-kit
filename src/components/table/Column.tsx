@@ -25,8 +25,8 @@ function Column<T>({ name, label, visibility = true, sort = false, className = "
 	return (
 		<th
 			className={classNames({
-				"bg-neutral-100 text-start px-6 py-3": true,
-				"cursor-pointer select-none": sort,
+				"bg-white text-start px-6 py-3 select-none": true,
+				"cursor-pointer": sort,
 				[className]: className,
 			})}
 			onClick={handleSortClick}

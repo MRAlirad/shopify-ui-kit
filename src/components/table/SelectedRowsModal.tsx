@@ -7,13 +7,16 @@ import { useContext } from "react";
 import TableContext from "./services/TableContext";
 
 function SelectedRowsModal<T>({ onClose }: SelectedRowsModalProps) {
-	const { columns } = useContext(TableContext);
+	const {id, columns, keyExpr } = useContext(TableContext);
 	const { setValue, getValues, watch } = useFormContext();
 
 	const deleteSelectedRows = () => {
+		// deselect the checkbox of the selected rows
 		getValues("selectedRows").forEach((value: T) => {
-			setValue(`select-${(value as { id: string | number }).id}`, false);
+			const rowKey = (value as Record<string, string | number>)[keyExpr || "id"];
+			setValue(`select-${rowKey}`, false);
 		});
+		// clear the selected rows
 		setValue("selectedRows", []);
 		onClose();
 	};
@@ -35,6 +38,8 @@ function SelectedRowsModal<T>({ onClose }: SelectedRowsModalProps) {
 			]}
 		>
 			<Table<T>
+				id={`selected-rows-table-${id}`}
+				keyExpr={keyExpr || "id"}
 				key={watch("selectedRows").length}
 				columns={columns.map((column: ColumnProps<T>) => ({ ...column, visibility: true }))}
 				dataSource={watch("selectedRows")}
@@ -44,11 +49,12 @@ function SelectedRowsModal<T>({ onClose }: SelectedRowsModalProps) {
 						color: "red-simple",
 						icon: <TrashIcon size={18} />,
 						onClick: (rowData) => {
+							const rowKey = (rowData as Record<string, string | number>)[keyExpr];
 							setValue(
 								"selectedRows",
-								getValues("selectedRows").filter((row: T) => (row as { id: string | number }).id !== (rowData as { id: string | number }).id)
+								getValues("selectedRows").filter((row: T) => (row as Record<string, string | number>)[keyExpr] !== rowKey)
 							);
-							setValue(`select-${(rowData as { id: string | number }).id}`, false);
+							setValue(`select-${rowKey}`, false);
 						},
 					},
 				]}

@@ -7,39 +7,41 @@ import { useContext } from "react";
 import TableContext from "./services/TableContext";
 
 function RowCell<T>({ index, rowData }: RowCellProps<T>) {
-	const { moreInfo, selectable } = useContext(TableContext);
+	const { moreInfo, selectable, keyExpr } = useContext(TableContext);
+	const rowKey = (rowData as Record<string, string | number>)[keyExpr];
 	const { setValue, getValues, watch } = useFormContext();
 
 	const handleMoreInfoClick = () => {
-		if (watch("moreInfo") === (rowData as { id: string | number }).id) {
-			setValue("moreInfo", null);
-		} else {
-			setValue("moreInfo", (rowData as { id: string | number }).id);
-		}
+		// Toggle the more info row
+		if (watch("moreInfo") === rowKey) setValue("moreInfo", null);
+		else setValue("moreInfo", rowKey);
 	};
 
 	const handleSelectRow = () => {
-		if (getValues("selectedRows").find((row: T) => (row as { id: string | number }).id === (rowData as { id: string | number }).id)) return;
+		// Check if the row is already selected and if not, add it to the selected rows
+		if (getValues("selectedRows").find((row: T) => (row as Record<string, string | number>)[keyExpr] === rowKey)) return;
 		setValue("selectedRows", [...getValues("selectedRows"), rowData]);
 	};
 
 	const handleUnSelectRow = () => {
+		// Remove the row from the selected rows
 		setValue(
 			"selectedRows",
-			getValues("selectedRows").filter((row: T) => (row as { id: string | number }).id !== (rowData as { id: string | number }).id)
+			getValues("selectedRows").filter((row: T) => (row as Record<string, string | number>)[keyExpr] !== rowKey)
 		);
 	};
+
 	return (
-		<td className="p-3 bg-white sticky start-0 group-hover:bg-neutral-50">
+		<td className={`p-3 sticky start-0 bg-white`}>
 			<div className="flex items-center">
-				{selectable && <Checkbox name={`select-${(rowData as { id: string | number }).id}`} onCheck={handleSelectRow} onUncheck={handleUnSelectRow} />}
+				{selectable && <Checkbox name={`select-${rowKey}`} onCheck={handleSelectRow} onUncheck={handleUnSelectRow} />}
 
 				{moreInfo && (
 					<Button
 						color="simple"
 						size="small"
 						icon={<ArrowCaretLeftIcon size={18} />}
-						className={watch("moreInfo") === (rowData as { id: string | number }).id ? "-rotate-90" : ""}
+						className={watch("moreInfo") === rowKey ? "-rotate-90" : ""}
 						onClick={handleMoreInfoClick}
 					/>
 				)}

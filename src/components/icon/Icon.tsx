@@ -1,7 +1,7 @@
-import { type ReactNode } from 'react';
-import { IconContext } from 'react-icons';
+import { type ReactNode } from "react";
+import { IconContext } from "react-icons";
 
-const Icon = ({ children, color = 'inherit', className = '', size = '18' }: IconProps) => {
+const Icon = ({ children, color = "inherit", className = "", size = "18" }: IconProps) => {
 	return (
 		<IconContext.Provider value={{ size: size }}>
 			<div className={`flex ${color} ${className}`}>{children}</div>
@@ -10,9 +10,10 @@ const Icon = ({ children, color = 'inherit', className = '', size = '18' }: Icon
 };
 
 interface IconProps {
-    children: ReactNode;
-    color?: string;
-    className?: string;
-    size?: string;
+	children: ReactNode;
+	color?: string;
+	className?: string;
+	size?: string;
 }
+
 export default Icon;

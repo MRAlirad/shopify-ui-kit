@@ -41,7 +41,7 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 
 	return createPortal(
 		<div
-			className="modal fixed inset-0 flex items-end md:items-center justify-center bg-black/60 z-[1000] backdrop-blur-sm md:px-4"
+			className="modal fixed inset-0 flex items-end md:items-center justify-center bg-black/60 z-1000 backdrop-blur-sm md:px-4"
 			onClick={(e) => {
 				if (e.target === e.currentTarget) onClose();
 			}}

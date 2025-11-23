@@ -45,7 +45,7 @@ const Button = ({
 			</div>
 
 			{hint && (
-				<Popup anchorSelect={`.btn-${uId}`} place="top" className="!p-1 !w-max !rounded-md" openOnClick={false} clickable={false} portal>
+				<Popup anchorSelect={`.btn-${uId}`} place="top" className="p-1! w-max! rounded-md!" openOnClick={false} clickable={false}>
 					<span className="text-xs text-neutral-700">{hint}</span>
 				</Popup>
 			)}

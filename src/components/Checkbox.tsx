@@ -15,14 +15,14 @@ const Checkbox = ({ name = "", label = "", className = "", disabled = false, des
 			<label
 				className={classNames({
 					"flex items-center gap-2 cursor-pointer": true,
-					"opacity-50 !cursor-auto": disabled,
+					"opacity-50 cursor-auto!": disabled,
 				})}
 			>
 				<input
 					type="checkbox"
 					{...field}
 					checked={field.value}
-					className="size-4 accent-neutral-900"
+					className="size-4 accent-blue-700"
 					onChange={(e) => {
 						const isChecked = e.currentTarget.checked;
 

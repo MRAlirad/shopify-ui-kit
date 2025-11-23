@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useController, useFormContext } from "react-hook-form";
 
-const Toggle = ({ name = "", label = "", className = "", disabled = false, onChange = () => {}, onCheck = () => {}, onUncheck = () => {} }: ToggleProps) => {
+const Toggle = ({ name = "", label = "", size = "small", className = "", disabled = false, onChange = () => {}, onCheck = () => {}, onUncheck = () => {} }: ToggleProps) => {
 	const { control } = useFormContext();
 	const { field } = useController({ control, name, disabled });
 
@@ -27,7 +27,14 @@ const Toggle = ({ name = "", label = "", className = "", disabled = false, onCha
 					field.onChange(e);
 				}}
 			/>
-			<div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-900"></div>
+			<div
+				className={classNames({
+					"relative bg-neutral-200 rounded-full peer peer-checked:bg-primary": true,
+					"peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all": true,
+					"w-9 h-5 after:h-4 after:w-4": size === "small",
+					"w-11 h-6 after:h-5 after:w-5": size === "medium",
+				})}
+			></div>
 			{label && <span className="text-sm text-neutral-900 select-none">{label}</span>}
 		</label>
 	);
@@ -36,6 +43,7 @@ const Toggle = ({ name = "", label = "", className = "", disabled = false, onCha
 interface ToggleProps {
 	name: string;
 	label?: string;
+	size?: "small" | "medium";
 	className?: string;
 	disabled?: boolean;
 	onChange?: (value?: boolean) => void;

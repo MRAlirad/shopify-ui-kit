@@ -13,7 +13,7 @@ const Popup = ({
 	position,
 	clickable = true,
 	openOnClick = true,
-	portal = false,
+	portal = true,
 }: PopupProps) => {
 	const tooltip = (
 		<Tooltip
@@ -29,8 +29,8 @@ const Popup = ({
 			}}
 			disableStyleInjection={true}
 			className={classNames({
-				"bg-white text-black text-xs shadow-xl rounded-xl border border-neutral-200 z-[1000]": true,
-				"!w-full": fullWidh,
+				"bg-white text-black text-xs shadow-xl rounded-xl border border-neutral-200 z-1000": true,
+				"w-full!": fullWidh,
 				[className]: className,
 			})}
 		>

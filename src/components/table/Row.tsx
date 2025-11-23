@@ -10,16 +10,17 @@ import { generateRandomString } from "../../helpers/String";
 import Popup from "../Popup";
 
 function Row<T>({ index, rowData }: RowProps<T>) {
-	const { columns } = useContext(TableContext);
+	const { columns, keyExpr } = useContext(TableContext);
 	const { watch } = useFormContext();
+	const rowKey = (rowData as Record<string, string | number>)[keyExpr];
 	const uId = generateRandomString();
 
 	return (
 		<>
 			<tr
 				className={classNames({
-					"group relative text-xs font-bold hover:bg-neutral-50 text-start": true,
-					"border-b last:border-0 border-neutral-200": watch("moreInfo") !== (rowData as { id: string | number }).id,
+					"group relative text-xs bg-white text-start": true,
+					"border-b last:border-0 border-blue-200": watch("moreInfo") !== rowKey,
 				})}
 			>
 				<RowCell index={index} rowData={rowData} />

@@ -5,7 +5,7 @@ import { useLockBodyScroll, useToggle } from "react-use";
 import Button, { type ButtonProps } from "./Button";
 import { CloseIcon } from "./icon";
 
-const Drawer = ({ title = "", children, className = '', actions = [], onClose = () => {} }: DrawerProps) => {
+const Drawer = ({ title = "", children, className = "", actions = [], onClose = () => {} }: DrawerProps) => {
 	const [locked, toggleLocked] = useToggle(false);
 	useLockBodyScroll(locked);
 
@@ -16,7 +16,7 @@ const Drawer = ({ title = "", children, className = '', actions = [], onClose = 
 
 	return createPortal(
 		<div
-			className="modal fixed inset-0 flex justify-start bg-black/60 z-[1000] backdrop-blur-sm"
+			className="modal fixed inset-0 flex justify-start bg-black/60 z-1000 backdrop-blur-sm"
 			onClick={(e) => {
 				if (e.target === e.currentTarget) onClose();
 			}}

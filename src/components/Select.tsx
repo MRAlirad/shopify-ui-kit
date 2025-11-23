@@ -40,11 +40,11 @@ const Select = ({
 					disabled={disabled || readOnly}
 					className={classNames({
 						"cursor-pointer": !disabled && !readOnly,
-						"!text-neutral-400": (watch(name) === "" || loading) && !fieldState?.error,
-						"!text-red-400": (watch(name) === "" || loading) && fieldState?.error,
+						"text-neutral-400!": (watch(name) === "" || loading) && !fieldState?.error,
+						"text-red-400!": (watch(name) === "" || loading) && fieldState?.error,
 					})}
 					onChange={(e) => {
-						onChange(e.target.value);
+						onChange(e.target.value, options.find((option) => option.value === e.target.value)?.data); //! value and data of the selected option
 						if (field) return field.onChange(e);
 					}}
 				>
@@ -82,9 +82,9 @@ const Select = ({
 						icon={<CloseIcon size={size === "small" ? 14 : 18} />}
 						size="small"
 						className={classNames({
-							'absolute end-4 bottom-2 bg-white !p-0': true,
-							'bottom-2': size === "small",
-							'bottom-2.5': size === "medium",
+							"absolute end-4 bottom-2 bg-white p-0!": true,
+							"bottom-2": size === "small",
+							"bottom-2.5": size === "medium",
 						})}
 						disabled={disabled || readOnly}
 						onClick={() => {
@@ -94,7 +94,7 @@ const Select = ({
 					/>
 				)}
 
-				{loading && <Loader className="absolute end-6 top-0 w-max text-neutral-400" size="18" />}
+				{loading && <Loader className="absolute end-6 top-0 w-max text-neutral-400" color="gray" />}
 			</div>
 
 			{fieldState?.error?.message && <ErrorMessage error={fieldState?.error?.message} />}
@@ -112,8 +112,8 @@ interface SelectProps {
 	clearable?: boolean;
 	loading?: boolean;
 	error?: string;
-	options: { value: string | number; label: string; disabled?: boolean }[];
-	onChange?: (value: string | number) => void;
+	options: { value: string | number; label: string; disabled?: boolean; data?: object }[];
+	onChange?: (value: string | number, data?: object) => void;
 }
 
 export default Select;

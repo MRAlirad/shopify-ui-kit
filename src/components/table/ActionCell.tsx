@@ -13,15 +13,15 @@ function ActionCell<T>({ rowData }: { rowData: T }) {
 	if (actions.filter((action: ActionProps<T>) => action.visibility !== false).length === 0) return;
 
 	return (
-		<td className="p-3 bg-white sticky end-0 group-hover:bg-neutral-50">
+		<td className={`p-3 sticky end-0 bg-white`}>
 			<div className="flex items-center justify-center">
 				<Button
-					color="simple"
+					color="blue-simple"
 					size="small"
-					className={`action-${uId} size-7 hover:bg-neutral-200`}
-					icon={<ThreeDotsHorizontalIcon size={18} className="text-neutral-500" />}
+					className={`action-${uId} size-7`}
+					icon={<ThreeDotsHorizontalIcon size={18} className="text-blue-600" />}
 				/>
-				<Popup anchorSelect={`.action-${uId}`} place="right" className="grid p-2 min-w-40 w-max" portal>
+				<Popup anchorSelect={`.action-${uId}`} place="right" className="grid p-2 min-w-40 w-max">
 					{actions.map(({ text, color = "black-simple", icon, className, loading = false, onClick, disabled = false }: ActionProps<T>, index) => (
 						<Button
 							key={index}
@@ -32,7 +32,7 @@ function ActionCell<T>({ rowData }: { rowData: T }) {
 							loading={loading}
 							disabled={disabled}
 							icon={icon}
-							className={`!py-1.5 justify-start ${className}`}
+							className={`py-1.5! justify-start ${className}`}
 							onClick={() => onClick?.(rowData)}
 						/>
 					))}

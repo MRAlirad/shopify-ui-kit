@@ -8,10 +8,19 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import Button from "./Button";
 import { ErrorMessage } from "./Error";
 import { CloseIcon } from "./icon";
-import { persianDate } from "../helpers/Date";
+import { gerigorainToPersianDate, persianDate } from "../helpers/Date";
 import { persianToEnglishDigits } from "../helpers/Number";
 
-const DatePicker = ({ label = "", name = "", disabled = false, className = "", timePicker = false, size = "medium", onChange = () => {} }: DatePickerProps) => {
+const DatePicker = ({
+	label = "",
+	name = "",
+	disabled = false,
+	className = "",
+	placeholder = "تاریخ را وارد کنید",
+	timePicker = false,
+	size = "medium",
+	onChange = () => {},
+}: DatePickerProps) => {
 	const format = timePicker ? "YYYY-MM-DD HH:mm:ss" : "YYYY-MM-DD";
 	const datepickerRef = useRef<DatePickerRef>(null);
 
@@ -25,7 +34,7 @@ const DatePicker = ({ label = "", name = "", disabled = false, className = "", t
 			className={classNames({
 				"form-input": true,
 				disabled: disabled,
-				[`${size}`]: size,
+				[size]: size,
 				error: fieldState?.error,
 				[className]: className,
 			})}
@@ -51,7 +60,7 @@ const DatePicker = ({ label = "", name = "", disabled = false, className = "", t
 					disabled={disabled}
 					showOtherDays
 					monthYearSeparator=" "
-					placeholder="تاریخ را وارد کنید"
+					placeholder={placeholder}
 					calendarPosition="bottom-center"
 					inputClass={classNames({
 						"focus:outline-blue-500": !fieldState?.error,
@@ -82,6 +91,8 @@ const DatePicker = ({ label = "", name = "", disabled = false, className = "", t
 			</div>
 
 			{fieldState?.error?.message && <ErrorMessage error={fieldState?.error?.message} />}
+
+			{watch(name) && <span className="text-xs text-end pe-1">{gerigorainToPersianDate(watch(name), "dddd - DD MMMM YYYY")}</span>}
 		</div>
 	);
 };
@@ -91,6 +102,7 @@ interface DatePickerProps {
 	label?: string;
 	disabled?: boolean;
 	className?: string;
+	placeholder?: string;
 	timePicker?: boolean;
 	size?: "small" | "medium";
 	onChange?: (value: Value) => void;

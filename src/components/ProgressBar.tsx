@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { ErrorMessage } from "./Error";
 
 const ProgressBar = ({ title, progress, className = "" }: ProgressBarProps) => {
 	return (
@@ -8,9 +9,11 @@ const ProgressBar = ({ title, progress, className = "" }: ProgressBarProps) => {
 				<span>{progress}%</span>
 			</div>
 
-			<div className="w-full h-2 bg-neutral-200 rounded-full">
-				<div className="h-full bg-neutral-900 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+			<div className="w-full h-2 bg-primary-light rounded-full overflow-hidden">
+				<div className="h-full bg-primary rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
 			</div>
+
+			{progress > 100 && <ErrorMessage error="مقدار بیشتر از 100 است" />}
 		</div>
 	);
 };

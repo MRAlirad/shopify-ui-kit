@@ -1,15 +1,19 @@
 import React from "react";
-import type { ColumnProps, ActionProps } from "./Props";
+import type { ColumnProps, ActionProps, PagingProps } from "./Props";
 
 interface TableContextType<T> {
 	columns: ColumnProps<T>[];
 	actions: ActionProps<T>[];
+	dataSource: T[];
 	searchPanel: boolean;
 	selectable: boolean;
 	moreInfo: boolean;
 	type: "local" | "remote";
-	allowedPageSizes: number[];
 	columnHidingEnabled: boolean;
+	keyExpr: string;
+	id: string;
+	loading: boolean;
+	paging: PagingProps;
 }
 
 function createTableContext<T>() {

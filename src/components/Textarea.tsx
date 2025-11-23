@@ -28,7 +28,10 @@ const Textarea = ({ name = "", label = "", className = "", disabled = false, rea
 					onChange(e.target.value);
 					if (field) return field.onChange(e);
 				}}
-				className="min-h-32"
+				className={classNames({
+					"min-h-20": size === "small",
+					"min-h-32": size === "medium",
+				})}
 			></textarea>
 
 			{fieldState?.error?.message && <ErrorMessage error={fieldState?.error?.message} />}

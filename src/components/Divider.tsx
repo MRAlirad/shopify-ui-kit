@@ -4,7 +4,7 @@ const Divider = ({ direction = "horizontal", className = "" }: DividerProps) => 
 	return (
 		<hr
 			className={classNames({
-				"bg-neutral-200 border-0": true,
+				"bg-blue-200 border-0": true,
 				"h-px w-full": direction === "horizontal",
 				"w-px h-full": direction === "vertical",
 				[className]: className,

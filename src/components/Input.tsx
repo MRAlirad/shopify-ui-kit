@@ -44,8 +44,8 @@ const Input = ({
 						else if (type === "currency" || type === "count") return "number";
 						return type;
 					})()}
-					{...field}
 					id={name}
+					{...field}
 					readOnly={readOnly}
 					disabled={disabled}
 					placeholder={placeholder}
@@ -77,7 +77,7 @@ const Input = ({
 
 			{fieldState?.error?.message && <ErrorMessage error={fieldState?.error?.message} />}
 
-			{type === "currency" && <span className="text-xs text-end pe-1">{numberToCurrency(watch(name) ? +watch(name) : 0)} ريال </span>}
+			{type === "currency" && watch(name) && <span className="text-xs text-end pe-1">{numberToCurrency(watch(name) ? +watch(name) : 0)} ريال </span>}
 
 			{description && <p className="text">{description}</p>}
 		</div>

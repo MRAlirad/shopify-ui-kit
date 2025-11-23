@@ -1,6 +1,6 @@
-import Button, { type ButtonProps } from './Button';
-import Badge from './Badge';
-import { ArrowRightIcon } from './icon';
+import Button, { type ButtonProps } from "./Button";
+import Badge from "./Badge";
+import { ArrowRightIcon } from "./icon";
 
 const PageHeader = ({ title, backLink, badge, text, action }: PageHeaderProps) => {
 	return (
@@ -10,7 +10,7 @@ const PageHeader = ({ title, backLink, badge, text, action }: PageHeaderProps) =
 
 				<div className="flex items-center gap-2">
 					<h1 className="text-lg lg:text-2xl text-neutral-700 line-clamp-1 font-bold"> {title} </h1>
-					{badge && <Badge size='small' text={badge} color="blue" />}
+					{badge && <Badge size="small" text={badge} color="blue" />}
 				</div>
 
 				{action && <Button size="small" className="ms-auto" {...action} />}
@@ -22,11 +22,11 @@ const PageHeader = ({ title, backLink, badge, text, action }: PageHeaderProps) =
 };
 
 interface PageHeaderProps {
-	title: string,
-	backLink?: string,
-	badge?: string,
-	text?: string,
-	action?: ButtonProps,
-};
+	title: string;
+	backLink?: string;
+	badge?: string;
+	text?: string;
+	action?: ButtonProps;
+}
 
 export default PageHeader;

@@ -24,7 +24,7 @@ const Accordion = ({ list = [] }: AccordionProps) => {
 
 const AccordionItem = ({ question, answer, isOpen = false, onClick = () => {} }: AccordionItemProps) => {
 	return (
-		<div className="bg-white hover:bg-neutral-50 border-b border-neutral-300">
+		<div className={`hover:bg-blue-100 border-b border-blue-300 last:border-b-0 ${isOpen ? "bg-blue-50" : "bg-white"}`}>
 			<div className="flex items-center justify-between cursor-pointer p-4" onClick={onClick}>
 				<h6 className="text-xs font-bold text-neutral-600">{question}</h6>
 				<ArrowCaretDownIcon size={16} className={`duration-300 ${isOpen ? "rotate-180" : ""}`} />

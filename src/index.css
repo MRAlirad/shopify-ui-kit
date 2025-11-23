@@ -7,11 +7,19 @@
 	}
 
 	.card {
-		@apply bg-white rounded-lg shadow-card overflow-hidden;
+		@apply bg-white rounded shadow-card overflow-hidden;
 	}
 
 	.skeleton {
-		@apply relative overflow-hidden bg-neutral-200 rounded after:absolute after:top-0 after:right-0 after:h-full after:w-full after:bg-gradient-to-r after:from-neutral-200 after:via-white after:to-neutral-200 after:animate-progress;
+		@apply relative overflow-hidden bg-neutral-200 rounded after:absolute after:top-0 after:right-0 after:h-full after:w-full after:bg-linear-to-r after:from-neutral-200 after:via-white after:to-neutral-200 after:animate-progress;
+	}
+
+	.img-box {
+		@apply flex items-center justify-center overflow-hidden rounded;
+	}
+
+	.img-box img {
+		@apply w-full h-full object-contain;
 	}
 
 	/*! BUTTON !*/
@@ -94,50 +102,50 @@
 	.alert.blue {
 		@apply text-blue-800 bg-blue-50 border-blue-300;
 	}
-	.alert.green {
+	.alert.red {
 		@apply text-red-800 bg-red-50 border-red-300;
 	}
-	.alert.neutral {
+	.alert.yellow {
 		@apply text-yellow-800 bg-yellow-50 border-yellow-300;
 	}
-	.alert.red {
+	.alert.green {
 		@apply text-green-800 bg-green-50 border-green-300;
 	}
-	.alert.yellow {
+	.alert.neutral {
 		@apply text-neutral-800 bg-neutral-50 border-neutral-300;
 	}
 
 	/*! BADGE !*/
 	.badge {
-		@apply w-max h-max;
+		@apply w-max h-max text-white rounded-full;
 	}
 	.badge.green {
-		@apply bg-green-100 text-green-800;
+		@apply bg-green-600;
 	}
 	.badge.blue {
-		@apply bg-blue-100 text-blue-800;
+		@apply bg-blue-600;
 	}
 	.badge.neutral {
-		@apply bg-neutral-100 text-neutral-800;
+		@apply bg-neutral-600;
 	}
 	.badge.red {
-		@apply bg-red-100 text-red-800;
+		@apply bg-red-600;
 	}
 	.badge.yellow {
-		@apply bg-yellow-100 text-yellow-800;
+		@apply bg-yellow-300;
 	}
 	.badge.purple {
-		@apply bg-purple-100 text-purple-800;
+		@apply bg-purple-600;
 	}
 
 	.badge.small {
-		@apply text-xs rounded-sm py-0.5 px-2;
+		@apply text-xs py-0.5 px-2;
 	}
 	.badge.medium {
-		@apply text-sm rounded py-0.5 px-2.5;
+		@apply text-sm py-0.5 px-2.5;
 	}
 	.badge.large {
-		@apply text-base rounded-md py-1 px-3;
+		@apply text-base py-1 px-3;
 	}
 
 	/*! INPUT, SELECT, TEXTAREA !*/
@@ -155,11 +163,10 @@
 		@apply text-sm;
 	}
 
-
 	.form-input input,
 	.form-input textarea,
 	.form-input select {
-		@apply text-neutral-900 w-full h-full bg-white border border-neutral-500 rounded-md outline-2 outline-transparent focus:outline-blue-500 focus:border-blue-500;
+		@apply text-neutral-900 w-full h-full bg-white border border-blue-500 rounded-md outline-2 outline-transparent focus:outline-blue-500 focus:border-blue-500;
 	}
 
 	.form-input.small input,
@@ -192,6 +199,45 @@
 	.form-input.disabled textarea,
 	.form-input.disabled select {
 		@apply cursor-not-allowed;
+	}
+
+	/*! INFO !*/
+	.info {
+		@apply grid gap-1 p-3 rounded-sm;
+	}
+	.info.green {
+		@apply bg-green-50;
+	}
+	.info.red {
+		@apply bg-red-50;
+	}
+	.info.blue {
+		@apply bg-blue-50;
+	}
+	.info.neutral {
+		@apply bg-neutral-50;
+	}
+	.info.simple {
+		@apply bg-white;
+	}
+	.info.primary {
+		@apply bg-primary-light;
+	}
+
+	.info.green .value {
+		@apply text-green-700;
+	}
+	.info.red .value {
+		@apply text-red-700;
+	}
+	.info.blue .value {
+		@apply text-blue-700;
+	}
+	.info.neutral .value {
+		@apply text-neutral-700;
+	}
+	.info.primary .value {
+		@apply text-primary-dark;
 	}
 }
 
@@ -227,7 +273,7 @@
 	/* width */
 	::-webkit-scrollbar {
 		width: 5px;
-		height:5px
+		height: 5px;
 	}
 
 	/* Track */
@@ -289,4 +335,10 @@
 }
 .rmdp-time-picker div input {
 	width: 36px;
+}
+.rmdp-ep-arrow {
+	z-index: 1002 !important;
+}
+.rmdp-ep-arrow + div {
+	z-index: 1001 !important;
 }

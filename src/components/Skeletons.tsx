@@ -1,11 +1,26 @@
+import type { ReactNode } from "react";
 import Card from "./Card";
 import { numListArray } from "../helpers/Array";
 
-export const InputSkeleton = ({ type = 'input', className = '' }: {type?: 'input' | 'textarea', className?: string}) => {
+export const CardSkeleton = ({ children, className = "" }: { children: ReactNode; className?: string }) => {
+	return (
+		<Card className={className}>
+			<div className="grid gap-4">
+				<div className="flex items-center justify-between">
+					<div className="skeleton h-6 w-1/2 max-w-40"></div>
+					<div className="skeleton w-12 h-5"></div>
+				</div>
+				{children}
+			</div>
+		</Card>
+	);
+};
+
+export const InputSkeleton = ({ type = "input", className = "" }: { type?: "input" | "textarea"; className?: string }) => {
 	return (
 		<div className={`grid gap-2 ${className}`}>
 			<div className="skeleton h-3 w-16"></div>
-			<div className={type === 'input' ? 'skeleton h-8' : 'skeleton h-48'}></div>
+			<div className={type === "input" ? "skeleton h-8" : "skeleton h-48"}></div>
 		</div>
 	);
 };
@@ -18,18 +33,24 @@ export const CardInputSkeleton = () => {
 	);
 };
 
-export const CardInputsSkeleton = ({ className = '' }) => {
+export const CardInputsSkeleton = ({ className = "" }) => {
 	return (
-		<Card className={className}>
-			<div className="skeleton h-5 w-40"></div>
-
+		<CardSkeleton className={className}>
 			<div className="grid sm:grid-cols-2 gap-2">
 				<InputSkeleton className="sm:col-span-2" />
 				<InputSkeleton />
 				<InputSkeleton />
 				<InputSkeleton className="sm:col-span-2" />
 			</div>
-		</Card>
+		</CardSkeleton>
+	);
+};
+
+export const CardTableSkeleton = () => {
+	return (
+		<CardSkeleton>
+			<TableSkeleton />
+		</CardSkeleton>
 	);
 };
 
@@ -55,7 +76,7 @@ export const FormSkeleton = ({ columns = 2 }) => {
 				<div className="skeleton h-5 w-32"></div>
 			</div>
 
-			<div className={`grid ${columns === 2 && 'md:grid-cols-[2fr_1fr]'} gap-y-6 gap-x-4`}>
+			<div className={`grid ${columns === 2 && "md:grid-cols-[2fr_1fr]"} gap-y-6 gap-x-4`}>
 				<div className="grid gap-y-4 h-max">
 					<Card>
 						<InputSkeleton />
@@ -92,34 +113,20 @@ export const FormSkeleton = ({ columns = 2 }) => {
 export const TableSkeleton = ({ count = 7 }) => {
 	return (
 		<div className="grid gap-6">
-			<div className="card">
-				<div className="action-box flex items-center justify-between h-10 px-4">
-					<div className="flex items-center gap-1.5">
-						<div className="skeleton w-10 h-5"></div>
-						<div className="skeleton w-10 h-5"></div>
-					</div>
+			<div className="table-wrapper overflow-x-auto">
+				<table className="w-full">
+					<thead>
+						<tr className="border-b border-neutral-200 ">
+							{numListArray(count).map((c) => (
+								<th key={c} className="p-3">
+									<div className="skeleton h-3"></div>
+								</th>
+							))}
+						</tr>
+					</thead>
 
-					<div className="flex items-center gap-1.5">
-						<div className="skeleton w-10 h-5"></div>
-						<div className="skeleton w-10 h-5"></div>
-					</div>
-				</div>
-
-				<div className="table-wrapper overflow-x-auto">
-					<table className="w-full">
-						<thead>
-							<tr className="border-b bg-neutral-100">
-								{numListArray(count).map(c => (
-									<th key={c} className="p-3">
-										<div className="skeleton h-3"></div>
-									</th>
-								))}
-							</tr>
-						</thead>
-
-						<TableBodySkeleton count={count} />
-					</table>
-				</div>
+					<TableBodySkeleton count={count} />
+				</table>
 			</div>
 
 			<PaginationSkeleton />
@@ -130,9 +137,9 @@ export const TableSkeleton = ({ count = 7 }) => {
 export const TableBodySkeleton = ({ count = 7 }) => {
 	return (
 		<tbody>
-			{numListArray(count > 5 ? 5 : count).map(r => (
+			{numListArray(count > 5 ? 5 : count).map((r) => (
 				<tr key={r} className="border-b last:border-0 border-neutral-200">
-					{numListArray(count).map(r => (
+					{numListArray(count).map((r) => (
 						<td key={r} className="p-3">
 							<div className="skeleton h-3"></div>
 						</td>
@@ -146,7 +153,7 @@ export const TableBodySkeleton = ({ count = 7 }) => {
 export const TableRowSkeleton = ({ count = 7 }) => {
 	return (
 		<tr className="h-10 border-b border-solid last:border-0">
-			{numListArray(count).map(r => (
+			{numListArray(count).map((r) => (
 				<td key={r} className="px-[3%]">
 					<div className="skeleton h-2"></div>
 				</td>
@@ -170,7 +177,7 @@ export const AccordionSkeleton = () => {
 			<h3 className="skeleton h-8 w-40"></h3>
 
 			<div className="card">
-				{[1, 2, 3, 4, 5, 6].map(num => (
+				{[1, 2, 3, 4, 5, 6].map((num) => (
 					<div key={num} className="flex items-center justify-between p-4 border-b">
 						<div className="skeleton h-3 w-1/2"></div>
 						<div className="skeleton size-5"></div>
@@ -195,10 +202,23 @@ export const BreadcrumbSkeleton = () => {
 
 export const PaginationSkeleton = () => {
 	return (
-		<div className="flex items-ceter gap-1 justify-self-center">
-			{numListArray(6).map(n => (
+		<div className="flex items-ceter gap-1">
+			{numListArray(6).map((n) => (
 				<div key={n} className="skeleton size-6"></div>
 			))}
+		</div>
+	);
+};
+
+export const ProgressBarSkeleton = () => {
+	return (
+		<div className="grid gap-1">
+			<div className="flex items-center justify-between gap-1">
+				<div className="skeleton h-3 w-16"></div>
+				<div className="skeleton h-3 w-16"></div>
+			</div>
+
+			<div className="skeleton w-full h-2"></div>
 		</div>
 	);
 };

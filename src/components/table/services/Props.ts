@@ -3,9 +3,12 @@ import type { PaginationProps } from "../../Pagination";
 import type { ButtonProps } from "../../Button";
 import type { CardProps } from "../../Card";
 
-export interface TableProps<T> extends Omit<CardProps, "children"> {
+export interface TableProps<T> {
 	type?: "local" | "remote";
-	columns: ColumnProps<T>[];
+	id: string;
+	keyExpr: string;
+	card?: Omit<CardProps, "children">;
+	columns?: ColumnProps<T>[];
 	dataSource: T[];
 	pagination?: PaginationProps;
 	loading?: boolean;
@@ -13,8 +16,9 @@ export interface TableProps<T> extends Omit<CardProps, "children"> {
 	selectable?: boolean;
 	moreInfo?: boolean;
 	actions?: ActionProps<T>[];
-	allowedPageSizes?: number[];
 	columnHidingEnabled?: boolean;
+	height?: number;
+	paging?: PagingProps;
 }
 
 export interface RowProps<T> {
@@ -52,3 +56,11 @@ export interface FilterOptionProps {
 	value: string | number;
 	label: string;
 }
+
+export interface PagingProps {
+	visible?: boolean,
+	defaultPageSize?: number,
+	allowedPageSizes?: number[],
+	showInfo?: boolean,
+	displayMode?: "compact" | "full" | "adaptive"
+};

@@ -9,10 +9,10 @@ const PageActionBox = ({ className = "", actions = [] }: PageActionBoxProps) => 
 				[className]: className,
 			})}
 		>
-            {actions.map((action, index) => (
-                <Button key={index} {...action} />
-            ))}
-        </div>
+			{actions.map((action, index) => (
+				<Button key={index} {...action} />
+			))}
+		</div>
 	);
 };
 
