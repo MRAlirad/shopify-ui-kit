@@ -1,19 +1,21 @@
 import { Chart as ChartJS, PointElement, LineElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, SubTitle } from "chart.js";
 import { Bar, Line } from "react-chartjs-2";
-import { ErrorMessage } from "./Error";
+import { Loader } from ".";
+import { type ChartProps } from "./props";
+import { ChartType } from "../utils/enums";
 
 ChartJS.defaults.font = { family: "vazir", size: 10 };
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, LineElement, Title, Tooltip, Legend, SubTitle);
 
-const Chart = ({ id, type = "bar", labels, datasets = [], options }: ChartProps) => {
-	const ChartComponent = type === "bar" ? Bar : Line;
+const Chart = ({ id, type = ChartType.Bar, labels, datasets = [], options, loading = false }: ChartProps) => {
+	const ChartComponent = type === ChartType.Bar ? Bar : Line;
 
 	const processedDatasets = datasets.map((ds) => ({
 		...ds,
 		borderColor: ds.borderColor ?? "rgba(20, 71, 230)",
 		backgroundColor: ds.backgroundColor ?? "rgba(20, 71, 230)",
 		tension: 0.1,
-		borderRadius: type === "bar" ? 4 : undefined,
+		borderRadius: type === ChartType.Bar ? 4 : undefined,
 	}));
 
 	const data = {
@@ -45,38 +47,31 @@ const Chart = ({ id, type = "bar", labels, datasets = [], options }: ChartProps)
 			},
 		},
 		scales: {
+			x: {
+				title: {
+					display: !!options?.xAxisLabel,
+					text: options?.xAxisLabel,
+				},
+			},
 			y: {
 				beginAtZero: true,
+				title: {
+					display: !!options?.yAxisLabel,
+					text: options?.yAxisLabel,
+				},
 			},
 		},
 	};
 
-	if (!type) return <ErrorMessage error="نوع نمودار مشخص نشده است" />;
+	const hasData = processedDatasets.some((ds) => ds.data.some((d) => d !== null));
 
 	return (
-		<div className="relativew-full h-full">
+		<div className="relative w-full h-full">
 			<ChartComponent id={id} data={data} options={processedOptions} />
+			{loading && <Loader size="size-20" className="absolute inset-0 bg-white/40" />}
+			{!hasData && !loading && <div className="absolute inset-0 flex items-center justify-center text-red-900 bg-white/40 text-lg font-medium">هیچ داده ای موجود نیست</div>}
 		</div>
 	);
 };
-
-interface ChartProps {
-	id: string;
-	type: "bar" | "line";
-	labels: string[];
-	datasets: {
-		label?: string;
-		data: number[];
-		borderColor?: string;
-		backgroundColor?: string;
-		tension?: number; // 0 to 1, 0 is straight line, 1 is curved line
-	}[];
-	options?: {
-		title?: string;
-		hasTooltip?: boolean;
-		hasLegend?: boolean;
-		subtitle?: string;
-	};
-}
 
 export default Chart;

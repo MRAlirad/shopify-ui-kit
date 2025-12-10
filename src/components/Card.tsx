@@ -1,9 +1,6 @@
-import type { ReactNode } from "react";
 import classNames from "classnames";
-import Badge, { type BadgeProps } from "./Badge";
-import Button, { type ButtonProps } from "./Button";
-import Icon from "./icon/Icon";
-import Loader from "./Loader";
+import { Button, Badge, Icon, Loader } from ".";
+import type { CardProps } from "./props";
 
 const Card = ({ title, icon, text, className, children, action, badge, leftComponent, blueTitleBg = false, loading = false }: CardProps) => {
 	return (
@@ -45,18 +42,5 @@ const Card = ({ title, icon, text, className, children, action, badge, leftCompo
 		</div>
 	);
 };
-
-export interface CardProps {
-	title?: string;
-	className?: string | { wrapper?: string; title?: string; content?: string };
-	icon?: ReactNode;
-	children: ReactNode;
-	text?: string;
-	action?: ButtonProps; // Button properties
-	leftComponent?: ReactNode;
-	blueTitleBg?: boolean;
-	badge?: BadgeProps;
-	loading?: boolean;
-}
 
 export default Card;

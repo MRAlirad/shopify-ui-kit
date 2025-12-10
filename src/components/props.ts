@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { ChartType } from "../utils/enums";
 
 export interface AccordionProps {
 	list: { question: string; answer: string }[];
@@ -63,4 +64,39 @@ export interface ButtonProps {
 	className?: string;
 	onClick?: () => void;
 	hint?: string;
+}
+
+export interface CardProps {
+	title?: string;
+	className?: string | { wrapper?: string; title?: string; content?: string };
+	icon?: ReactNode;
+	children: ReactNode;
+	text?: string;
+	action?: ButtonProps; // Button properties
+	leftComponent?: ReactNode;
+	blueTitleBg?: boolean;
+	badge?: BadgeProps;
+	loading?: boolean;
+}
+
+export interface ChartProps {
+	id: string;
+	type: ChartType;
+	labels: string[];
+	loading?: boolean;
+	datasets: {
+		label?: string;
+		data: (number | null)[];
+		borderColor?: string;
+		backgroundColor?: string;
+		tension?: number; // 0 to 1, 0 is straight line, 1 is curved line
+	}[];
+	options?: {
+		title?: string;
+		hasTooltip?: boolean;
+		hasLegend?: boolean;
+		subtitle?: string;
+		xAxisLabel?: string;
+		yAxisLabel?: string;
+	};
 }
