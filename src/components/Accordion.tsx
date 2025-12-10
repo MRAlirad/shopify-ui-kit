@@ -1,49 +1,43 @@
 import { useState } from "react";
 import { ArrowCaretDownIcon } from "./icon";
+import type { AccordionProps, AccordionItemProps } from "./props";
 
-const Accordion = ({ list = [] }: AccordionProps) => {
-	const [openItem, setOpenItem] = useState<number | null>(null);
+const Accordion = ({ title, list = [], openFirstItem = false }: AccordionProps) => {
+	const [activeItem, setActiveItem] = useState<number | null>(openFirstItem ? 0 : null);
 
 	return (
-		<div className="card">
-			{list?.map(({ question, answer }, index) => (
-				<AccordionItem
-					key={index}
-					question={question}
-					answer={answer}
-					isOpen={openItem === index}
-					onClick={() => {
-						if (openItem === index) setOpenItem(null);
-						else setOpenItem(index);
-					}}
-				/>
-			))}
+		<div className="grid gap-2">
+			{title && <h3 className="text-lg font-bold text-neutral-600">{title}</h3>}
+			<div className="card">
+				{list?.map(({ question, answer }, index) => (
+					<AccordionItem
+						key={index}
+						question={question}
+						answer={answer}
+						activeItem={activeItem}
+						isActive={activeItem === index}
+						onClick={() => {
+							if (activeItem === index) setActiveItem(null);
+							else setActiveItem(index);
+						}}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };
 
-const AccordionItem = ({ question, answer, isOpen = false, onClick = () => {} }: AccordionItemProps) => {
+const AccordionItem = ({ question, answer, isActive = false, activeItem, onClick = () => {} }: AccordionItemProps) => {
 	return (
-		<div className={`hover:bg-blue-100 border-b border-blue-300 last:border-b-0 ${isOpen ? "bg-blue-50" : "bg-white"}`}>
+		<div className={`border-b border-blue-200 last:border-b-0 ${isActive ? "bg-blue-50/50" : "bg-white"}`}>
 			<div className="flex items-center justify-between cursor-pointer p-4" onClick={onClick}>
-				<h6 className="text-xs font-bold text-neutral-600">{question}</h6>
-				<ArrowCaretDownIcon size={16} className={`duration-300 ${isOpen ? "rotate-180" : ""}`} />
+				<h6 className="text-sm font-bold text-neutral-600">{question}</h6>
+				<ArrowCaretDownIcon size={16} className={`duration-300 ${isActive ? "rotate-180" : ""}`} />
 			</div>
 
-			{isOpen && <div className="text-xs text-justify text-neutral-500 px-4 pb-4">{answer}</div>}
+			{isActive && <p key={activeItem} className="text-sm text-justify text-neutral-500 px-4 pb-4 animate-fadeInUp">{answer}</p>}
 		</div>
 	);
 };
-
-interface AccordionProps {
-	list: { question: string; answer: string }[];
-}
-
-interface AccordionItemProps {
-	question: string;
-	answer: string;
-	isOpen: boolean;
-	onClick: () => void;
-}
 
 export default Accordion;

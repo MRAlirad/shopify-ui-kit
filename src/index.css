@@ -297,8 +297,13 @@
 	--shadow-card: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
 
 	--animate-fadeInUp: fadeInUp 0.3s forwards;
+	--animate-fadeIn: fadeIn 0.3s forwards;
 	--animate-fadeInRight: fadeInRight 0.3s forwards;
 	--animate-progress: progress 1s ease-in-out infinite;
+
+	--color-primary: #3B82F6;
+	--color-primary-dark: #2563EB;
+	--color-primary-light: #DBEAFE;
 
 	@keyframes fadeInUp {
 		0% {
@@ -318,6 +323,14 @@
 		100% {
 			opacity: 1;
 			transform: translateZ(0);
+		}
+	}
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
 		}
 	}
 	@keyframes progress {
