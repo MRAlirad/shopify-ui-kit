@@ -1,8 +1,7 @@
-import type { ReactNode } from "react";
 import classNames from "classnames";
-import { LoaderIcon } from "./icon";
+import { Popup, LoaderIcon } from ".";
 import { generateRandomString } from "../helpers/String";
-import Popup from "./Popup";
+import type { ButtonProps } from "./props";
 
 const Button = ({
 	color = "black",
@@ -35,9 +34,9 @@ const Button = ({
 			onClick={onClick}
 		>
 			<div className="flex items-center justify-center gap-2">
+				{text && <span>{text}</span>}
 				{loading && <LoaderIcon size="20" className="animate-spin" />}
 				{icon && !loading && icon}
-				{text && <span>{text}</span>}
 			</div>
 
 			{hint && (
@@ -48,37 +47,5 @@ const Button = ({
 		</button>
 	);
 };
-
-export interface ButtonProps {
-	color?:
-		| "black"
-		| "white"
-		| "simple"
-		| "red"
-		| "green"
-		| "purple"
-		| "blue"
-		| "black-outline"
-		| "green-outline"
-		| "purple-outline"
-		| "red-outline"
-		| "blue-outline"
-		| "black-simple"
-		| "green-simple"
-		| "purple-simple"
-		| "red-simple"
-		| "blue-simple";
-	size?: "small" | "medium" | "large" | "icon";
-	text?: string;
-	icon?: ReactNode;
-	type?: "submit" | "button";
-	to?: string;
-	fullWidth?: boolean;
-	disabled?: boolean;
-	loading?: boolean;
-	className?: string;
-	onClick?: () => void;
-	hint?: string;
-}
 
 export default Button;

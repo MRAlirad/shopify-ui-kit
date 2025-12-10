@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowCaretDownIcon } from "./icon";
+import { ArrowCaretDownIcon } from ".";
 import type { AccordionProps, AccordionItemProps } from "./props";
 
 const Accordion = ({ title, list = [], openFirstItem = false }: AccordionProps) => {

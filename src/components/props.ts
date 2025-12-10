@@ -1,4 +1,4 @@
-import type { ButtonProps } from "./Button";
+import type { ReactNode } from "react";
 
 export interface AccordionProps {
 	list: { question: string; answer: string }[];
@@ -32,4 +32,35 @@ export interface BadgeProps {
 	pill?: boolean;
 	size?: "small" | "medium" | "large";
 	className?: string;
+}
+
+export interface ButtonProps {
+	color?:
+		| "black"
+		| "white"
+		| "simple"
+		| "red"
+		| "green"
+		| "purple"
+		| "blue"
+		| "black-outline"
+		| "green-outline"
+		| "purple-outline"
+		| "red-outline"
+		| "blue-outline"
+		| "black-simple"
+		| "green-simple"
+		| "purple-simple"
+		| "red-simple"
+		| "blue-simple";
+	size?: "small" | "medium" | "large" | "icon";
+	text?: string;
+	icon?: ReactNode;
+	type?: "submit" | "button";
+	fullWidth?: boolean;
+	disabled?: boolean;
+	loading?: boolean;
+	className?: string;
+	onClick?: () => void;
+	hint?: string;
 }
