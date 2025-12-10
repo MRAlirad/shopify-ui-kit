@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import classNames from "classnames";
 import { LoaderIcon } from "./icon";
-import { Link } from "react-router";
 import { generateRandomString } from "../helpers/String";
 import Popup from "./Popup";
 
@@ -9,7 +8,6 @@ const Button = ({
 	color = "black",
 	size = "medium",
 	text = "",
-	to = "",
 	icon,
 	type = "button",
 	fullWidth = false,
@@ -19,11 +17,10 @@ const Button = ({
 	onClick = () => {},
 	hint = "",
 }: ButtonProps) => {
-	const Component = to ? Link : "button";
 	const uId = generateRandomString();
 
 	return (
-		<Component
+		<button
 			className={classNames({
 				[`btn-${uId}`]: hint,
 				btn: true,
@@ -35,7 +32,6 @@ const Button = ({
 			})}
 			disabled={disabled || loading}
 			type={type}
-			to={to}
 			onClick={onClick}
 		>
 			<div className="flex items-center justify-center gap-2">
@@ -49,7 +45,7 @@ const Button = ({
 					<span className="text-xs text-neutral-700">{hint}</span>
 				</Popup>
 			)}
-		</Component>
+		</button>
 	);
 };
 
