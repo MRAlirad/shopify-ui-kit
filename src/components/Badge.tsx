@@ -1,10 +1,14 @@
 import classNames from "classnames";
+import type { BadgeProps } from "./props";
 
-const Badge = ({ text, color = "blue", size = "medium", className = '' }: BadgeProps) => {
+const Badge = ({ variant = "primary", color = "blue", text, pill = true, size = "medium", className = "" }: BadgeProps) => {
 	return (
 		<span
 			className={classNames({
-				badge: true,
+				"badge flex gap-1 items-center w-max h-max outline-none": true,
+				"rounded-md": !pill,
+				"rounded-full": pill,
+				[variant]: true,
 				[color]: true,
 				[size]: true,
 				[className]: className,
@@ -14,12 +18,5 @@ const Badge = ({ text, color = "blue", size = "medium", className = '' }: BadgeP
 		</span>
 	);
 };
-
-export interface BadgeProps {
-	text: string;
-	color?: "green" | "blue" | "neutral" | "red" | "yellow" | "purple";
-	size?: "small" | "medium" | "large";
-	className?: string;
-}
 
 export default Badge;

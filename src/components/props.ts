@@ -24,3 +24,12 @@ export interface AlertProps {
 	className?: string;
     onDismiss?: () => void;
 }
+
+export interface BadgeProps {
+	variant?: 'primary' | 'secondary' | 'outline';
+	color?: "green" | "blue" | "neutral" | "red" | "yellow" | "purple";
+	text: string;
+	pill?: boolean;
+	size?: "small" | "medium" | "large";
+	className?: string;
+}
