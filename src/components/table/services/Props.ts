@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import type { PaginationProps } from "../../Pagination";
-import type { ButtonProps } from "../../Button";
-import type { CardProps } from "../../Card";
+import type { ButtonProps, CardProps } from "../../props";
 
 export interface TableProps<T> {
 	type?: "local" | "remote";

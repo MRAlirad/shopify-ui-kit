@@ -2,7 +2,8 @@ import { useEffect, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import classNames from "classnames";
 import { useLockBodyScroll, useToggle } from "react-use";
-import Button, { type ButtonProps } from "./Button";
+import { Button } from ".";
+import type { ButtonProps } from "./props";
 import { CloseIcon, ArrowRightIcon } from "./icon";
 
 const Modal = ({ title, children, actions = [], className = "", backBtn = false, width = "2xl", onBack = () => {}, onClose = () => {} }: ModalProps) => {

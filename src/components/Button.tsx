@@ -34,9 +34,9 @@ const Button = ({
 			onClick={onClick}
 		>
 			<div className="flex items-center justify-center gap-2">
-				{text && <span>{text}</span>}
 				{loading && <LoaderIcon size="20" className="animate-spin" />}
 				{icon && !loading && icon}
+				{text && <span>{text}</span>}
 			</div>
 
 			{hint && (

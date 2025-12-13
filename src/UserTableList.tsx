@@ -6,8 +6,12 @@ import Badge from "./components/Badge";
 const UserTableList = () => {
 	return (
 		<Table<User>
-			title="لیست کاربران"
-			text="لیست کاربران"
+			id="user-table"
+			keyExpr="id"
+			card={{
+				title: "لیست کاربران",
+				text: "لیست کاربران",
+			}}
 			columns={[
 				{ name: "id", label: "شناسه", sort: true, search: "text", allowHiding: false },
 				{ name: "name", label: "نام", sort: true, search: "text", allowHiding: false },

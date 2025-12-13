@@ -2,7 +2,8 @@ import { useEffect, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import classNames from "classnames";
 import { useLockBodyScroll, useToggle } from "react-use";
-import Button, { type ButtonProps } from "./Button";
+import { Button } from ".";
+import type { ButtonProps } from "./props";
 import { CloseIcon } from "./icon";
 
 const Drawer = ({ title = "", children, className = "", actions = [], onClose = () => {} }: DrawerProps) => {

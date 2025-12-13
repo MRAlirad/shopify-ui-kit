@@ -1,24 +1,31 @@
-import DataGrid from "./components/datagrid/DataGrid";
+import Table from "./components/table/Table";
 import { employees, type Employee } from "./values/TableData";
 
 const User2TableList = () => {
-	return <DataGrid<Employee> id="user-table" dataSource={employees} columns={[
-		{ dataField: "BirthDate", caption: "تاریخ تولد", dataType: "date" },
-		{ dataField: "HireDate", caption: "تاریخ استخدام", dataType: "date" },
-		{ dataField: "FullName", caption: "نام و نام خانوادگی", dataType: "string" },
-		{ dataField: "Position", caption: "موقعیت", dataType: "string" },
-		{ dataField: "TitleOfCourtesy", caption: "عنوان", dataType: "string" },
-		{ dataField: "Address", caption: "آدرس", dataType: "string" },
-		{ dataField: "City", caption: "شهر", dataType: "string" },
-		{ dataField: "Region", caption: "منطقه", dataType: "string" },
-		{ dataField: "PostalCode", caption: "کد پستی", dataType: "string" },
-		{ dataField: "Country", caption: "کشور", dataType: "string" },
-		{ dataField: "HomePhone", caption: "تلفن", dataType: "string" },
-		{ dataField: "Extension", caption: "تمدید", dataType: "string" },
-		{ dataField: "Photo", caption: "تصویر", dataType: "string" },
-		{ dataField: "Notes", caption: "یادداشت", dataType: "string" },
-		{ dataField: "ReportsTo", caption: "گزینه های گزینه", dataType: "string" },
-	]} />;
+	return (
+		<Table<Employee>
+			id="user-table"
+			keyExpr="id"
+			dataSource={employees}
+			columns={[
+				{ name: "BirthDate", label: "تاریخ تولد"  },
+				{ name: "HireDate", label: "تاریخ استخدام" },
+				{ name: "FullName", label: "نام و نام خانوادگی" },
+				{ name: "Position", label: "موقعیت" },
+				{ name: "TitleOfCourtesy", label: "عنوان" },
+				{ name: "Address", label: "آدرس" },
+				{ name: "City", label: "شهر" },
+				{ name: "Region", label: "منطقه" },
+				{ name: "PostalCode", label: "کد پستی" },
+				{ name: "Country", label: "کشور" },
+				{ name: "HomePhone", label: "تلفن" },
+				{ name: "Extension", label: "تمدید" },
+				{ name: "Photo", label: "تصویر" },
+				{ name: "Notes", label: "یادداشت" },
+				{ name: "ReportsTo", label: "گزینه های گزینه" },
+			]}
+		/>
+	);
 };
 
 export default User2TableList;

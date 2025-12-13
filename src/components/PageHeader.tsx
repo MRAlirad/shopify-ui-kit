@@ -1,12 +1,11 @@
-import Button, { type ButtonProps } from "./Button";
-import Badge from "./Badge";
-import { ArrowRightIcon } from "./icon";
+import { Button, Badge, ArrowRightIcon } from ".";
+import type { ButtonProps } from "./props";
 
 const PageHeader = ({ title, backLink, badge, text, action }: PageHeaderProps) => {
 	return (
 		<div className="grid gap-2">
 			<div className="flex items-center gap-2">
-				{backLink && <Button color="simple" size="small" to={backLink} icon={<ArrowRightIcon size={18} />} />}
+				{backLink && <Button color="simple" size="small" icon={<ArrowRightIcon size={18} />} />}
 
 				<div className="flex items-center gap-2">
 					<h1 className="text-lg lg:text-2xl text-neutral-700 line-clamp-1 font-bold"> {title} </h1>
