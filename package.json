@@ -12,6 +12,16 @@
 			"import": "./dist/index.mjs",
 			"require": "./dist/index.js"
 		},
+		"./components": {
+			"types": "./dist/components.d.ts",
+			"import": "./dist/components.mjs",
+			"require": "./dist/components.js"
+		},
+		"./helpers": {
+			"types": "./dist/helpers.d.ts",
+			"import": "./dist/helpers.mjs",
+			"require": "./dist/helpers.js"
+		},
 		"./styles": "./dist/index.css"
 	},
 	"files": [
