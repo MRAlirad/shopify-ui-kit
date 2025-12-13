@@ -1,6 +1,6 @@
 {
 	"name": "@mralirad/ui-kit",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "A React UI component library built with TypeScript and Tailwind CSS. See README for setup instructions.",
 	"type": "module",
 	"main": "./dist/index.js",
