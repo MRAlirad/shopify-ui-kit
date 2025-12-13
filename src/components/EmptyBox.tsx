@@ -1,4 +1,6 @@
-import EmptyBoxImg from '/assets/pics/EmptyBox.png'
+// Image import - this will be handled by rollup plugin
+// For library users, they may need to configure their bundler to handle this
+import EmptyBoxImg from '../assets/pics/EmptyBox.png'
 
 function EmptyBox({ title = "موردی یافت نشد", text = "" }: EmptyBoxProps) {
 	return (

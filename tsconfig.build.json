@@ -1,0 +1,35 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "module": "ESNext",
+    "target": "ES2022",
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "allowImportingTsExtensions": false
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "src/**/*.stories.tsx",
+    "src/**/*.stories.ts",
+    "src/stories/**/*",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/UserTableList.tsx",
+    "src/User2TableList.tsx",
+    "node_modules",
+    "dist"
+  ]
+}
+
