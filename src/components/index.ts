@@ -7,6 +7,7 @@ export { default as Button } from "./Button";
 export { default as Card } from "./Card";
 export { default as Chart } from "./Chart";
 export { default as Checkbox } from "./Checkbox";
+export { default as Input } from "./Input";
 
 
 
@@ -21,7 +22,6 @@ export { default as Drawer } from "./Drawer";
 export { default as EmptyBox } from "./EmptyBox";
 export { default as Icon } from "./icon/Icon";
 export { default as Info } from "./Info";
-export { default as Input } from "./Input";
 export { default as Loader } from "./Loader";
 export { default as Modal } from "./Modal";
 export { default as Page } from "./Page";

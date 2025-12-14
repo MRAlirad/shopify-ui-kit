@@ -36,7 +36,7 @@ const Checkbox = ({ name = "", label = "", className = "", disabled = false, des
 				{label && <span className="text-neutral-900 select-none">{label}</span>}
 			</label>
 
-			{description && <span className="text-neutral-400 ms-6">{description}</span>}
+			{description && <span className="text-neutral-500 ms-6">{description}</span>}
 		</div>
 	);
 };
