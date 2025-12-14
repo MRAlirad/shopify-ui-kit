@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
-import { HomeIcon, ArrowCaretBackwardIcon, SettingIcon } from './icon';
+import { HomeIcon, ArrowCaretBackwardIcon, SettingIcon } from ".";
 
 const Breadcrumb = ({ type = 'home', breadcrumb = [] }: BreadcrumbProps) => {
 	const types = {
-		home: { label: 'خانه', icon: <HomeIcon size={16} />, link: '/' },
-		setting: { label: 'تنظیمات', icon: <SettingIcon />, link: '/settings' },
+		home: { label: 'Home', icon: <HomeIcon size={16} />, link: '/' },
+		setting: { label: 'Settings', icon: <SettingIcon />, link: '/settings' },
 	};
 
 	return (

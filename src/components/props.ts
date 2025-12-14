@@ -100,3 +100,15 @@ export interface ChartProps {
 		yAxisLabel?: string;
 	};
 }
+
+export interface CheckboxProps {
+	name: string;
+	label?: string;
+	className?: string;
+	disabled?: boolean;
+	readOnly?: boolean;
+	description?: string;
+	onChange?: (value?: boolean) => void;
+	onCheck?: () => void;
+	onUncheck?: () => void;
+}

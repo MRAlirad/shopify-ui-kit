@@ -1,10 +1,6 @@
 import classNames from "classnames";
-import { Button, Icon, CloseIcon } from ".";
+import { Button, Icon, CloseIcon, GoAlertFill, IoCloseCircle, FaCircleCheck, IoInformationCircle } from ".";
 import type { AlertProps, ButtonProps } from "./props";
-import { GoAlertFill } from "react-icons/go";
-import { IoCloseCircle } from "react-icons/io5";
-import { FaCircleCheck } from "react-icons/fa6";
-import { IoInformationCircle } from "react-icons/io5";
 
 const Alert = ({ color = "info", title, text, items, accentBorder = false, className = "", actions, onDismiss }: AlertProps) => {
 	const icons: Record<AlertProps["color"], { icon: React.ReactNode; btnColor: ButtonProps["color"]; className: string }> = {
