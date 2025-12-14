@@ -1,9 +1,9 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import classNames from "classnames";
 import { useLockBodyScroll, useToggle } from "react-use";
 import { Button } from ".";
-import type { ButtonProps } from "./props";
+import { type ModalProps } from "./props";
 import { CloseIcon, ArrowRightIcon } from "./icon";
 
 const Modal = ({ title, children, actions = [], className = "", backBtn = false, width = "2xl", onBack = () => {}, onClose = () => {} }: ModalProps) => {
@@ -77,16 +77,5 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 		document.body
 	);
 };
-
-interface ModalProps {
-	title: string;
-	children: ReactNode;
-	actions?: ButtonProps[];
-	className?: string;
-	backBtn?: boolean;
-	width?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
-	onBack?: () => void;
-	onClose: () => void;
-}
 
 export default Modal;

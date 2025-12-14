@@ -127,3 +127,14 @@ export interface InputProps {
 	onChange?: (value: string) => void;
 	onEnter?: () => void;
 }
+
+export interface ModalProps {
+	title: string;
+	children: ReactNode;
+	actions?: ButtonProps[];
+	className?: string;
+	backBtn?: boolean;
+	width?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
+	onBack?: () => void;
+	onClose: () => void;
+}
