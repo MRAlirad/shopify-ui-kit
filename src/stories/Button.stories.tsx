@@ -10,7 +10,7 @@ const meta = {
 	},
 	tags: ["autodocs"],
 	args: {
-		text: "Click here",
+		text: "کلیک کنید",
 	},
 } satisfies Meta<typeof Button>;
 
@@ -23,13 +23,13 @@ export const PrimaryColors = {
 	render: () => {
 		return (
 			<div className="flex items-center flex-wrap gap-4">
-				<Button text="Click here" color="black" />
-				<Button text="Click here" color="white" />
-				<Button text="Click here" color="simple" />
-				<Button text="Click here" color="red" />
-				<Button text="Click here" color="green" />
-				<Button text="Click here" color="purple" />
-				<Button text="Click here" color="blue" />
+				<Button text="کلیک کنید" color="black" />
+				<Button text="کلیک کنید" color="white" />
+				<Button text="کلیک کنید" color="simple" />
+				<Button text="کلیک کنید" color="red" />
+				<Button text="کلیک کنید" color="green" />
+				<Button text="کلیک کنید" color="purple" />
+				<Button text="کلیک کنید" color="blue" />
 			</div>
 		);
 	},
@@ -39,11 +39,11 @@ export const OutlineColors = {
 	render: () => {
 		return (
 			<div className="flex items-center flex-wrap gap-4">
-				<Button text="Click here" color="black-outline" />
-				<Button text="Click here" color="red-outline" />
-				<Button text="Click here" color="green-outline" />
-				<Button text="Click here" color="purple-outline" />
-				<Button text="Click here" color="blue-outline" />
+				<Button text="کلیک کنید" color="black-outline" />
+				<Button text="کلیک کنید" color="red-outline" />
+				<Button text="کلیک کنید" color="green-outline" />
+				<Button text="کلیک کنید" color="purple-outline" />
+				<Button text="کلیک کنید" color="blue-outline" />
 			</div>
 		);
 	},
@@ -53,11 +53,11 @@ export const SimpleColors = {
 	render: () => {
 		return (
 			<div className="flex items-center flex-wrap gap-4">
-				<Button text="Click here" color="black-simple" />
-				<Button text="Click here" color="red-simple" />
-				<Button text="Click here" color="green-simple" />
-				<Button text="Click here" color="purple-simple" />
-				<Button text="Click here" color="blue-simple" />
+				<Button text="کلیک کنید" color="black-simple" />
+				<Button text="کلیک کنید" color="red-simple" />
+				<Button text="کلیک کنید" color="green-simple" />
+				<Button text="کلیک کنید" color="purple-simple" />
+				<Button text="کلیک کنید" color="blue-simple" />
 			</div>
 		);
 	},
@@ -67,9 +67,9 @@ export const Sizes = {
 	render: () => {
 		return (
 			<div className="flex items-center flex-wrap gap-4">
-				<Button text="Click here" size="small" />
-				<Button text="Click here" size="medium" />
-				<Button text="Click here" size="large" />
+				<Button text="کلیک کنید" size="small" />
+				<Button text="کلیک کنید" size="medium" />
+				<Button text="کلیک کنید" size="large" />
 				<Button icon={<ArrowRightIcon size={18} />} size="icon" />
 			</div>
 		);
@@ -80,8 +80,8 @@ export const LoadingAndDisabled = {
 	render: () => {
 		return (
 			<div className="flex items-center flex-wrap gap-4">
-				<Button text="Loading..." loading />
-				<Button text="Disabled" disabled />
+				<Button text="در حال بارگذاری..." loading />
+				<Button text="غیر فعال" disabled />
 			</div>
 		);
 	},
@@ -98,8 +98,8 @@ export const FullWidth: Story = {
 
 export const WithHint: Story = {
 	args: {
-		hint: "This is a hint",
-		text: 'Hover on me'
+		hint: "این یک مشاهده است",
+		text: 'مشاهده کنید'
 	},
 };
 
@@ -107,7 +107,7 @@ export const WithIcon = {
 	render: () => {
 		return (
 			<div className="flex items-center flex-wrap gap-4">
-				<Button text="Save" icon={<FaSave size={18} />} />
+				<Button text="ذخیره" icon={<FaSave size={18} />} />
 				<Button size="icon" icon={<FaSave size={18} />} />
 			</div>
 		);

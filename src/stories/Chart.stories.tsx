@@ -12,10 +12,10 @@ const meta = {
 	args: {
         id: "CustomersChart",
         type: ChartType.Bar,
-		labels: ["Saturday", "Sunday", "Monday", "Tuesday", "Wendnesday", "Thursday", "Friday"],
+		labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه"],
         datasets: [
             {
-                label: 'Number of customers per day',
+                label: 'تعداد مشتریان برای هر روز',
                 data: [12, 19, 3, 5, 2, 3, 10]
             }
         ]
@@ -40,12 +40,12 @@ export const LineChart: Story = {
 export const WithOptions: Story = {
     args: {
         options: {
-            title: 'Number of customers per day',
+            title: 'تعداد مشتریان برای هر روز',
             hasTooltip: true,
             // hasLegend: true,
-            subtitle: 'This is a subtitle',
-            xAxisLabel: 'Day',
-            yAxisLabel: 'Number of customers',
+            subtitle: 'این یک متن زیر عنوان است',
+            xAxisLabel: 'روز',
+            yAxisLabel: 'تعداد مشتریان',
         }
     }
 };
@@ -60,7 +60,7 @@ export const NoData: Story = {
     args: {
         datasets: [
             {
-                label: 'Number of customers per day',
+                label: 'تعداد مشتریان برای هر روز',
                 data: [null, null, null, null, null, null, null],
             }
         ]
@@ -71,11 +71,11 @@ export const BarMultipleDatasets: Story = {
     args: {
         datasets: [
             {
-                label: 'Number of customers joined per day',
+                label: 'تعداد مشتریان به ثبت نام برای هر روز',
                 data: [12, 19, 3, 5, 2, 3, 10],
             },
             {
-                label: 'Number of total customers',
+                label: 'تعداد مشتریان کل',
                 data: [10, 15, 20, 25, 30, 25, 23],
                 borderColor: 'skyblue',
                 backgroundColor: 'skyblue',
@@ -89,11 +89,11 @@ export const LineMultipleDatasets: Story = {
         type: ChartType.Line,
         datasets: [
             {
-                label: 'Number of customers joined per day',
+                label: 'تعداد مشتریان به ثبت نام برای هر روز',
                 data: [12, 19, 3, 5, 2, 3, 10],
             },
             {
-                label: 'Number of total customers',
+                label: 'تعداد مشتریان کل',
                 data: [10, 6, 17, 25, 30, 25, 23],
                 borderColor: 'skyblue',
                 backgroundColor: 'skyblue',

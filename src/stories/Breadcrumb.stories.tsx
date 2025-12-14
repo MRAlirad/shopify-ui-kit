@@ -19,7 +19,7 @@ export const Default = () => {
 	return (
 		// wrap into BrowserRouter for Link component to work
 		<BrowserRouter>
-			<Breadcrumb breadcrumb={[{ icon: <BsCartFill />, label: 'Products', link: '/product' }, { label: 'Purchase Orders', link: '/product/purchase-order' }, { label: 'Add Purchase Order' }]} />
+			<Breadcrumb breadcrumb={[{ icon: <BsCartFill />, label: 'محصولات', link: '/product' }, { label: 'سفارشات خرید', link: '/product/purchase-order' }, { label: 'افزودن سفارش خرید' }]} />
 		</BrowserRouter>
 	);
 };

@@ -11,8 +11,8 @@ const meta = {
 	tags: ["autodocs"],
 	args: {
 		color: "info",
-		title: "A new software update",
-		text: "A new software update is available. See what’s new in version 2.0.4.",
+		title: "یک بروزرسانی نرم افزاری",
+		text: "یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید.",
 	},
 } satisfies Meta<typeof Alert>;
 
@@ -25,10 +25,10 @@ export const PrimaryColors = {
 	render: () => {
 		return (
 			<div className="flex flex-col gap-4">
-				<Alert color="info" title="Info Alert" text="This is an informational alert message." />
-				<Alert color="success" title="Success Alert" text="This is a success alert message." />
-				<Alert color="warning" title="Warning Alert" text="This is a warning alert message." />
-				<Alert color="error" title="Error Alert" text="This is an error alert message." />
+				<Alert color="info" title="هشدار اطلاعاتی" text="این یک هشدار اطلاعاتی است." />
+				<Alert color="success" title="هشدار موفقیت آمیز" text="این یک هشدار موفقیت آمیز است." />
+				<Alert color="warning" title="هشدار هشدار" text="این یک هشدار هشدار است." />
+				<Alert color="error" title="هشدار خطا" text="این یک هشدار خطا است." />
 			</div>
 		);
 	},
@@ -38,11 +38,11 @@ export const WithActions: Story = {
 	args: {
 		actions: [
 			{
-				text: "Update",
+				text: "بروزرسانی",
 				onClick: fn(),
 			},
 			{
-				text: "Dismiss",
+				text: "انصراف",
 				onClick: fn(),
 			},
 		],
@@ -53,9 +53,9 @@ export const WithItems = {
 	args: {
 		text: "",
 		items: [
-			"A new software update is available. See what’s new in version 2.0.4. 1",
-			"A new software update is available. See what’s new in version 2.0.4. 2",
-			"A new software update is available. See what’s new in version 2.0.4. 3",
+			"یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید. 1",
+			"یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید. 2",
+			"یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید. 3",
 		],
 	},
 };
@@ -69,8 +69,8 @@ export const WithAccentBorder = {
 export const WithDismissButton = {
 	args: {
 		color: "error",
-		title: "Error Alert",
-		text: "This is an error alert message.",
+		title: "هشدار خطا",
+		text: "این یک هشدار خطا است.",
 		onDismiss: fn(),
 	},
 };
@@ -78,20 +78,20 @@ export const WithDismissButton = {
 export const WithAllProps = {
 	args: {
 		color: "info",
-		title: "A new software update",
-		text: "A new software update is available. See what’s new in version 2.0.4.",
+		title: "یک بروزرسانی نرم افزاری",
+		text: "یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید.",
 		items: [
-			"A new software update is available. See what’s new in version 2.0.4. 1",
-			"A new software update is available. See what’s new in version 2.0.4. 2",
-			"A new software update is available. See what’s new in version 2.0.4. 3",
+			"یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید. 1",
+			"یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید. 2",
+			"یک بروزرسانی نرم افزاری موجود است. برای اطلاع از تغییرات نسخه 2.0.4 روی این لینک بروید. 3",
 		],
 		actions: [
 			{
-				text: "Update",
+				text: "بروزرسانی",
 				onClick: fn(),
 			},
 			{
-				text: "Dismiss",
+				text: "انصراف",
 				onClick: fn(),
 			},
 		],

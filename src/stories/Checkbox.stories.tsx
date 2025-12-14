@@ -19,7 +19,7 @@ export const Default = () => {
 
 	return (
 		<FormProvider {...form}>
-			<Checkbox label="Do you want to receive a message?" name="name" onChange={fn()} />
+			<Checkbox label="آیا می خواهید پیامی دریافت کنید؟" name="name" onChange={fn()} />
 		</FormProvider>
 	);
 };
@@ -29,7 +29,7 @@ export const WithDescription = () => {
 
 	return (
 		<FormProvider {...form}>
-			<Checkbox label="Do you want to receive a message?" name="name" description="This is a description for the checkbox" onChange={fn()} />
+			<Checkbox label="آیا می خواهید پیامی دریافت کنید؟" name="name" description="این یک متن توضیحاتی است" onChange={fn()} />
 		</FormProvider>
 	);
 };
@@ -39,7 +39,7 @@ export const Disabled = () => {
 
 	return (
 		<FormProvider {...form}>
-			<Checkbox label="Do you want to receive a message?" name="name" disabled={true} onChange={fn()} />
+			<Checkbox label="آیا می خواهید پیامی دریافت کنید؟" name="name" disabled={true} onChange={fn()} />
 		</FormProvider>
 	);
 };
@@ -53,7 +53,7 @@ export const DefaultTrueValue = () => {
 
 	return (
 		<FormProvider {...form}>
-			<Checkbox label="Do you want to receive a message?" name="name" onChange={fn()} />
+			<Checkbox label="آیا می خواهید پیامی دریافت کنید؟" name="name" onChange={fn()} />
 		</FormProvider>
 	);
 };
