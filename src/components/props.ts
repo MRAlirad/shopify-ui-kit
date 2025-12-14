@@ -112,3 +112,18 @@ export interface CheckboxProps {
 	onCheck?: () => void;
 	onUncheck?: () => void;
 }
+
+export interface InputProps {
+	size?: "small" | "medium";
+	name: string;
+	label?: string;
+	defaultValue?: string;
+	className?: string;
+	type?: string;
+	readOnly?: boolean;
+	disabled?: boolean;
+	placeholder?: string;
+	description?: string;
+	onChange?: (value: string) => void;
+	onEnter?: () => void;
+}

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { Button, Badge, Icon, Loader } from ".";
-import type { CardProps } from "./props";
+import { type CardProps } from "./props";
 
 const Card = ({ title, icon, text, className, children, action, badge, leftComponent, blueTitleBg = false, loading = false }: CardProps) => {
 	return (

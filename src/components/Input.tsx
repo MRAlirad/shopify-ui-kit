@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useController, useFormContext } from "react-hook-form";
 import classNames from "classnames";
 import { ErrorMessage } from "./Error";
-import Button from "./Button";
-import { EyeIcon, EyeSlashIcon } from "./icon";
+import { Button, EyeIcon, EyeSlashIcon } from ".";
+import { type InputProps } from "./props";
 import { numberToCurrency } from "../helpers/Number";
 
 const Input = ({
@@ -83,20 +83,5 @@ const Input = ({
 		</div>
 	);
 };
-
-export interface InputProps {
-	size?: "small" | "medium";
-	name: string;
-	label?: string;
-	defaultValue?: string;
-	className?: string;
-	type?: string;
-	readOnly?: boolean;
-	disabled?: boolean;
-	placeholder?: string;
-	description?: string;
-	onChange?: (value: string) => void;
-	onEnter?: () => void;
-}
 
 export default Input;
