@@ -38,6 +38,7 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 		"5xl": "md:max-w-5xl",
 		"6xl": "md:max-w-6xl",
 		"7xl": "md:max-w-7xl",
+		"full": "w-full",
 	};
 
 	return createPortal(
@@ -57,7 +58,7 @@ const Modal = ({ title, children, actions = [], className = "", backBtn = false,
 					[className]: className,
 				})}
 			>
-				<div className="flex items-center gap-2 py-3 px-6 border-b border-neutral-200 bg-neutral-100">
+				<div className="flex items-center gap-2 py-3 px-4 border-b border-neutral-200 bg-neutral-100">
 					{backBtn && <Button color="simple" size="small" icon={<ArrowRightIcon size={18} />} onClick={onBack} />}
 					<h3 className="text-lg">{title}</h3>
 					<Button color="simple" size="small" className="ms-auto" icon={<CloseIcon size={20} />} onClick={onClose} />

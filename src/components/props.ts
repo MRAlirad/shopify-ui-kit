@@ -134,7 +134,7 @@ export interface ModalProps {
 	actions?: ButtonProps[];
 	className?: string;
 	backBtn?: boolean;
-	width?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
+	width?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "full";
 	onBack?: () => void;
 	onClose: () => void;
 }
