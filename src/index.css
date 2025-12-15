@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @layer components {
 	/*! GLOBAL !*/
 	body {
@@ -7,7 +9,7 @@
 	}
 
 	.card {
-		@apply bg-white rounded shadow-card overflow-hidden;
+		@apply bg-white rounded shadow-card overflow-hidden dark:bg-[#101828];
 	}
 
 	.skeleton {
@@ -315,7 +317,8 @@
 }
 
 @theme {
-	--shadow-card: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+	--shadow-card: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0px 0px 2px 0px rgba(0, 0, 0, 0.2) dark:shadow-card-dark;
+	--shadow-card-dark: 0px 2px 10px 0px rgba(255, 255, 255, 0.1), 0px 0px 2px 0px rgba(255, 255, 255, 0.2);
 
 	--animate-fadeInUp: fadeInUp 0.3s forwards;
 	--animate-fadeIn: fadeIn 0.3s forwards;

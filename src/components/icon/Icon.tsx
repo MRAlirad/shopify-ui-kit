@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 const Icon = ({ children, color = "inherit", className = "", size = "18" }: IconProps) => {
 	return (
 		<IconContext.Provider value={{ size: size }}>
-			<div className={`flex ${color} ${className}`}>{children}</div>
+			<div className={`flex text-neutral-900 dark:text-white ${color} ${className}`}>{children}</div>
 		</IconContext.Provider>
 	);
 };
