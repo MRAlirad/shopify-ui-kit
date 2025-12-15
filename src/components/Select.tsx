@@ -14,6 +14,7 @@ const Select = ({
 	clearable = false,
 	loading = false,
 	error = "",
+	description = "",
 	size = "medium",
 	options = [],
 	onChange = () => {},
@@ -98,6 +99,8 @@ const Select = ({
 			</div>
 
 			{fieldState?.error?.message && <ErrorMessage error={fieldState?.error?.message} />}
+
+			{description && <p className="description">{description}</p>}
 		</div>
 	);
 };
@@ -106,6 +109,7 @@ interface SelectProps {
 	name: string;
 	label?: string;
 	className?: string;
+	description?: string;
 	size?: "small" | "medium";
 	disabled?: boolean;
 	readOnly?: boolean;

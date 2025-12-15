@@ -79,7 +79,7 @@ const Input = ({
 
 			{type === "currency" && watch(name) && <span className="text-xs text-end pe-1">{numberToCurrency(watch(name) ? +watch(name) : 0)} ريال </span>}
 
-			{description && <p className="text-sm text-neutral-500">{description}</p>}
+			{description && <p className="description">{description}</p>}
 		</div>
 	);
 };

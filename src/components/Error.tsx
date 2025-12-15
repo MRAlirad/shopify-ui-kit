@@ -8,7 +8,7 @@ export const ErrorMessage = ({ error = '' }: { error: string | string[] }) => {
 
 const ErrorText = ({ error = "" }: { error: string }) => {
 	return (
-		<div className="flex items-center gap-1.5 text-red-600 text-xs ms-2">
+		<div className="flex items-center gap-1.5 text-red-600 dark:text-red-400 text-xs ms-2">
 			<WarningCircleIcon size={15} />
 			<span>{error}</span>
 		</div>
