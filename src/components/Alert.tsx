@@ -4,10 +4,10 @@ import type { AlertProps, ButtonProps } from "./props";
 
 const Alert = ({ color = "info", title, text, items, accentBorder = false, className = "", actions, onDismiss }: AlertProps) => {
 	const icons: Record<AlertProps["color"], { icon: React.ReactNode; btnColor: ButtonProps["color"]; className: string }> = {
-		info: { icon: <IoInformationCircle />, btnColor: "blue-simple", className: "bg-blue-50 text-blue-600 border-blue-500" },
-		success: { icon: <FaCircleCheck />, btnColor: "green-simple", className: "text-green-800 bg-green-50 border-green-500" },
-		warning: { icon: <GoAlertFill />, btnColor: "simple", className: "text-yellow-700 bg-yellow-50 border-yellow-500" },
-		error: { icon: <IoCloseCircle />, btnColor: "red-simple", className: "text-red-800 bg-red-50 border-red-500" },
+		info: { icon: <IoInformationCircle />, btnColor: "blue-simple", className: "bg-blue-50 dark:bg-blue-500/20 text-blue-700 dark:text-blue-200 border-blue-500 dark:border-blue-500/20" },
+		success: { icon: <FaCircleCheck />, btnColor: "green-simple", className: "bg-green-50 dark:bg-green-500/20 text-green-700 dark:text-green-200 border-green-500 dark:border-green-500/20" },
+		warning: { icon: <GoAlertFill />, btnColor: "simple", className: "bg-yellow-50 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-200 border-yellow-500 dark:border-yellow-500/20" },
+		error: { icon: <IoCloseCircle />, btnColor: "red-simple", className: "bg-red-50 dark:bg-red-500/20 text-red-700 dark:text-red-200 border-red-500 dark:border-red-500/20" },
 	};
 
 	return (
@@ -15,7 +15,7 @@ const Alert = ({ color = "info", title, text, items, accentBorder = false, class
 			className={classNames({
 				"grid grid-cols-[max-content_1fr_max-content] gap-4 p-4": true,
 				"border-s-4 border-solid rounded-none": accentBorder,
-				rounded: !accentBorder,
+				'rounded dark:border-1': !accentBorder,
 				[icons[color].className]: true,
 				[color]: true,
 				[className]: className,
@@ -24,7 +24,7 @@ const Alert = ({ color = "info", title, text, items, accentBorder = false, class
 			<Icon>{icons[color].icon}</Icon>
 			<div className="grid gap-1 text-sm">
 				{title && <h3 className="font-bold">{title}</h3>}
-				{text && <p className="">{text}</p>}
+				{text && <p>{text}</p>}
 				{items && (
 					<ul className="list-disc list-inside">
 						{items.map((item) => (
