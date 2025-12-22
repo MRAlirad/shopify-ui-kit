@@ -1,14 +1,15 @@
 import classNames from "classnames";
 import { useController, useFormContext } from "react-hook-form";
+import { ErrorMessage } from "./Error";
 
 const Checkbox = ({ name = "", label = "", className = "", disabled = false, description = "", onChange = () => {}, onCheck = () => {}, onUncheck = () => {} }: CheckboxProps) => {
 	const { control } = useFormContext();
-	const { field } = useController({ control, name, disabled });
+	const { field, fieldState } = useController({ control, name, disabled });
 
 	return (
 		<div
 			className={classNames({
-				"grid gap-1 text-sm": true,
+				"grid gap-1 text-sm h-max": true,
 				[className]: className,
 			})}
 		>
@@ -35,6 +36,8 @@ const Checkbox = ({ name = "", label = "", className = "", disabled = false, des
 				/>
 				{label && <span className="text-neutral-900 select-none">{label}</span>}
 			</label>
+
+			{fieldState?.error?.message && <ErrorMessage error={fieldState?.error?.message} />}
 
 			{description && <span className="text-neutral-500 ms-6">{description}</span>}
 		</div>
