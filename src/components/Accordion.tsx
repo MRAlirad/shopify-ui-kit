@@ -7,7 +7,7 @@ const Accordion = ({ title, list = [], openFirstItem = false }: AccordionProps) 
 
 	return (
 		<div className="grid gap-2">
-			{title && <h3 className="text-lg font-bold text-neutral-600">{title}</h3>}
+			{title && <h3 className="text-lg font-bold text-neutral-600 dark:text-neutral-100">{title}</h3>}
 			<div className="card">
 				{list?.map(({ question, answer }, index) => (
 					<AccordionItem
@@ -29,13 +29,13 @@ const Accordion = ({ title, list = [], openFirstItem = false }: AccordionProps) 
 
 const AccordionItem = ({ question, answer, isActive = false, activeItem, onClick = () => {} }: AccordionItemProps) => {
 	return (
-		<div className={`border-b border-blue-200 last:border-b-0 ${isActive ? "bg-blue-50/50" : "bg-white"}`}>
+		<div className={`border-b border-blue-200 dark:border-white/20 last:border-b-0 ${isActive ? "bg-blue-50/50 dark:bg-white/5" : "bg-white dark:bg-gray-900"}`}>
 			<div className="flex items-center justify-between cursor-pointer p-4" onClick={onClick}>
-				<h6 className="text-sm font-bold text-neutral-600">{question}</h6>
+				<h6 className="text-sm font-bold text-gray-900 dark:text-white">{question}</h6>
 				<ArrowCaretDownIcon size={16} className={`duration-300 ${isActive ? "rotate-180" : ""}`} />
 			</div>
 
-			{isActive && <p key={activeItem} className="text-sm text-justify text-neutral-500 px-4 pb-4 animate-fadeInUp">{answer}</p>}
+			{isActive && <p key={activeItem} className="text-sm text-justify text-gray-600 dark:text-gray-400 px-4 pb-4 animate-fadeInUp">{answer}</p>}
 		</div>
 	);
 };

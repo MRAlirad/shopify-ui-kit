@@ -5,11 +5,11 @@
 @layer components {
 	/*! GLOBAL !*/
 	body {
-		@apply text-neutral-900;
+		@apply text-neutral-900 dark:text-white;
 	}
 
 	.card {
-		@apply bg-white rounded shadow-card dark:shadow-card-dark overflow-hidden dark:bg-[#101828];
+		@apply bg-white rounded shadow-card dark:shadow-card-dark overflow-hidden dark:bg-gray-900;
 	}
 
 	.skeleton {
