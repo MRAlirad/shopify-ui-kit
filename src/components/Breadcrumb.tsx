@@ -10,8 +10,8 @@ const Breadcrumb = ({ type = 'home', breadcrumb = [] }: BreadcrumbProps) => {
 	};
 
 	return (
-		<div className="flex items-center flex-wrap gap-1.5 text-neutral-600">
-			<Link to={types[type].link} className="flex items-center gap-1 text-sm font-medium hover:text-neutral-800">
+		<div className="flex items-center flex-wrap gap-1.5 text-neutral-600 dark:text-neutral-300">
+			<Link to={types[type].link} className="flex items-center gap-1 text-sm font-medium hover:text-neutral-800 dark:hover:text-neutral-200">
 				{types[type].icon}
 				<span>{types[type].label}</span>
 			</Link>
@@ -23,8 +23,8 @@ const Breadcrumb = ({ type = 'home', breadcrumb = [] }: BreadcrumbProps) => {
 					<Link
 						to={link ?? ''}
 						className={classNames({
-							'flex items-center gap-1 text-sm font-medium hover:text-neutral-800': true,
-							'text-neutral-900': breadcrumb.length - 1 === index,
+							'flex items-center gap-1 text-sm font-medium hover:text-neutral-800 dark:hover:text-neutral-200': true,
+							'text-neutral-900 dark:text-neutral-50': breadcrumb.length - 1 === index,
 						})}
 					>
 						{icon && icon}
